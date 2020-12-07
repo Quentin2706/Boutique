@@ -2,21 +2,21 @@
 
 //Test Table_fournisseurManager
 
-echo "recherche id = 1" . "<br>";
-$obj =Table_fournisseurManager::findByReference("SS");
-var_dump($obj);
-echo $obj->toString();
+// echo "recherche id = 1" . "<br>";
+// $obj =Table_fournisseurManager::findByReference("SS");
+// var_dump($obj);
+// echo $obj->toString();
 
 // echo "ajout de l'objet". "<br>";
 // $newObj = new Table_fournisseur(["refFournisseur" => "3D", "libFournisseur" => "([value 2])", "adresseFournisseur" => "([value 3])", "telephoneFournisseur" => "([value 4])"]);
 // var_dump(Table_fournisseurManager::add($newObj));
 
-// echo "Liste des objets" . "<br>";
-// $array = Table_fournisseurManager::getList();
-// foreach ($array as $unObj)
-// {
-// 	echo $unObj->toString() . "<br><br>";
-// }
+echo "Liste des objets" . "<br>";
+$array = Table_fournisseurManager::getList();
+foreach ($array as $unObj)
+{
+	echo $unObj->toString() . "<br><br>";
+}
 
 // echo "on met à jour l'id 1" . "<br>";
 // $obj->setrefFournisseur("[]");
