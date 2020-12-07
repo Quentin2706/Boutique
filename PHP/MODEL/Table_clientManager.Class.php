@@ -56,4 +56,19 @@ class Table_clientManager
 		}
 		return $liste;
 	}
+	public static function findByNom($nom)
+	{
+ 		$db=DbConnect::getDb();
+		$nom = (int) $nom;
+		$q=$db->query("SELECT * FROM Table_client WHERE nomClient =".$nom);
+		$results = $q->fetch(PDO::FETCH_ASSOC);
+		if($results != false)
+		{
+			return new Table_client($results);
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

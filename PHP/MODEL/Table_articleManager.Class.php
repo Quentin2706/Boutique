@@ -76,4 +76,41 @@ class Table_articleManager
 		}
 		return $liste;
 	}
+	public static function rechercheMulti($tab)
+	{
+		$db=DbConnect::getDb();
+		$compteur=0;
+		$requete="SELECT * FROM table_article WHERE ";
+		foreach ($tab as $nomColonne=>$elt)
+		{
+			if ($compteur==count($tab))
+			{
+				$requete.=$nomColonne." = ".$elt;
+			} else {
+			$requete.=$nomColonne." = ".$elt." ,";
+			}
+			$compteur+=1;
+		}
+		$q = $qb -> query($requete);
+		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
+		{
+			if($donnees != false)
+			{
+				$liste[] = new Table_article($donnees);
+			}
+		}
+		return $liste;
+	}
+
+	public static function calculPrixPromotion(Article $article)
+	{
+		$db=DbConnect::getDb();
+		$auj=new Datetime("now");
+		$q=$db->query("SELECT taux FROM table_promotion WHERE idCateg=".$article->getIdCateg()." AND dateDebut > ".$auj->format("Y-m-d"));
+		foreach($article as )
+		{
+
+		}
+	}
+
 }

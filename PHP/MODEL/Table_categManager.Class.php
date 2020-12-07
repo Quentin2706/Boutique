@@ -56,4 +56,19 @@ class Table_categManager
 		}
 		return $liste;
 	}
+	public static function findByReference($ref)
+	{
+ 		$db=DbConnect::getDb();
+		$ref = (int) $ref;
+		$q=$db->query("SELECT * FROM Table_categ WHERE referenceCategorie =".$ref);
+		$results = $q->fetch(PDO::FETCH_ASSOC);
+		if($results != false)
+		{
+			return new Table_categ($results);
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

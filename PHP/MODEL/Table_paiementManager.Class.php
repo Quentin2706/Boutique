@@ -60,4 +60,53 @@ class Table_paiementManager
 		}
 		return $liste;
 	}
+	public static function sommePaiement($idVente)
+	{
+		$db=DbConnect::getDb();
+		$id=(int) $idVente;
+		$q=$db->query("SELECT montant FROM table_paiement WHERE idVente =".$idVente);
+		$sommePaiement=0;
+		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
+		{
+			if($donnees != false)
+			{
+				$sommePaiement+=$donnees;
+			}
+		}
+		return $sommePaiement;
+	}
+
+	public static function montantTotal($idVente)
+	{
+		$db=DbConnect::getDb();
+		$q=$db->query("SELECT prixUnitaire, quantite FROM table_detail_vente WHERE idVente=".$idVente);
+		$montantTotal=0;
+		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
+		{
+			if($donnees != false)
+			{
+				$quantite=$donnees["quantite"];
+				$prixUnitaire=$donnees["prixUnitaire"];
+				$montantTotal+=$quantite*$prixUnitaire;
+			}
+		}
+		return $montantTotal;
+	}
+
+	public static function montantTotalRemise($idVente, $taux)
+	{
+		$db=DbConnect::getDb();
+		// $q=$db->query("SELECT taux FROM table_promotion WHERE ")
+		$montantTotal=Table_paiementManager::montantTotal($idVente);
+		// $montantTotalRemise=$montantTotal
+		return ($montantTotal*($taux*100));
+	}
+
+	public static function resteDu($idVente)
+	{
+		$db=DbConnect::getDb();
+		$montantTotal=Table_paiementManager::montantTotal($idVente);
+		$sommePaye=Table_paiementManager::sommePaiement($idVente);
+		return ($montantTotal-$sommePaye);
+	}
 }

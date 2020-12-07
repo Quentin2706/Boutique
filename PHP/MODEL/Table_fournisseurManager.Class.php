@@ -58,4 +58,34 @@ class Table_fournisseurManager
 		}
 		return $liste;
 	}
+	public static function findByReference($ref)
+	{
+ 		$db=DbConnect::getDb();
+		$ref = (int) $ref;
+		$q=$db->query("SELECT * FROM Table_fournisseur WHERE referenceFournisseur =".$ref);
+		$results = $q->fetch(PDO::FETCH_ASSOC);
+		if($results != false)
+		{
+			return new Table_fournisseur($results);
+		}
+		else
+		{
+			return false;
+		}
+	}
+	public static function findByLibelle($libelle)
+	{
+ 		$db=DbConnect::getDb();
+		$libelle = (int) $libelle;
+		$q=$db->query("SELECT * FROM Table_fournisseur WHERE libelleFournisseur =".$libelle);
+		$results = $q->fetch(PDO::FETCH_ASSOC);
+		if($results != false)
+		{
+			return new Table_fournisseur($results);
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
