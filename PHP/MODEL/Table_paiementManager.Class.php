@@ -60,6 +60,7 @@ class Table_paiementManager
 		}
 		return $liste;
 	}
+
 	public static function sommePaiement($idVente)
 	{
 		$db=DbConnect::getDb();
@@ -70,7 +71,7 @@ class Table_paiementManager
 		{
 			if($donnees != false)
 			{
-				$sommePaiement+=$donnees;
+				$sommePaiement+=$donnees["montant"];
 			}
 		}
 		return $sommePaiement;
@@ -99,7 +100,7 @@ class Table_paiementManager
 		// $q=$db->query("SELECT taux FROM table_promotion WHERE ")
 		$montantTotal=Table_paiementManager::montantTotal($idVente);
 		// $montantTotalRemise=$montantTotal
-		return ($montantTotal*($taux*100));
+		return ($montantTotal*($taux/100));
 	}
 
 	public static function resteDu($idVente)
