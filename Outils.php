@@ -78,3 +78,21 @@ function optionComboBox($code, $nom)
     $select .= "</select>";
     return $select;
 }
+
+// function recupDataTypeColonne($db,$nomDB,$nomTable)
+// {
+//     $requete = $db->query('SELECT COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = "'.$nomTable.'"');
+//     while ($donnees = $requete->fetch(PDO::FETCH_ASSOC)) // le while permet de boucler sur les enregistrements
+//     // il s'arrete quand fetch renvoi false
+//     {
+//     $dataTypeTable[]=$donnees["DATA_TYPE"];
+//     }
+//     return $dataTypeTable;
+// }
+
+// $nomDB = "Boutique";
+// $nomTable = "table_article";
+// DbConnect::init();
+// $db = DbConnect::getDb();
+// $test = recupDataTypeColonne($db,$nomDB,$nomTable);
+// var_dump($test);
