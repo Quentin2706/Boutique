@@ -8,7 +8,7 @@ $action = (isset($_GET['action'])) ? $_GET['action'] : '';
     <header>
         <div class="gauche top">
             <div class="logo">
-                <img src="Images/fleurDeLin.png" alt="logo fleur de lin">
+                <img src="IMG/fleurDeLin.png" alt="logo fleur de lin">
             </div>
         </div>
 
@@ -22,7 +22,7 @@ $action = (isset($_GET['action'])) ? $_GET['action'] : '';
             <div></div>
             <div class="blocBleuBordBlanc button  petiteIcon">
                 <a href="index.php?action=deconnection">
-                    <img src="Images/deconnexion.png">
+                    <img src="IMG/deconnexion.png">
                 </a>
             </div><div></div>
         </div>

@@ -4,7 +4,7 @@
                 <div class="grosBouton">
                     <a href="menuCaisse.html">
                 <div class="picto caisse">
-                    <img src="Images/caisse.png" alt="Caisse">
+                    <img src="IMG/caisse.png" alt="Caisse">
                 </div>
             </a>
                 <div class="nomPicto">Caisse</div>
@@ -13,7 +13,7 @@
                 <div class="grosBouton">
                     <a href="clients.html">
                     <div class="picto clients">
-                        <img src="Images/personne.png" alt="Clients">
+                        <img src="IMG/personne.png" alt="Clients">
                     </div>
                 </a>
                     <div class="nomPicto">Clients</div>
@@ -24,7 +24,7 @@
                 <div class="grosBouton">
                     <a href="articles.html">
                     <div class="picto articles">
-                        <img src="Images/entrepot.png" alt="Articles">
+                        <img src="IMG/entrepot.png" alt="Articles">
                     </div>
                 </a>
                     <div class="nomPicto">Articles</div>
@@ -33,7 +33,7 @@
                 <div class="grosBouton">
                     <a href="donnees.html">
                     <div class="picto donnees">
-                        <img src="Images/data.png" alt="Données">
+                        <img src="IMG/data.png" alt="Données">
                     </div>
                 </a>
                     <div class="nomPicto">Données</div>
