@@ -58,7 +58,7 @@ class Table_couleurManager
 	{
  		$db=DbConnect::getDb();
 		$ref = (int) $ref;
-		$q=$db->query("SELECT * FROM Table_couleur WHERE referenceCouleur =".$ref);
+		$q=$db->query("SELECT * FROM Table_couleur WHERE refCouleur =".$ref);
 		$results = $q->fetch(PDO::FETCH_ASSOC);
 		if($results != false)
 		{
