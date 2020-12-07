@@ -38,6 +38,7 @@ $routes=[
 	"Testtable_venteManager"=>["PHP/MODEL/TESTMANAGER/","Testtable_venteManager","Test de table_vente"],
 
 	"FormUser"=>["PHP/VIEW/","FormUser","Formulaire des utilisateurs"],
+	"ActionUser"=>["PHP/VIEW/","Actionuser","Action des utilisateurs"],
 	"MenuCaisse"=>["PHP/VIEW/","MenuCaisse","Caisse"],
 	"ListeVentes"=>["PHP/VIEW/","ListeVentes","Ventes"],
 	"PassageCaisse"=>["PHP/VIEW/","PassageCaisse","Caisse"],
