@@ -76,22 +76,23 @@ class Table_articleManager
 		}
 		return $liste;
 	}
-	public static function rechercheMulti($tab)
+	public static function rechercheMulti(array $tab)
 	{
 		$db=DbConnect::getDb();
 		$compteur=0;
 		$requete="SELECT * FROM table_article WHERE ";
 		foreach ($tab as $nomColonne=>$elt)
 		{
-			if ($compteur==count($tab))
+			$nomColonne == "idUnivers" || $nomColonne == "idCateg" || $nomColonne == "idFournisseur" || $nomColonne == "idCouleur" ? $elt = $elt : $elt = '"'.$elt.'"';
+			if ($compteur==count($tab)-1)
 			{
 				$requete.=$nomColonne." = ".$elt;
 			} else {
-			$requete.=$nomColonne." = ".$elt." ,";
+			$requete.=$nomColonne." = ".$elt." AND ";
 			}
 			$compteur+=1;
 		}
-		$q = $qb -> query($requete);
+		$q = $db -> query($requete);
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
 		{
 			if($donnees != false)
@@ -106,7 +107,7 @@ class Table_articleManager
 	{
 		$db=DbConnect::getDb();
 		$auj=new Datetime("now");
-		$q=$db->query("SELECT taux FROM table_promotion WHERE idCateg=".$article->getIdCateg()." AND dateDebut < ".$auj." AND dateFin > ".$auj);
+		$q=$db->query("SELECT taux FROM table_promotion WHERE idCateg=".$article->getIdCateg()." AND dateDebut < '" .$auj."' AND dateFin > '".$auj."'");
 		if($donnees = $q->fetch(PDO::FETCH_ASSOC))
 		{
 			return $article->getPrixArticle()*($donnees["taux"]/100);
