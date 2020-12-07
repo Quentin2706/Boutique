@@ -54,4 +54,36 @@ class Table_venteManager
 		}
 		return $liste;
 	}
+
+	public static function findListByDate($date)
+	{
+ 		$db=DbConnect::getDb();
+		$liste = [];
+		$q = $db->query("SELECT * FROM Table_vente WHERE date_vente=".$date);
+		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
+		{
+			if($donnees != false)
+			{
+				$liste[] = new Table_vente($donnees);
+			}
+		}
+		return $liste;
+	}
+
+	public static function findByDate($date)
+	{
+ 		$db=DbConnect::getDb();
+		$q=$db->query("SELECT * FROM Table_vente WHERE date_vente =".$date);
+		$results = $q->fetch(PDO::FETCH_ASSOC);
+		if($results != false)
+		{
+			return new Table_vente($results);
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
 }
