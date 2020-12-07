@@ -59,8 +59,7 @@ class Table_clientManager
 	public static function findByNom($nom)
 	{
  		$db=DbConnect::getDb();
-		$nom = (int) $nom;
-		$q=$db->query("SELECT * FROM Table_client WHERE nomClient =".$nom);
+		$q=$db->query('SELECT * FROM Table_client WHERE nomClient ="'.$nom.'"');
 		$results = $q->fetch(PDO::FETCH_ASSOC);
 		if($results != false)
 		{

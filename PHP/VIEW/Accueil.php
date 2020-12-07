@@ -3,21 +3,19 @@
             <div class="fois5 ligne">
                 <div class="grosBouton">
                     <a href="menuCaisse.html">
-                <div class="picto caisse">
-                    <img src="IMG/caisse.png" alt="Caisse">
+                        <div class="picto caisse">
+                            <img src="IMG/caisse.png" alt="Caisse">
+                        </div>
+                    </a>
+                    <div class="nomPicto">Caisse</div>
                 </div>
-            </a>
-                <div class="nomPicto">Caisse</div>
-            
-            </div>
                 <div class="grosBouton">
                     <a href="clients.html">
-                    <div class="picto clients">
-                        <img src="IMG/personne.png" alt="Clients">
-                    </div>
-                </a>
+                        <div class="picto clients">
+                            <img src="IMG/personne.png" alt="Clients">
+                        </div>
+                    </a>
                     <div class="nomPicto">Clients</div>
-                
                 </div>
             </div>
             <div class="fois5 ligne">
@@ -28,7 +26,7 @@
                     </div>
                 </a>
                     <div class="nomPicto">Articles</div>
-                
+
                 </div>
                 <div class="grosBouton">
                     <a href="donnees.html">
@@ -37,7 +35,7 @@
                     </div>
                 </a>
                     <div class="nomPicto">Données</div>
-              
+
                 </div>
             </div>
         </div>

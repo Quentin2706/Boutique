@@ -1,0 +1,500 @@
+:root {
+    --marron: #BCAD86;
+    --beige: #ECE4CE;
+    --violet: #6D7AB1;
+    --vert: #44A33D;
+    --gris: rgba(71, 75, 104, 0.404);
+}
+
+/************Général****************/
+div {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+}
+
+.ligne {
+    flex-direction: row;
+}
+
+.espace {
+    padding: 10px;
+}
+
+.droite {
+    justify-content: flex-end;
+}
+
+.button {
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 4vh;
+    margin-bottom: 2vh;
+    align-items: center;
+}
+
+.centrer {
+    align-items: center;
+}
+
+.fois5 {
+    flex: 5;
+}
+
+.fois7 {
+    flex: 7;
+}
+
+.fois2 {
+    flex: 2;
+}
+
+.foisDemi {
+    flex: 0.5;
+}
+
+img {
+    width: 100%;
+}
+
+.miniIcon {
+    margin: 2vh;
+    padding: 0;
+}
+
+.miniIcon img {
+    width: 2vw;
+}
+
+.petiteIcon img {
+    width: 3vw;
+}
+
+.moyenneIcon img {
+    width: 6vw;
+}
+
+.reduireBouton {
+    flex: 0.2;
+}
+
+body {
+    font-family: 'Sriracha', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--beige);
+    font-size: 1.2em;
+}
+
+
+
+.blocMarronBordVert {
+    background-color: var(--marron);
+    border: var(--vert) solid 2px;
+    border-radius: 20px;
+    padding: 1vh;
+    margin: 20px;
+}
+
+.blocBeigeBordNoir {
+    width: 20%;
+    border: black 3px solid;
+    background-color: var(--beige);
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.blocBleuBordBlanc {
+    border: white 4px solid;
+    background-color: var(--violet);
+    border-radius: 10px;
+}
+
+.button:hover {
+    background-color: var(--gris);
+}
+
+.blocMarronBordBlanc {
+    border: white 4px solid;
+    background-color: var(--marron);
+    border-radius: 10px;
+}
+
+.sansRadius {
+    border-radius: unset;
+}
+
+/*******Header*********/
+header {
+    display: flex;
+    background-color: var(--marron);
+    border: solid var(--vert) 2px;
+    color: white;
+}
+
+.top {
+    flex: 1;
+    text-align: left;
+    align-items: center;
+}
+
+.titrePage {
+    text-align: center;
+    font-size: 2em;
+
+}
+
+.logo {
+    flex: 1;
+    padding-top: 10px;
+}
+
+
+.logo img {
+    width: 80px;
+    cursor: pointer;
+}
+
+
+
+.petitBouton button {
+    margin: 0.5em;
+    width: 50px;
+    height: 50px;
+    border: white 2px solid;
+    background-color: var(--violet);
+    border-radius: 5px;
+
+}
+
+.petitBouton button:hover {
+    background-color: var(--gris);
+}
+
+/*************Formulaire************/
+.blocform {
+    background-color: var(--marron);
+    border: var(--vert) solid 2px;
+    border-radius: 20px;
+    padding: 7vh;
+    margin: 20px;
+    color: white;
+}
+
+input,
+select,
+textarea {
+    font-family: 'Sriracha';
+    width: 90%;
+    padding: 5px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: solid var(--violet) 2px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    min-width: 300px;
+}
+
+textarea {
+    resize: none;
+}
+
+.inputConnexion input {
+    padding: 5px 10px;
+    margin: unset;
+    min-width: 100px;
+}
+
+.form {
+    padding-bottom: 4em;
+}
+
+
+fieldset {
+    border: var(--vert) solid 2px;
+    border-radius: 20px;
+    padding: 1em 4em 2em;
+    margin: 1em;
+    color: white;
+    background-color: var(--marron);
+}
+
+
+.bouton {
+    font-family: 'Sriracha';
+    border: solid white 2px;
+    border-radius: 5px;
+    background-color: var(--violet);
+    color: white;
+    font-size: 0.9em;
+    font-weight: bold;
+    width: 20%;
+}
+
+.bouton:hover {
+    background-color: white;
+    color: var(--violet);
+    border-color: var(--violet);
+    cursor: pointer;
+}
+
+
+.ligneArticle input {
+    width: 20%;
+    min-width: 10%;
+    padding: 0;
+}
+
+/*****************Bloc*******************/
+
+.bloc {
+
+    background-color: var(--marron);
+    border: var(--vert) solid 2px;
+    border-radius: 20px;
+    padding: 2vh;
+    margin: 20px;
+}
+
+
+.grosBouton {
+    cursor: pointer;
+    background-color: var(--violet);
+    border: white solid 2px;
+    margin: 2vw;
+    border-radius: 20px;
+    align-items: center
+}
+
+.grosBouton:hover {
+    background-color: var(--gris);
+}
+
+.picto img {
+    width: 8vw;
+}
+
+.nomPicto {
+    color: white;
+    font-size: 1.5em;
+}
+
+/**********************Caisse*************************/
+
+select {
+    font-family: 'Sriracha';
+    padding: 0;
+    display: inline-block;
+    border: solid var(--violet) 2px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    min-width: 200px;
+    font-size: 1.2em;
+
+}
+
+
+.traitNoir {
+    flex: 0.01;
+    border: solid black 6px;
+    border-radius: 4px;
+    margin: 4px;
+    opacity: 0.7;
+}
+
+/******************Paiement******************/
+.boutonPaiement {
+    width: 30px;
+    height: 30px;
+    border: white 2px solid;
+    background-color: var(--violet);
+    border-radius: 5px;
+
+    justify-content: center;
+    margin-top: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.boutonPaiement:hover {
+    background-color: var(--gris);
+}
+
+.ligneCaisse select[name="moyenPaiement"] {
+    width: 60%;
+    min-width: 80px;
+}
+
+
+/*********************EnvoiMail***********************/
+.blocMail {
+    align-items: center;
+    background-color: var(--marron);
+    padding: 5vh;
+    border: white 2px solid;
+    border-radius: 5px;
+}
+
+.blocMail .bouton {
+    width: 50%;
+}
+
+.blocMail input {
+    background-color: var(--beige);
+
+}
+
+/***************Recherche Multi*****************/
+.blocRecherche {
+
+    background-color: var(--marron);
+    align-items: center;
+    width: 90%;
+    border: var(--vert) solid 2px;
+    border-radius: 20px;
+    padding: 2vh;
+    margin: 20px;
+    justify-content: space-around;
+
+}
+
+
+
+
+
+/*****************Tableau******************/
+.conteneurTableau {
+
+    flex-grow: 1;
+    padding: 2vh;
+}
+
+.tableau {
+    padding: 2vh;
+}
+
+.enTete {
+    background-color: var(--violet);
+    color: white;
+    margin-top: 10px;
+
+}
+
+.contenu {
+    background-color: var(--marron);
+}
+
+.enTete,
+.contenu {
+    border: white solid 2px;
+    align-items: center;
+}
+
+.miniBouton {
+
+    margin-right: 10px;
+}
+
+.miniBouton button {
+    width: 40px;
+    height: 40px;
+    border: white 2px solid;
+    background-color: var(--violet);
+    border-radius: 5px;
+    padding: 2px;
+
+}
+
+.miniBouton button:hover {
+    background-color: var(--gris);
+}
+
+/*****************Menu Deroulant*****************/
+#menuDeroulant {
+    width: 50%;
+    padding: 20px;
+}
+
+
+.menu {
+    font-family: 'Sriracha';
+    background-color: var(--violet);
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: white solid 2px;
+    border-radius: 10px;
+    text-align: left;
+    font-size: 1.5em;
+    transition: 0.4s;
+}
+
+.active,
+.menu:hover {
+    background-color: var(--gris);
+}
+
+.sousMenu {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 0 10px;
+
+
+}
+
+.sousMenu a {
+    text-decoration: none;
+    color: var(--violet);
+    margin: 5px;
+    padding-bottom: 5px;
+}
+
+.sousMenu a:hover {
+    text-decoration: underline;
+}
+
+.traitViolet {
+    width: 40vw;
+    border: solid var(--violet) 3px;
+    border-radius: 5px;
+    margin: 5px;
+
+}
+
+.contenuSousMenu {
+
+    margin: 5px;
+}
+
+/* .contenuSousMenu img {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+} */
+
+
+/******Footer******/
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--marron);
+    border: solid var(--vert) 2px;
+    color: white;
+    width:100%;
+}
+
+footer p {
+    font-size: 1.3em;
+    text-align: center;
+}
+
+.footer{
+    visibility:hidden;
+}

@@ -59,7 +59,7 @@ function optionComboBox($code, $nom)
     $ref=["Client"=>["id"=> "idClient","libelle"=>"NomClient"]];
     $select = '<select id="id' . $nom . '" name="id' . $nom . '" >';
     if ($nom = "Client") {
-        $liste = ClientManager::getList();
+        $liste = Table_clientManager::getList();
     }
 
     if ($code == null) { // si le code est null, on ne mets pas de choix par défaut avec valeur
