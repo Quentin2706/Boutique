@@ -1,0 +1,117 @@
+<?php
+
+class Table_categ 
+{
+
+	/*****************Attributs***************** */
+
+	private $_idCateg;
+	private $_refCateg;
+	private $_libCateg;
+	private $_idUnivers;
+
+	/***************** Accesseurs ***************** */
+
+
+	public function getIdCateg()
+	{
+		return $this->_idCateg;
+	}
+
+	public function setIdCateg($idCateg)
+	{
+		$this->_idCateg=$idCateg;
+	}
+
+	public function getRefCateg()
+	{
+		return $this->_refCateg;
+	}
+
+	public function setRefCateg($refCateg)
+	{
+		$this->_refCateg=$refCateg;
+	}
+
+	public function getLibCateg()
+	{
+		return $this->_libCateg;
+	}
+
+	public function setLibCateg($libCateg)
+	{
+		$this->_libCateg=$libCateg;
+	}
+
+	public function getIdUnivers()
+	{
+		return $this->_idUnivers;
+	}
+
+	public function setIdUnivers($idUnivers)
+	{
+		$this->_idUnivers=$idUnivers;
+	}
+
+	/*****************Constructeur***************** */
+
+	public function __construct(array $options = [])
+	{
+ 		if (!empty($options)) // empty : renvoi vrai si le tableau est vide
+		{
+			$this->hydrate($options);
+		}
+	}
+	public function hydrate($data)
+	{
+ 		foreach ($data as $key => $value)
+		{
+ 			$methode = "set".ucfirst($key); //ucfirst met la 1ere lettre en majuscule
+			if (is_callable(([$this, $methode]))) // is_callable verifie que la methode existe
+			{
+				$this->$methode($value);
+			}
+		}
+	}
+
+	/*****************Autres Méthodes***************** */
+
+	/**
+	* Transforme l'objet en chaine de caractères
+	*
+	* @return String
+	*/
+	public function toString()
+	{
+		return "IdCateg : ".$this->getIdCateg()."RefCateg : ".$this->getRefCateg()."LibCateg : ".$this->getLibCateg()."IdUnivers : ".$this->getIdUnivers()."\n";
+	}
+
+
+	
+	/* Renvoit Vrai si lobjet en paramètre est égal 
+	* à l'objet appelant
+	*
+	* @param [type] $obj
+	* @return bool
+	*/
+	public function equalsTo($obj)
+	{
+		return;
+	}
+
+
+	/**
+	* Compare l'objet à un autre
+	* Renvoi 1 si le 1er est >
+	*        0 si ils sont égaux
+	*      - 1 si le 1er est <
+	*
+	* @param [type] $obj1
+	* @param [type] $obj2
+	* @return Integer
+	*/
+	public function compareTo($obj)
+	{
+		return;
+	}
+}

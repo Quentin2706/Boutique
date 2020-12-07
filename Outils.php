@@ -12,6 +12,24 @@ function ChargerClasse($classe)
 }
 spl_autoload_register("ChargerClasse");
 
+function uri()
+{
+	$uri = $_SERVER['REQUEST_URI']
+	if (substr($uri, strlen($uri) - 1) == "/") // se termine par /
+	{
+		$uri .= "index.php?";
+	}
+	else if (in_array("?", str_split($uri))) // si l'uri contient deja un ?
+	{
+		$uri .= "&";
+	}
+	else
+	{
+		$uri .= "?";
+	}
+	return $uri
+}
+
 function crypte($mot)
 {
 	return md5(md5($mot));
@@ -20,7 +38,7 @@ function crypte($mot)
 function texte($codeTexte)
 {
 	global $lang; //on appel la variable globale
-	return TraductionsManager::findByCodes($lang, $codeTexte);
+	return TexteManager::findByCodes($lang, $codeTexte);
 }
 
 function afficherPage($page)
