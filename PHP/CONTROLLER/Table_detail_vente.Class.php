@@ -30,7 +30,7 @@ class Table_detail_vente
 		return $this->_idVente;
 	}
 
-	public function setIdVente($idVente)
+	public function setIdVente(int $idVente)
 	{
 		$this->_idVente=$idVente;
 	}
@@ -50,7 +50,7 @@ class Table_detail_vente
 		return $this->_idArticle;
 	}
 
-	public function setIdArticle($idArticle)
+	public function setIdArticle(int $idArticle)
 	{
 		$this->_idArticle=$idArticle;
 	}
