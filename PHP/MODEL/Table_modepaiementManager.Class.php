@@ -52,4 +52,19 @@ class Table_modepaiementManager
 		}
 		return $liste;
 	}
+
+	public static function findByCodeMode($codeMode)
+	{
+ 		$db=DbConnect::getDb();
+		$q=$db->query("SELECT * FROM Table_modepaiement WHERE libModePaiement =".$codeMode);
+		$results = $q->fetch(PDO::FETCH_ASSOC);
+		if($results != false)
+		{
+			return new Table_modepaiement($results);
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
