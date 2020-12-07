@@ -27,7 +27,7 @@ function uri()
 	{
 		$uri .= "?";
 	}
-	return $uri
+	return $uri;
 }
 
 function crypte($mot)
