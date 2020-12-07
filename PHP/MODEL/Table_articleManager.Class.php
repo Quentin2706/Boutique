@@ -77,7 +77,7 @@ class Table_articleManager
         $compteur = 0;
         $requete = "SELECT * FROM table_article WHERE ";
         foreach ($tab as $nomColonne => $elt) {
-            if (!in_array(";", str_split($nomColonne) && !in_array(";", str_split($elt)))) // s'il n'y a pas de ; , je lance la requete
+            if (!in_array(";", str_split($nomColonne)) && !in_array(";", str_split($elt))) // s'il n'y a pas de ; , je lance la requete
             {
                 $nomColonne == "idUnivers" || $nomColonne == "idCateg" || $nomColonne == "idFournisseur" || $nomColonne == "idCouleur" ? $elt = $elt : $elt = '"' . $elt . '"';
                 if ($compteur == count($tab) - 1) {
