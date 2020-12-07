@@ -9,6 +9,7 @@ class Table_categ
 	private $_refCateg;
 	private $_libCateg;
 	private $_idUnivers;
+	private $_univers;
 
 	/***************** Accesseurs ***************** */
 
@@ -51,6 +52,7 @@ class Table_categ
 	public function setIdUnivers(int $idUnivers)
 	{
 		$this->_idUnivers=$idUnivers;
+		$this->setUnivers(Table_universManager::findById($idUnivers));
 	}
 
 	/*****************Constructeur***************** */
