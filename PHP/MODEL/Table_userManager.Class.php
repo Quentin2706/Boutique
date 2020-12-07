@@ -42,6 +42,22 @@ class Table_userManager
 			return false;
 		}
 	}
+	static public function findByPseudo($pseudo) {
+		$db = DbConnect::getDb (); // Instance de PDO.
+		// Exécute une requête de type SELECT avec une clause WHERE, et retourne un objet Personne
+		$q = $db->prepare ('SELECT Pseudo, Password, IdUser, Role FROM table_user WHERE Pseudo = :pseudo' );
+		
+		// Assignation des valeurs .
+		$q->bindValue ( ':pseudo', $pseudo );
+		$q->execute ();
+		$donnees = $q->fetch ( PDO::FETCH_ASSOC );
+		$q->CloseCursor ();
+		if ($donnees == false) { // Si l'utilisateur n'existe pas, on renvoi un objet vide
+			return new User ();
+		} else {
+			return new User ( $donnees );
+		}
+	}
 	public static function getList()
 	{
  		$db=DbConnect::getDb();
