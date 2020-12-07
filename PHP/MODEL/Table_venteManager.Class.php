@@ -59,7 +59,7 @@ class Table_venteManager
 	{
  		$db=DbConnect::getDb();
 		$liste = [];
-		$q = $db->query("SELECT * FROM Table_vente WHERE date_vente=".$date);
+		$q = $db->query('SELECT * FROM Table_vente WHERE date_vente="'.$date.'"');
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
 		{
 			if($donnees != false)
@@ -73,7 +73,7 @@ class Table_venteManager
 	public static function findByDate($date)
 	{
  		$db=DbConnect::getDb();
-		$q=$db->query("SELECT * FROM Table_vente WHERE date_vente =".$date);
+		$q=$db->query('SELECT * FROM Table_vente WHERE date_vente ="'.$date.'"');
 		$results = $q->fetch(PDO::FETCH_ASSOC);
 		if($results != false)
 		{
@@ -83,6 +83,20 @@ class Table_venteManager
 		{
 			return false;
 		}
+	}
+
+	public static function findListByClient(table_client $client)
+	{
+ 		$db=DbConnect::getDb();
+		$q=$db->query('SELECT * FROM Table_vente WHERE idClient ='.$client->getIdClient());
+		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
+		{
+			if($donnees != false)
+			{
+				$liste[] = new Table_vente($donnees);
+			}
+		}
+		return $liste;
 	}
 
 

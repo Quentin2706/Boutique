@@ -83,7 +83,7 @@ class Table_articleManager
 		$requete="SELECT * FROM table_article WHERE ";
 		foreach ($tab as $nomColonne=>$elt)
 		{
-			if ($compteur==count($tab))
+			if ($compteur==count($tab)-1)
 			{
 				$requete.=$nomColonne." = ".$elt;
 			} else {
@@ -91,7 +91,7 @@ class Table_articleManager
 			}
 			$compteur+=1;
 		}
-		$q = $qb -> query($requete);
+		$q = $db -> query($requete);
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
 		{
 			if($donnees != false)
