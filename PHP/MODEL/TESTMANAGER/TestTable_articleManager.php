@@ -48,8 +48,8 @@
 ////////////////////////           REGARDER CE QU'IL NE FONCTIONNE PAS AVEC LE DATETIME              /////////////////////////////
 
 // SELECT taux FROM table_promotion WHERE idCateg= 2 AND dateDebut < 2020-12-02 14:27:35 AND dateFin > 2020-12-16 14:27:35 ELLE NE FONCTIONNE PAS
-$obj =Table_articleManager::findById(2328);
-echo Table_articleManager::calculPrixPromotion($obj);
+// $obj = Table_articleManager::findById(2328);
+// echo Table_articleManager::calculPrixPromotion($obj);
 
 
 ?>
