@@ -54,6 +54,16 @@ class Table_categ
 		$this->_idUnivers=$idUnivers;
 		$this->setUnivers(Table_universManager::findById($idUnivers));
 	}
+	
+	public function getUnivers()
+	{
+		return $this->_univers;
+	}
+
+	public function setUnivers($univers)
+	{
+		$this->_univers = $univers;
+	}
 
 	/*****************Constructeur***************** */
 
@@ -116,4 +126,5 @@ class Table_categ
 	{
 		return;
 	}
+
 }

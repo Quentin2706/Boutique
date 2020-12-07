@@ -36,6 +36,7 @@ div {
 
 .centrer {
     align-items: center;
+    justify-content: center;
 }
 
 .fois5 {
@@ -378,11 +379,12 @@ select {
     background-color: var(--violet);
     color: white;
     margin-top: 10px;
-
+    padding : 1em;
 }
 
 .contenu {
     background-color: var(--marron);
+    padding : 1em;
 }
 
 .enTete,
@@ -391,19 +393,23 @@ select {
     align-items: center;
 }
 
+.enTete {
+    font-size : 1.2em;
+}
+
 .miniBouton {
 
     margin-right: 10px;
 }
 
 .miniBouton button {
-    width: 40px;
-    height: 40px;
+    width: 5em;
+    height: 5em;
     border: white 2px solid;
     background-color: var(--violet);
     border-radius: 5px;
     padding: 2px;
-
+    margin: 1em;
 }
 
 .miniBouton button:hover {
