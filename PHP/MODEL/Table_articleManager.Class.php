@@ -102,15 +102,18 @@ class Table_articleManager
 		return $liste;
 	}
 
-	public static function calculPrixPromotion(Article $article)
+	public static function calculPrixPromotion(Table_article $article)
 	{
 		$db=DbConnect::getDb();
 		$auj=new Datetime("now");
-		$q=$db->query("SELECT taux FROM table_promotion WHERE idCateg=".$article->getIdCateg()." AND dateDebut > ".$auj->format("Y-m-d"));
-		foreach($article as )
+		$q=$db->query("SELECT taux FROM table_promotion WHERE idCateg=".$article->getIdCateg()." AND dateDebut < ".$auj." AND dateFin > ".$auj);
+		if($donnees = $q->fetch(PDO::FETCH_ASSOC))
 		{
-
+			return $article->getPrixArticle()*($donnees["taux"]/100);
+		} else {
+			return $article->getPrixArticle();
 		}
+		
 	}
 
 }
