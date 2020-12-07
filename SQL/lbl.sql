@@ -209,8 +209,8 @@ DROP TABLE IF EXISTS `table_promotion`;
 CREATE TABLE IF NOT EXISTS `table_promotion` (
   `idPromotion` int(11) NOT NULL AUTO_INCREMENT,
   `idCateg` int(11) NOT NULL,
-  `dateDebut` date NOT NULL,
-  `dateFin` date NOT NULL,
+  `dateDebut` datetime NOT NULL,
+  `dateFin` datetime NOT NULL,
   `taux` double NOT NULL,
   PRIMARY KEY (`idPromotion`),
   KEY `FKPromotionCateg` (`idCateg`)
