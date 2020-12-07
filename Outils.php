@@ -14,7 +14,7 @@ spl_autoload_register("ChargerClasse");
 
 function uri()
 {
-	$uri = $_SERVER['REQUEST_URI']
+	$uri = $_SERVER['REQUEST_URI'];
 	if (substr($uri, strlen($uri) - 1) == "/") // se termine par /
 	{
 		$uri .= "index.php?";
