@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Paiement</title>
+    <link rel="icon" href="../Images/fleurDeLin.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    <link href="../CSS/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="blocCaisse">
+        <div class="colonneCaisse">
+            <div class="tableau">
+                <div class="ligneTableau">
+                    <div class="enTete">Mode Paiement</div>
+                    <div class="enTete">Montant</div>
+                    <div class="enTete">Libellé Mode</div>
+                </div>
+                <div class="ligneTableau">
+                    <div class="contenu">CB</div>
+                    <div class="contenu">120€</div>
+                    <div class="contenu">Carte Bancaire</div>
+                </div>
+            </div>
+
+            <div class="conteneur">
+                <div class="blocCaissePrix">
+                    <p>Total Règlement</p>
+                    <p>Reste dû</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ligneCaisse">
+            <div class="blocPaiement">
+                <div>
+                    <label for="moyenPaiement">Mode Paiement</label>
+                    <select name="moyenPaiement" id="moyenPaiement">
+                        <option value="modePaiement">CB</option>
+                        <option value="modePaiement">CC</option>
+                        <option value="modePaiement">CH</option>
+
+                    </select>
+                </div>
+                
+                <div class="boutonPaiement">
+                    <img src="../Images/plus.png">
+                </div>
+                <div class="boutonPaiement">
+                    <img src="../Images/supprimer.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

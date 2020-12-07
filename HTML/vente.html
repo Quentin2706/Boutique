@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ventes</title>
+    <link rel="icon" href="../Images/fleurDeLin.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    <link href="../CSS/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <header>
+        <div class="gauche top">
+            <div class="logo">
+                <a href="accueil.html"> <img src="../Images/fleurDeLin.png" alt="logo fleur de lin"></a>
+            </div>
+        </div>
+
+        <div class="centre top">
+            <div class="titrePage">
+                <p>Ventes</p>
+            </div>
+        </div>
+
+        <div class="droite top">
+            <div class="petitBouton">
+                <a href="connexion.html">
+                    <button><img src="../Images/deconnexion.png"></button>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="colonne">
+        <div class="blocRecherche">
+            <div class="ligneRecherche">
+                <div>
+                    <label for="dateDebut">Du</label>
+                    <input name="dateDebut" type="date" id="dateDebut">
+                </div>
+                <div>
+                    <label for="dateFin">Au</label>
+                    <input name="dateFin" type="date" id="dateFin">
+                </div>
+            </div>
+            <div class="espace"></div>
+            <div class="centrer">
+                <input class="bouton centrer" type="submit" value="Rechercher">
+            </div>
+        </div>
+        <div class="blocCaisse">
+            <div class="colonneCaisse">
+                <div class="tableau">
+                    <div class="ligneTableau">
+                        <div class="enTete">Date Achat</div>
+                        <div class="enTete">N° Vente</div>
+                        <div class="enTete">Ticket</div>
+                    </div>
+                    <div class="ligneTableau">
+                        <div class="contenu">12/06/2020</div>
+                        <div class="contenu">15</div>
+                        <div class="contenu">
+                            <div class="miniBouton">
+                                <button><img src="../Images/voir.png" alt="Voir Ticket"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ligneTableau">
+                        <div class="contenu">12/06/2020</div>
+                        <div class="contenu">15</div>
+                        <div class="contenu">
+                            <div class="miniBouton">
+                                <button><img src="../Images/voir.png" alt="Voir Ticket"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="colonne">
+                <div class="ligneCaisse">       
+                    <div class="boutonCaisse">
+                        <img src="../Images/imprime.png">
+                    </div>
+                </div>
+            </div>    
+        </div>    
+    </div>       
+                <footer>
+                    <div class="texteFooter">
+                        <p>©LaBoutiqueDuLin</p>
+                    </div>
+                </footer>
+</body>
+
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Gestion des Catégories</title>
+    <link rel="icon" href="../Images/fleurDeLin.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    <link href="../CSS/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <header>
+        <div class="gauche top">
+            <div class="logo">
+                <a href="accueil.html"> <img src="../Images/fleurDeLin.png" alt="logo fleur de lin"></a>
+            </div>
+        </div>
+
+        <div class="centre top">
+            <div class="titrePage">
+                <p>Catégories</p>
+            </div>
+        </div>
+
+        <div class="droite top">
+            <div class="petitBouton">
+                <a href="connexion.html">
+                    <button><img src="../Images/deconnexion.png"></button>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="conteneur">
+        <div class="blocform">
+            <form action="#" method="POST">
+                <div class="colonne">
+                    <div>
+                        <label for="refCategories">Référence Catégories</label>
+                        <input name="refCategories" type="text" id="refCategories" required/>
+                    </div>
+                    <div>
+                        <label for="libCategories">Libellé Catégories</label>
+                        <input name="libCategories" type="text" id="libCategories" required>
+                    </div>
+                    <div class="espace">
+                    </div>
+                    <div>
+                        <label for="refUniversCategories">Univers</label>
+                        <select name="refUniversCategories" id="refUniversCategories">
+                            <option value="refUnivers">Divers</option>
+                            <option value="refUnivers">Table</option>
+                            <option value="refUnivers">Lit</option>
+                            <option value="refUnivers">Cuisine</option>
+                        </select>
+                    </div>
+                    <div class="espace"></div>
+                    <div class="centrer">
+                        <input  class="bouton centrer" type="submit" value="Ajouter">
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <footer>
+        <div class="texteFooter">
+            <p>©LaBoutiqueDuLin</p>
+        </div>
+    </footer>
+</body>
+
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Liste des Articles</title>
+    <link rel="icon" href="../Images/fleurDeLin.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    <link href="../CSS/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <header>
+        <div class="gauche top">
+            <div class="logo">
+                <a href="accueil.html"> <img src="../Images/fleurDeLin.png" alt="logo fleur de lin"></a>
+            </div>
+        </div>
+
+        <div class="centre top">
+            <div class="titrePage">
+                <p>Liste des Articles</p>
+            </div>
+        </div>
+
+        <div class="droite top">
+            <div class="petitBouton">
+                <a href="connexion.html">
+                    <button><img src="../Images/deconnexion.png"></button>
+                </a>
+            </div>
+            <div class="petitBouton">
+                <a href="formArticle.html">
+                <button><img src="../Images/plus.png" alt="Ajout Article"></button>
+            </a>
+            </div>
+        </div>
+    </header>
+    <div class="colonne">
+        <div class="blocRecherche">
+            <div class="ligneRecherche">
+                <div>
+                    <label for="refArticle">Ref. Article</label>
+                    <input name="refArticle" type="text" id="refArticle">
+                </div>
+                <div>
+                    <label for="libArticle">Libellé Article</label>
+                    <input name="libArticle" type="text" id="libArticle" >
+                </div>
+                <div>
+                    <label for="univers">Univers</label>
+                    <select name="univers" id="univers">
+                        <option value="sousUnivers">Lit</option>
+                        <option value="sousUnivers">Table</option>
+                        <option value="sousUnivers">Cuisine</option>
+                        <option value="sousUnivers">Divers</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="ligneRecherche">
+                <div>
+                    <label for="categorie">Catégorie</label>
+                    <select name="categorie" id="categorie">
+                        <option value="sousCategorie">Bavoir</option>
+                        <option value="sousCategorie">Cache Sommier</option>
+                        <option value="sousCategorie">Divers Bébé</option>
+                        <option value="sousCategorie">Carré Confiture</option>
+
+                    </select>
+                </div>
+                <div>
+                    <label for="couleur">Couleur</label>
+                    <select name="couleur" id="couleur">
+                        <option value="sousCouleur">Blanc</option>
+                        <option value="sousCouleur">Bleu</option>
+                        <option value="sousCouleur">Marron</option>
+                        <option value="sousCouleur">Gris</option>
+
+                    </select>
+                </div>
+                <div>
+                    <label for="fournisseur">Fournisseur</label>
+                    <select name="fournisseur" id="fournisseur">
+                        <option value="sousFournisseur">Kobe</option>
+                        <option value="sousFournisseur">Un esprit en plus</option>
+                        <option value="sousFournisseur">Elanbach</option>
+                        <option value="sousFournisseur">ITC</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="espace">
+            </div>
+            <div class="centrer">
+                <input  class="bouton centrer" type="submit" value="Rechercher">
+            </div>
+        </div>
+        <div class="conteneurTableau">
+            <div class="tableau">
+                <div class="ligneTableau">
+                    <div class="enTete">Fournisseur</div>
+                    <div class="enTete">Taille</div>
+                    <div class="enTete">Prix Achat</div>
+                    <div class="enTete">Prix Vente</div>   
+                </div>
+           
+                <div class="ligneTableau">
+                
+                    <div class="contenu">Kobe</div>
+                    <div class="contenu">Sans Taille</div>
+                    <div class="contenu">4.50</div>
+                    <div class="contenu">7.00</div>
+                </div>
+                <div class="ligneTableau">
+                   
+                    <div class="contenu">Kobe</div>
+                    <div class="contenu">Sans Taille</div>
+                    <div class="contenu">4.50</div>
+                    <div class="contenu">7.00</div>
+                </div>
+                <div class="ligneTableau">
+                   
+                    <div class="contenu">Kobe</div>
+                    <div class="contenu">Sans Taille</div>
+                    <div class="contenu">4.50</div>
+                    <div class="contenu">7.00</div>
+                </div>
+
+
+        </div>
+    </div>
+    </div>
+    
+    <footer>
+        <div class="texteFooter">
+            <p>©LaBoutiqueDuLin</p>
+        </div>
+    </footer>
+
+</body>
+
+
+</html>
