@@ -4,6 +4,7 @@ class Table_categManager
 {
 	public static function add(Table_categ $obj)
 	{
+		var_dump($obj);
  		$db=DbConnect::getDb();
 		$q=$db->prepare("INSERT INTO Table_categ (refCateg,libCateg,idUnivers) VALUES (:refCateg,:libCateg,:idUnivers)");
 		$q->bindValue(":refCateg", $obj->getRefCateg());
@@ -59,8 +60,7 @@ class Table_categManager
 	public static function findByReference($ref)
 	{
  		$db=DbConnect::getDb();
-		$ref = (int) $ref;
-		$q=$db->query("SELECT * FROM Table_categ WHERE referenceCategorie =".$ref);
+		$q=$db->query("SELECT * FROM Table_categ WHERE refCateg ='" .$ref. "'");
 		$results = $q->fetch(PDO::FETCH_ASSOC);
 		if($results != false)
 		{

@@ -48,7 +48,7 @@ class Table_user
 		return $this->_role;
 	}
 
-	public function setRole($role)
+	public function setRole(int $role)
 	{
 		$this->_role=$role;
 	}

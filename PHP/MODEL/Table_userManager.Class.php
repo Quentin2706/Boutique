@@ -22,11 +22,13 @@ class Table_userManager
 		$q->bindValue(":role", $obj->getRole());
 		$q->execute();
 	}
+
 	public static function delete(Table_user $obj)
 	{
  		$db=DbConnect::getDb();
 		$db->exec("DELETE FROM Table_user WHERE iduser=" .$obj->getIduser());
 	}
+
 	public static function findById($id)
 	{
  		$db=DbConnect::getDb();
@@ -42,22 +44,27 @@ class Table_userManager
 			return false;
 		}
 	}
+
 	static public function findByPseudo($pseudo) {
 		$db = DbConnect::getDb (); // Instance de PDO.
 		// Exécute une requête de type SELECT avec une clause WHERE, et retourne un objet Personne
-		$q = $db->prepare ('SELECT Pseudo, Password, IdUser, Role FROM table_user WHERE Pseudo = :pseudo' );
-		
-		// Assignation des valeurs .
-		$q->bindValue ( ':pseudo', $pseudo );
-		$q->execute ();
-		$donnees = $q->fetch ( PDO::FETCH_ASSOC );
-		$q->CloseCursor ();
-		if ($donnees == false) { // Si l'utilisateur n'existe pas, on renvoi un objet vide
-			return new User ();
-		} else {
-			return new User ( $donnees );
+		if (!in_array(";",str_split( $pseudo))) // s'il n'y a pas de ; , je lance la requete
+        {
+			$q = $db->prepare ('SELECT Pseudo, Password, IdUser, Role FROM table_user WHERE Pseudo = :pseudo' );
+			
+			// Assignation des valeurs .
+			$q->bindValue ( ':pseudo', $pseudo );
+			$q->execute ();
+			$donnees = $q->fetch ( PDO::FETCH_ASSOC );
+			$q->CloseCursor ();
+			if ($donnees == false) { // Si l'utilisateur n'existe pas, on renvoi un objet vide
+				return new Table_user ();
+			} else {
+				return new Table_user ( $donnees );
+			}
 		}
 	}
+	
 	public static function getList()
 	{
  		$db=DbConnect::getDb();

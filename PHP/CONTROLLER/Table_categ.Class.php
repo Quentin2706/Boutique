@@ -48,7 +48,7 @@ class Table_categ
 		return $this->_idUnivers;
 	}
 
-	public function setIdUnivers($idUnivers)
+	public function setIdUnivers(int $idUnivers)
 	{
 		$this->_idUnivers=$idUnivers;
 	}

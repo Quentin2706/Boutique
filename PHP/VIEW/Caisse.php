@@ -6,15 +6,15 @@
        echo '
         <div class="blocBleuBordBlanc button reduireBouton petiteIcon" >
             <a href="formClient.html">
-            <img src="Images/plus.png">
+            <img src="IMG/plus.png">
         </a>
         </div>
         <div class="blocBleuBordBlanc button reduireBouton petiteIcon" id="mailClient">
-            <img src="Images/mail.png">
+            <img src="IMG/mail.png">
         </div>
         <div class="blocBleuBordBlanc button reduireBouton petiteIcon">
             <a href="clients.html">
-            <img src="Images/personne.png">
+            <img src="IMG/personne.png">
         </a>
         </div>
     </div>
@@ -38,10 +38,10 @@
                     <div class="blocMarronBordBlanc sansRadius centrer">10</div>
                     <div class="blocMarronBordBlanc sansRadius centrer ligne">
                         <div class="blocBleuBordBlanc button  miniIcon">
-                            <img src="Images/supprimer.png">
+                            <img src="IMG/supprimer.png">
                         </div>
                         <div class="blocBleuBordBlanc button    miniIcon">
-                            <img src="Images/remise.png">
+                            <img src="IMG/remise.png">
                         </div>
                     </div>
                 </div>
@@ -59,19 +59,19 @@
         <div class="">
             <div class="ligneCaisse">       
                 <div class="blocBleuBordBlanc button   moyenneIcon">
-                    <img src="Images/plus.png">
+                    <img src="IMG/plus.png">
                 </div>
                 <div class="blocBleuBordBlanc button    moyenneIcon">
-                    <img src="Images/supprimer.png">
+                    <img src="IMG/supprimer.png">
                 </div>
                 <div class="blocBleuBordBlanc button    moyenneIcon">
-                    <img src="Images/remise.png">
+                    <img src="IMG/remise.png">
                 </div>
                 <div class="blocBleuBordBlanc button    moyenneIcon">
-                    <img src="Images/imprime.png">
+                    <img src="IMG/imprime.png">
                 </div>
                 <div class="blocBleuBordBlanc button    moyenneIcon" id="paiement">
-                    <img src="Images/paiement.png">
+                    <img src="IMG/paiement.png">
                 </div>
             </div>
         </div>
