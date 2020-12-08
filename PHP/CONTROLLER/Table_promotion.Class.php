@@ -6,8 +6,9 @@ class Table_promotion
 	/*****************Attributs***************** */
 	//CLE ETRANGERE
 
-	private $listeTypeInput = ["number","text", "hidden", "select","date"];
+	
 	private $listeInfos = ["Table_promotion","idPromotion","libCateg","dateDebut","dateFin","taux"];
+	private $listeTypeInput = ["text","date", "date", "number"];
 	private $listeLabel = ["Libellé de la Categorie", "Date de début", "Date de fin","Taux"];
 	private $_idPromotion;
 	private $_idCateg;
