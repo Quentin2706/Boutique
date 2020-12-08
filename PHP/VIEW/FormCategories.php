@@ -1,5 +1,46 @@
 <?php 
+// on recup la surcharge URL
+$table = $_GET['table'];  
+$mode = $_GET['mode'];
+// Si c'est pas ajout on récup l'objet sinon pas objet 
+if ($mode != "ajout")
+{
+$id = $_GET['id'];
+// En fonction de la surchage on fait l'action appropriée
+switch ($table) {
+    case "univers":
+        {
+            $objet = Table_universManager::findById($id);
+            break;
+        }
+    case "fournisseur":
+        {
+            $objet = Table_fournisseurManager::findById($id);
+            break;
+        }
+    case "couleur":
+        {
+            $objet = Table_couleurManager::findById($id);
+            break;
+        }
+    case "promotion":
+        {
+            $objet = Table_promotionManager::findById($id);
+            break;
+        }
+    case "client":
+        {
+            $objet = Table_clientManager::findById($id);
+            break;
+        }
+    case "categ":
+        {
+            $objet = Table_categManager::findById($id);
+            break;
+        }
+}
 
+}
 echo'<div class="conteneurTableau centrer">
         <div class="blocform">
             <form action="#" method="POST">
@@ -38,3 +79,5 @@ echo'<div class="conteneurTableau centrer">
             </form>
         </div>
     </div>'; 
+    ?>
+    <inpu

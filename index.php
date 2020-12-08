@@ -55,7 +55,7 @@ $routes=[
 	"FormUnivers"=>["PHP/VIEW/","FormUnivers","Formulaire des Univers"],
 	"ActionUnivers"=>["PHP/VIEW/","ActionUnivers","Action des Univers"],
 
-	"ListeCategories"=>["PHP/VIEW/","ListeCategories","Liste des Categories"],
+	"Liste"=>["PHP/VIEW/","Liste","Liste des Categories"],
 	"FormCategorie"=>["PHP/VIEW/","FormCategories","Formulaire des Categories"],
 	"ActionCategorie"=>["PHP/VIEW/","ActionCategories","Action des Categories"],
 

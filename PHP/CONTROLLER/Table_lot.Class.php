@@ -6,7 +6,7 @@ class Table_lot
 	/*****************Attributs***************** */
 
 	private $_idLot;
-	private $_reflot;
+	private $_refLot;
 
 	/***************** Accesseurs ***************** */
 
@@ -21,12 +21,12 @@ class Table_lot
 		$this->_idLot=$idLot;
 	}
 
-	public function getReflot()
+	public function getRefLot()
 	{
 		return $this->_reflot;
 	}
 
-	public function setReflot($reflot)
+	public function setRefLot($reflot)
 	{
 		$this->_reflot=$reflot;
 	}
@@ -61,7 +61,7 @@ class Table_lot
 	*/
 	public function toString()
 	{
-		return "IdLot : ".$this->getIdLot()."Reflot : ".$this->getReflot()."\n";
+		return "IdLot : ".$this->getIdLot()."Reflot : ".$this->getRefLot()."\n";
 	}
 
 

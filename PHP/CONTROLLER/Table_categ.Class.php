@@ -5,6 +5,9 @@ class Table_categ
 
 	/*****************Attributs***************** */
 
+	private $listeTypeInput = ["number","text", "hidden", "select"];
+	private $listeInfos = ["Table_categ","idCateg","refCateg","libCateg","refUnivers"];
+	private $listeLabel = ["Référence Categories", "Libelle Categories", "Référence Univers"];
 	private $_idCateg;
 	private $_refCateg;
 	private $_libCateg;
@@ -64,7 +67,25 @@ class Table_categ
 	{
 		$this->_univers = $univers;
 	}
+	public function getListeTypeInput()
+	{
+		return $this->listeTypeInput;
+	}
 
+	public function getListeInfos()
+	{
+		return $this->listeInfos;
+	}
+
+	public function getListeLabel()
+	{
+		return $this->listeLabel;
+	}
+
+	public function getRefUnivers()
+	{
+		return ($this->getUnivers())->getRefUnivers();
+	}
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])
@@ -96,35 +117,6 @@ class Table_categ
 	public function toString()
 	{
 		return "IdCateg : ".$this->getIdCateg()."RefCateg : ".$this->getRefCateg()."LibCateg : ".$this->getLibCateg()."IdUnivers : ".$this->getIdUnivers()."\n";
-	}
-
-
-	
-	/* Renvoit Vrai si lobjet en paramètre est égal 
-	* à l'objet appelant
-	*
-	* @param [type] $obj
-	* @return bool
-	*/
-	public function equalsTo($obj)
-	{
-		return;
-	}
-
-
-	/**
-	* Compare l'objet à un autre
-	* Renvoi 1 si le 1er est >
-	*        0 si ils sont égaux
-	*      - 1 si le 1er est <
-	*
-	* @param [type] $obj1
-	* @param [type] $obj2
-	* @return Integer
-	*/
-	public function compareTo($obj)
-	{
-		return;
 	}
 
 }

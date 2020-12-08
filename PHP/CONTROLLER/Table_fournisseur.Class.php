@@ -4,7 +4,9 @@ class Table_fournisseur
 {
 
 	/*****************Attributs***************** */
-
+	private $listeTypeInput = ["number","text", "hidden", "select"];
+	private $listeInfos = ["Table_categ","idFournisseur","refFournisseur","libFournisseur","adresseFournisseur", "telephoneFournisseur"];
+	private $listeLabel = ["Référence Fournisseur", "Libelle Fournisseur", "Adresse Fournisseur", "Numéro Fournisseur"];
 	private $_idFournisseur;
 	private $_refFournisseur;
 	private $_libFournisseur;
@@ -62,6 +64,21 @@ class Table_fournisseur
 	public function setTelephoneFournisseur($telephoneFournisseur)
 	{
 		$this->_telephoneFournisseur=$telephoneFournisseur;
+	}
+
+	public function getListeTypeInput()
+	{
+		return $this->listeTypeInput;
+	}
+
+	public function getListeInfos()
+	{
+		return $this->listeInfos;
+	}
+
+	public function getListeLabel()
+	{
+		return $this->listeLabel;
 	}
 
 	/*****************Constructeur***************** */
@@ -125,4 +142,5 @@ class Table_fournisseur
 	{
 		return;
 	}
+
 }
