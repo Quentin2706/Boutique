@@ -81,7 +81,7 @@ function afficherPage($page)
 
  function optionComboBox($code, $nom, $class, $obj, $mode)
  {
-	$nom = ucfirst(substr($nom,3));
+	$nom = ucfirst($nom);
 	$rId = "getId".$nom;
 	$id = $obj->$rId();
 	$listeInfos = $obj->getListeInfos();
@@ -100,6 +100,10 @@ function afficherPage($page)
         $select .= '<option value="" SELECTED>Choisir une valeur</option>';
      }
     foreach ($liste as $elt) {
+		// var_dump($code);
+		// echo $code;
+		// var_dump($elt->$rId());
+		
          if ($code == $elt->$rId()) //appel de la methode stockée dans $method
          { // si le code entré en paramètre est égale à l'élément alors c'est celui qui est selectionné 
              $select .= '<option value="' . $elt->$rId() . '" SELECTED>' . $elt->$rLib() . '</option>';

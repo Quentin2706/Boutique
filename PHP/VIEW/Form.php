@@ -71,20 +71,22 @@ echo '<div class="conteneur">
 
         $labels=$objet->getListeLabel();
         $infos=$objet->getListeInfos();
+        $infosForm=$objet->getListeInfosForm();
+        $listeClass = $objet->getListeClass();
         $input=$objet->getListeTypeInput();
         // On affiche tout les champs à renseigner
         for($i=0;$i<count($labels);$i++){
             echo '<div>';
-            echo '<label for="'.$infos[$i+2].'">'.$labels[$i].'</label>';
+            echo '<label for="'.$infosForm[$i+2].'">'.$labels[$i].'</label>';
 
             // Si le label est un select alors on utilise la fonction comboBox
             if($input[$i]=="select"){
                 if($mode=="ajout"){
-                    echo optionComboBox(null,$infos[$i+2],"",$objet,$mode);
+                    echo optionComboBox(null,$listeClass[$i],"",$objet,$mode);
                 }
                 else{
-                    $methode="get".$infos[$i+2];
-                    echo optionComboBox($objet->$methode(),$infos[$i+2],"",$objet,$mode);
+                    $methode="get".ucfirst($infosForm[$i+2]);
+                    echo optionComboBox($objet->$methode(),$listeClass[$i],"",$objet,$mode);
                 }
                 
             }
