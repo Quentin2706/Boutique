@@ -81,7 +81,7 @@ function afficherPage($page)
 
  function optionComboBox($code, $nom, $class, $obj, $mode)
  {
-	$nom = ucfirst(substr($nom,6));
+	$nom = ucfirst(substr($nom,3));
 	$rId = "getId".$nom;
 	$id = $obj->$rId();
 	$listeInfos = $obj->getListeInfos();

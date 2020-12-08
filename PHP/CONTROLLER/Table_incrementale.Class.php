@@ -48,6 +48,11 @@ class Table_incrementale
 		return $this->listeLabel;
 	}
 
+	public function getLibIncrementale()
+	{
+		return $this->_refIncrementale;
+	}
+
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])

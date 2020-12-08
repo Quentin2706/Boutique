@@ -79,18 +79,12 @@ echo '<div class="conteneur">
 
             // Si le label est un select alors on utilise la fonction comboBox
             if($input[$i]=="select"){
-                // <select name="refUniversCategories" id="refUniversCategories">
-                //             <option value="refUnivers">Divers</option>
-                //             <option value="refUnivers">Table</option>
-                //             <option value="refUnivers">Lit</option>
-                //             <option value="refUnivers">Cuisine</option>
-                // </select>
                 if($mode=="ajout"){
-                    echo optionComboBox(null,$infos[0],"",$objet,$mode);
+                    echo optionComboBox(null,$infos[$i+2],"",$objet,$mode);
                 }
                 else{
                     $methode="get".$infos[$i+2];
-                    echo optionComboBox($objet->$methode(),$infos[0],"",$objet,$mode);
+                    echo optionComboBox($objet->$methode(),$infos[$i+2],"",$objet,$mode);
                 }
                 
             }
