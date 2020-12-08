@@ -73,6 +73,7 @@ $routes=[
 	"ListeAchatsClients"=>["PHP/VIEW/","ListeAchatsClients","Liste d'achats des clients"],
 	"AffichageTicket"=>["PHP/VIEW/","AffichageTicket","Affichage des tickets du client"],
 
+	"Form"=>["PHP/VIEW/","Form","Formulaire"],
 ];
 
 if(isset($_GET["page"]))

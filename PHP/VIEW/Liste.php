@@ -33,6 +33,27 @@ switch ($table) {
             $objets = Table_categManager::getList();
             break;
         }
+    case "article":
+        {
+            $objets = Table_articleManager::getList();
+            break;
+        }
+    case "detail_vente":
+        {
+            $objets = Table_detail_venteManager::getList();
+            break;
+        }
+    case "lot":
+        {
+            $objets = Table_lotManager::getList();
+            break;
+        }
+    case "paiement":
+        {
+            $objets = Table_paiementManager::getList();
+            break;
+        }
+    
 }
 if (empty($objets)){
     echo 'La table est vide';

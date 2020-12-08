@@ -48,10 +48,10 @@ class Table_paiement
 		return $this->_idmodePaiement;
 	}
 
-	public function setIdmodePaiement($idmodePaiement)
+	public function setIdmodePaiement($idModePaiement)
 	{
-		$this->_idmodePaiement=$idmodePaiement;
-		$this->setModepaiement(Table_modepaiementManager::findById($idModepaiement));
+		$this->_idmodePaiement=$idModePaiement;
+		$this->setModepaiement(Table_modepaiementManager::findById($idModePaiement));
 	}
 
 	public function getMontant()
