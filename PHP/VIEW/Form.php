@@ -85,6 +85,14 @@ echo '<div class="conteneur">
                 //             <option value="refUnivers">Lit</option>
                 //             <option value="refUnivers">Cuisine</option>
                 // </select>
+                if($mode=="ajout"){
+                    echo optionComboBox(null,$infos[0],"",$objet,$mode);
+                }
+                else{
+                    $methode="get".$infos[$i+2];
+                    echo optionComboBox($objet->$methode(),$infos[0],"",$objet,$mode);
+                }
+                
             }
 
             // Input simple
@@ -95,7 +103,6 @@ echo '<div class="conteneur">
                 if($mode=="detail" || $mode=="delete") echo ' disabled'; // Désactivation des champs pour le mode détail et supprimer
                 echo '/>';
             }
-            
             echo '</div>';
             echo '<div class="espace"></div>';
         }

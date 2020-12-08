@@ -79,17 +79,22 @@ function afficherPage($page)
 //     return $select;
 // }
 
- function optionComboBox($code, $nom, $class, $obj)
+ function optionComboBox($code, $nom, $class, $obj, $mode)
  {
 	$nom = ucfirst(substr($nom,6));
 	$rId = "getId".$nom;
 	$id = $obj->$rId();
 	$listeInfos = $obj->getListeInfos();
 	$rLib = "getLib".$nom;
-	$lib = $nom->$rLib();
+	$lib = $obj->$rLib();
     $ref=["$nom"=>["id"=> $id ,"libelle"=>$lib]];
-    $select = '<select id="id' . $nom . '" name="id' . $nom . '" >';
-    $liste = Table_.$nom.Manager::getList();
+	$select = '<select id="id' . $nom . '" name="id' . $nom . '"'; 
+	if($mode=="detail" || $mode=="delete"){
+		$select.= " disabled ";
+	}
+	$select .='>';
+	$aux= "Table_".$nom."Manager";
+	$liste = $aux::getList();
 
     if ($code == null) { // si le code est null, on ne mets pas de choix par défaut avec valeur
         $select .= '<option value="" SELECTED>Choisir une valeur</option>';
@@ -99,7 +104,7 @@ function afficherPage($page)
          { // si le code entré en paramètre est égale à l'élément alors c'est celui qui est selectionné 
              $select .= '<option value="' . $elt->$rId() . '" SELECTED>' . $elt->$rLib() . '</option>';
          } else {
-            $select .= '<option value="' . $elt->$methodId() . '">' . $elt->$methodLibelle() . '</option>';
+            $select .= '<option value="' . $elt->$rId() . '">' . $elt->$rLib() . '</option>';
          }
      }
      $select .= "</select>";

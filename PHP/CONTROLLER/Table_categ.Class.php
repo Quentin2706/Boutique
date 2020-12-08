@@ -5,8 +5,9 @@ class Table_categ
 
 	/*****************Attributs***************** */
 
-	private $listeTypeInput = ["text","text", "hidden", "select"];
+	
 	private $listeInfos = ["Table_categ","idCateg","refCateg","libCateg","refUnivers"];
+	private $listeTypeInput = ["text","text","select"];
 	private $listeLabel = ["Référence Categories", "Libelle Categories", "Référence Univers"];
 	private $_idCateg;
 	private $_refCateg;
