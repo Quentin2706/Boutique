@@ -52,4 +52,5 @@
 // echo Table_articleManager::calculPrixPromotion($obj);
 
 
+
 ?>

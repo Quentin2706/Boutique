@@ -307,9 +307,20 @@ class Table_article
 		return ($this->getIncrementale())->getRefIncrementale();
 	}
 
-	
+	public function getListeTypeInput()
+	{
+		return $this->listeTypeInput;
+	}
 
-	
+	public function getListeInfos()
+	{
+		return $this->listeInfos;
+	}
+
+	public function getListeLabel()
+	{
+		return $this->listeLabel;
+	}
 
 	/*****************Constructeur***************** */
 

@@ -54,27 +54,54 @@ function afficherPage($page)
 	include 'PHP/VIEW/Footer.php';
 }
 
-function optionComboBox($code, $nom)
-{
-    $ref=["Client"=>["id"=> "idClient","libelle"=>"NomClient"]];
+// function optionComboBox($code, $nom)
+// {
+//     $ref=["Client"=>["id"=> "idClient","libelle"=>"NomClient"]];
+//     $select = '<select id="id' . $nom . '" name="id' . $nom . '" >';
+//     if ($nom = "Client") {
+//         $liste = Table_clientManager::getList();
+//     }
+
+//     if ($code == null) { // si le code est null, on ne mets pas de choix par défaut avec valeur
+//         $select .= '<option value="" SELECTED>Choisir une valeur</option>';
+//     }
+//     foreach ($liste as $elt) {
+//         $methodId = "get" . $ref[$nom]["id"];
+//         $methodLibelle = "get" . $ref[$nom]["libelle"];
+//         if ($code == $elt->$methodId()) //appel de la methode stockée dans $method
+//         { // si le code entré en paramètre est égale à l'élément alors c'est celui qui est selectionné 
+//             $select .= '<option value="' . $elt->$methodId() . '" SELECTED>' . $elt->$methodLibelle() . '</option>';
+//         } else {
+//             $select .= '<option value="' . $elt->$methodId() . '">' . $elt->$methodLibelle() . '</option>';
+//         }
+//     }
+//     $select .= "</select>";
+//     return $select;
+// }
+
+ function optionComboBox($code, $nom, $class, $obj)
+ {
+	$nom = ucfirst(substr($nom,6));
+	$rId = "getId".$nom;
+	$id = $obj->$rId();
+	$listeInfos = $obj->getListeInfos();
+	$rLib = "getLib".$nom;
+	$lib = $nom->$rLib();
+    $ref=["$nom"=>["id"=> $id ,"libelle"=>$lib]];
     $select = '<select id="id' . $nom . '" name="id' . $nom . '" >';
-    if ($nom = "Client") {
-        $liste = Table_clientManager::getList();
-    }
+    $liste = Table_.$nom.Manager::getList();
 
     if ($code == null) { // si le code est null, on ne mets pas de choix par défaut avec valeur
         $select .= '<option value="" SELECTED>Choisir une valeur</option>';
-    }
+     }
     foreach ($liste as $elt) {
-        $methodId = "get" . $ref[$nom]["id"];
-        $methodLibelle = "get" . $ref[$nom]["libelle"];
-        if ($code == $elt->$methodId()) //appel de la methode stockée dans $method
-        { // si le code entré en paramètre est égale à l'élément alors c'est celui qui est selectionné 
-            $select .= '<option value="' . $elt->$methodId() . '" SELECTED>' . $elt->$methodLibelle() . '</option>';
-        } else {
+         if ($code == $elt->$rId()) //appel de la methode stockée dans $method
+         { // si le code entré en paramètre est égale à l'élément alors c'est celui qui est selectionné 
+             $select .= '<option value="' . $elt->$rId() . '" SELECTED>' . $elt->$rLib() . '</option>';
+         } else {
             $select .= '<option value="' . $elt->$methodId() . '">' . $elt->$methodLibelle() . '</option>';
-        }
-    }
-    $select .= "</select>";
-    return $select;
-}
+         }
+     }
+     $select .= "</select>";
+     return $select;
+ }
