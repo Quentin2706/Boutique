@@ -4,13 +4,20 @@ class Table_paiement
 {
 
 	/*****************Attributs***************** */
-
+	//CLE ETRANGERE
+	private $listeTypeInput = ["number","text", "hidden", "select"];
+	private $listeInfos = ["Table_paiement","idpaiement","date_vente","libModePaiement","montant","nomClient","banque"];
+	private $listeLabel = ["Date de la vente", "Mode de paiement", "Montant","Nom du Client","Banque"];
 	private $_idpaiement;
 	private $_idVente;
 	private $_idmodePaiement;
 	private $_montant;
 	private $_idClient;
 	private $_banque;
+
+	private $_vente;
+	private $_modePaiement;
+	private $_client;
 
 	/***************** Accesseurs ***************** */
 
@@ -33,6 +40,7 @@ class Table_paiement
 	public function setIdVente($idVente)
 	{
 		$this->_idVente=$idVente;
+		$this->setVente(Table_venteManager::findById($idVente));
 	}
 
 	public function getIdmodePaiement()
@@ -43,6 +51,7 @@ class Table_paiement
 	public function setIdmodePaiement($idmodePaiement)
 	{
 		$this->_idmodePaiement=$idmodePaiement;
+		$this->setModepaiement(Table_modepaiementManager::findById($idModepaiement));
 	}
 
 	public function getMontant()
@@ -63,6 +72,7 @@ class Table_paiement
 	public function setIdClient($idClient)
 	{
 		$this->_idClient=$idClient;
+		$this->setClient(Table_clientManager::findById($idClient));
 	}
 
 	public function getBanque()
@@ -73,6 +83,76 @@ class Table_paiement
 	public function setBanque($banque)
 	{
 		$this->_banque=$banque;
+	}
+	public function getListeTypeInput()
+	{
+		return $this->listeTypeInput;
+	}
+
+	public function getListeInfos()
+	{
+		return $this->listeInfos;
+	}
+
+	public function getListeLabel()
+	{
+		return $this->listeLabel;
+	}
+
+	public function getVente()
+	{
+		return $this->_vente;
+	}
+
+	
+	public function setVente($vente)
+	{
+		$this->_vente = $vente;
+
+		return $this;
+	}
+
+	
+	public function getModePaiement()
+	{
+		return $this->_modePaiement;
+	}
+
+	
+	public function setModePaiement($modePaiement)
+	{
+		$this->_modePaiement = $modePaiement;
+
+		return $this;
+	}
+
+	
+	public function getClient()
+	{
+		return $this->_client;
+	}
+
+	
+	public function setClient($client)
+	{
+		$this->_client = $client;
+
+		return $this;
+	}
+
+	public function getDate_vente()
+	{
+		return ($this->getVente())->getDate_Vente();
+	}
+
+	public function getLibModePaiement()
+	{
+		return ($this->getModePaiement())->getLibeModePaiement();
+	}
+
+	public function getNomClient()
+	{
+		return ($this->getClient())->getNomClient();
 	}
 
 	/*****************Constructeur***************** */
@@ -136,4 +216,6 @@ class Table_paiement
 	{
 		return;
 	}
+
+	
 }

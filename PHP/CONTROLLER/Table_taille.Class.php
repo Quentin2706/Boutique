@@ -4,7 +4,9 @@ class Table_taille
 {
 
 	/*****************Attributs***************** */
-
+	private $listeTypeInput = ["number","text", "hidden", "select"];
+	private $listeInfos = ["Table_taille","idTaille","libTaille","refTaille"];
+	private $listeLabel = ["Libellé de la taille", "Référence de la taille"];
 	private $_idTaille;
 	private $_libTaille;
 	private $_refTaille;
@@ -40,6 +42,21 @@ class Table_taille
 	public function setRefTaille($refTaille)
 	{
 		$this->_refTaille=$refTaille;
+	}
+
+	public function getListeTypeInput()
+	{
+		return $this->listeTypeInput;
+	}
+
+	public function getListeInfos()
+	{
+		return $this->listeInfos;
+	}
+
+	public function getListeLabel()
+	{
+		return $this->listeLabel;
 	}
 
 	/*****************Constructeur***************** */

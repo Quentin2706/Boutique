@@ -4,7 +4,9 @@ class Table_modepaiement
 {
 
 	/*****************Attributs***************** */
-
+	private $listeTypeInput = ["number","text", "hidden", "select"];
+	private $listeInfos = ["Table_modepaiement","idModePaiement","libModePaiement"];
+	private $listeLabel = ["Mode de paiement"];
 	private $_idModePaiement;
 	private $_libModePaiement;
 
@@ -29,6 +31,20 @@ class Table_modepaiement
 	public function setLibModePaiement($libModePaiement)
 	{
 		$this->_libModePaiement=$libModePaiement;
+	}
+	public function getListeTypeInput()
+	{
+		return $this->listeTypeInput;
+	}
+
+	public function getListeInfos()
+	{
+		return $this->listeInfos;
+	}
+
+	public function getListeLabel()
+	{
+		return $this->listeLabel;
 	}
 
 	/*****************Constructeur***************** */

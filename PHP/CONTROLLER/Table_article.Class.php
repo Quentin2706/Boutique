@@ -4,7 +4,10 @@ class Table_article
 {
 
 	/*****************Attributs***************** */
-
+	//CLE ETRANGERE
+	private $listeTypeInput = ["number","text", "hidden", "select"];
+	private $listeInfos = ["Table_article","idArticle","refArticle","libArticle","libUnivers","libCateg","libFournisseur","libCouleur","libTaille","refIncrementale","refLot","quantiteStock","prixAchat","prixVente","seuil"];
+	private $listeLabel = ["Référence de l'article", "Libelle de l'article", "Libellé de  l'Univers","Libellé de la catégorie","Libellé du Fournisseur","Libellé de la couleur","Libellé de la taille","Référence du lot","Quantité en stock","Prix à l'achat","Prix à la vente","Seuil"];
 	private $_idArticle;
 	private $_refArticle;
 	private $_libArticle;
@@ -19,6 +22,14 @@ class Table_article
 	private $_prixAchat;
 	private $_prixVente;
 	private $_seuil;
+	
+	private $_univers;
+	private $_categ;
+	private $_fournisseur;
+	private $_couleur;
+	private $_taille;
+	private $_lot;
+	private $_incrementale;
 
 	/***************** Accesseurs ***************** */
 
@@ -61,6 +72,7 @@ class Table_article
 	public function setIdUnivers($idUnivers)
 	{
 		$this->_idUnivers=$idUnivers;
+		$this->setUnivers(Table_universManager::findById($idUnivers));
 	}
 
 	public function getIdCateg()
@@ -71,6 +83,7 @@ class Table_article
 	public function setIdCateg($idCateg)
 	{
 		$this->_idCateg=$idCateg;
+		$this->setCateg(Table_categManager::findById($idCateg));
 	}
 
 	public function getIdFournisseur()
@@ -81,6 +94,7 @@ class Table_article
 	public function setIdFournisseur($idFournisseur)
 	{
 		$this->_idFournisseur=$idFournisseur;
+		$this->setFournisseur(Table_fournisseurManager::findById($idFournisseur));
 	}
 
 	public function getIdCouleur()
@@ -91,6 +105,7 @@ class Table_article
 	public function setIdCouleur($idCouleur)
 	{
 		$this->_idCouleur=$idCouleur;
+		$this->setCouleur(Table_couleurManager::findById($idCouleur));
 	}
 
 	public function getIdTaille()
@@ -101,6 +116,7 @@ class Table_article
 	public function setIdTaille($idTaille)
 	{
 		$this->_idTaille=$idTaille;
+		$this->setTaille(Table_tailleManager::findById($idTaille));
 	}
 
 	public function getIdIncrementale()
@@ -111,6 +127,7 @@ class Table_article
 	public function setIdIncrementale($idIncrementale)
 	{
 		$this->_idIncrementale=$idIncrementale;
+		$this->setIncrementale(Table_incrementaleManager::findById($idIncrementale));
 	}
 
 	public function getIdLot()
@@ -121,6 +138,7 @@ class Table_article
 	public function setIdLot($idLot)
 	{
 		$this->_idLot=$idLot;
+		$this->setLot(Table_lotManager::findById($idLot));
 	}
 
 	public function getQuantiteStock()
@@ -162,6 +180,140 @@ class Table_article
 	{
 		$this->_seuil=$seuil;
 	}
+
+	public function getUnivers()
+	{
+		return $this->_univers;
+	}
+
+	
+	public function setunivers($univers)
+	{
+		$this->_univers = $univers;
+
+		return $this;
+	}
+
+	
+	public function getCateg()
+	{
+		return $this->_categ;
+	}
+
+	
+	public function setCateg($categ)
+	{
+		$this->_categ = $categ;
+
+		return $this;
+	}
+
+	
+	public function getFournisseur()
+	{
+		return $this->_fournisseur;
+	}
+
+	
+	public function setFournisseur($fournisseur)
+	{
+		$this->_fournisseur = $fournisseur;
+
+		return $this;
+	}
+
+	
+	public function getCouleur()
+	{
+		return $this->_couleur;
+	}
+
+	
+	public function setCouleur($couleur)
+	{
+		$this->_couleur = $couleur;
+
+		return $this;
+	}
+
+	
+	public function getTaille()
+	{
+		return $this->_taille;
+	}
+
+	 
+	public function setTaille($taille)
+	{
+		$this->_taille = $taille;
+
+		return $this;
+	}
+
+	 
+	public function getLot()
+	{
+		return $this->_lot;
+	}
+
+	
+	public function setLot($lot)
+	{
+		$this->_lot = $lot;
+
+		return $this;
+	}
+
+	public function getIncrementale()
+	{
+		return $this->_incrementale;
+	}
+
+	
+	public function setIncrementale($incrementale)
+	{
+		$this->_incrementale = $incrementale;
+
+		return $this;
+	}
+
+	public function getLibUnivers()
+	{
+		return ($this->getUnivers())->getLibUnivers();
+	}
+
+	public function getLibCateg()
+	{
+		return($this->getCateg())->getLibCateg();
+	}
+
+	public function getLibFournisseur()
+	{
+		return ($this->getFournisseur())->getLibFournisseur();
+	}
+
+	public function getLibCouleur()
+	{
+		return ($this->getCouleur())->getLibCouleur();
+	}
+
+	public function getLibTaille()
+	{
+		return ($this->getTaille())->getLibTaille();
+	}
+
+	public function getRefLot()
+	{
+		return ($this->getLot())->getRefLot();
+	}
+
+	public function getRefIncrementale()
+	{
+		return ($this->getIncrementale())->getRefIncrementale();
+	}
+
+
+	
 
 	/*****************Constructeur***************** */
 
@@ -224,4 +376,6 @@ class Table_article
 	{
 		return;
 	}
+
+
 }

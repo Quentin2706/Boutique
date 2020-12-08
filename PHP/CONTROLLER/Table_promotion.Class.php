@@ -4,12 +4,18 @@ class Table_promotion
 {
 
 	/*****************Attributs***************** */
+	//CLE ETRANGERE
 
+	private $listeTypeInput = ["number","text", "hidden", "select","date"];
+	private $listeInfos = ["Table_promotion","idPromotion","libCateg","dateDebut","dateFin","taux"];
+	private $listeLabel = ["Libellé de la Categorie", "Date de début", "Date de fin","Taux"];
 	private $_idPromotion;
 	private $_idCateg;
 	private $_dateDebut;
 	private $_dateFin;
 	private $_taux;
+
+	private $_categ;
 
 	/***************** Accesseurs ***************** */
 
@@ -32,6 +38,7 @@ class Table_promotion
 	public function setIdCateg($idCateg)
 	{
 		$this->_idCateg=$idCateg;
+		$this->setCateg(Table_categManager::findById($idCateg));
 	}
 
 	public function getDateDebut()
@@ -63,6 +70,40 @@ class Table_promotion
 	{
 		$this->_taux=$taux;
 	}
+
+	public function getListeTypeInput()
+	{
+		return $this->listeTypeInput;
+	}
+
+	public function getListeInfos()
+	{
+		return $this->listeInfos;
+	}
+
+	public function getListeLabel()
+	{
+		return $this->listeLabel;
+	}
+
+	public function getCateg()
+	{
+		return $this->_categ;
+	}
+
+	
+	public function setCateg($categ)
+	{
+		$this->_categ = $promotion;
+
+		return $this;
+	}
+
+	public function getLibCateg()
+	{
+		return ($this->getCateg())->getLibCateg();
+	}
+
 
 	/*****************Constructeur***************** */
 
@@ -125,4 +166,7 @@ class Table_promotion
 	{
 		return;
 	}
+
+	
+
 }

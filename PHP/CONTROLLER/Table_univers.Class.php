@@ -4,7 +4,9 @@ class Table_univers
 {
 
 	/*****************Attributs***************** */
-
+	private $listeTypeInput = ["number","text", "hidden", "select"];
+	private $listeInfos = ["Table_univers","idUnivers","refUnivers","libUnivers"];
+	private $listeLabel = ["Référence de l'univers", "Libellé de l'univers"];
 	private $_idUnivers;
 	private $_refUnivers;
 	private $_libUnivers;
@@ -40,6 +42,21 @@ class Table_univers
 	public function setLibUnivers($libUnivers)
 	{
 		$this->_libUnivers=$libUnivers;
+	}
+
+	public function getListeTypeInput()
+	{
+		return $this->listeTypeInput;
+	}
+
+	public function getListeInfos()
+	{
+		return $this->listeInfos;
+	}
+
+	public function getListeLabel()
+	{
+		return $this->listeLabel;
 	}
 
 	/*****************Constructeur***************** */

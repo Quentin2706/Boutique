@@ -4,13 +4,19 @@ class Table_detail_vente
 {
 
 	/*****************Attributs***************** */
-
+	//CLE ETRANGERE
+	private $listeTypeInput = ["number","text", "hidden", "select"];
+	private $listeInfos = ["Table_detail_vente","idDetailVente","date_vente","quantite","libArticle","prixUnitaire","detailDivers"];
+	private $listeLabel = ["Date de la vente","Quantité","Libellé de l'article", "Prix unitaire", "Détails divers"];
 	private $_idDetailVente;
 	private $_idVente;
 	private $_quantite;
 	private $_idArticle;
 	private $_prixUnitaire;
 	private $_detailDivers;
+
+	private $_vente;
+	private $_article;
 
 	/***************** Accesseurs ***************** */
 
@@ -33,6 +39,7 @@ class Table_detail_vente
 	public function setIdVente(int $idVente)
 	{
 		$this->_idVente=$idVente;
+		$this->setVente(Table_venteManager::findById($idVente));
 	}
 
 	public function getQuantite()
@@ -53,6 +60,7 @@ class Table_detail_vente
 	public function setIdArticle(int $idArticle)
 	{
 		$this->_idArticle=$idArticle;
+		$this->setArticle(Table_articleManager::findById($idArticle));
 	}
 
 	public function getPrixUnitaire()
@@ -73,6 +81,57 @@ class Table_detail_vente
 	public function setDetailDivers($detailDivers)
 	{
 		$this->_detailDivers=$detailDivers;
+	}
+	public function getListeTypeInput()
+	{
+		return $this->listeTypeInput;
+	}
+
+	public function getListeInfos()
+	{
+		return $this->listeInfos;
+	}
+
+	public function getListeLabel()
+	{
+		return $this->listeLabel;
+	}
+
+	public function getVente()
+	{
+		return $this->_vente;
+	}
+
+	
+	public function setVente($vente)
+	{
+		$this->_vente = $vente;
+
+		return $this;
+	}
+
+	
+	public function getArticle()
+	{
+		return $this->_article;
+	}
+
+	
+	public function setArticle($article)
+	{
+		$this->_article = $article;
+
+		return $this;
+	}
+
+	public function getDateVente()
+	{
+		return ($this->getVente())->getDate_Vente();
+	}
+
+	public function getLibArticle()
+	{
+		return ($this->getArticle())->getLibArticle();
 	}
 
 	/*****************Constructeur***************** */
@@ -136,4 +195,6 @@ class Table_detail_vente
 	{
 		return;
 	}
+
+	
 }

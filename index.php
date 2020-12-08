@@ -51,7 +51,6 @@ $routes=[
 	"FormArticle"=>["PHP/VIEW/","FormArticle","Formulaire des Articles"],
 	"ActionArticle"=>["PHP/VIEW/","ActionArticle","Action Article"],
 
-	"ListeUnivers"=>["PHP/VIEW/","ListeUnivers","Liste des Univers"],
 	"FormUnivers"=>["PHP/VIEW/","FormUnivers","Formulaire des Univers"],
 	"ActionUnivers"=>["PHP/VIEW/","ActionUnivers","Action des Univers"],
 
@@ -59,19 +58,15 @@ $routes=[
 	"FormCategorie"=>["PHP/VIEW/","FormCategories","Formulaire des Categories"],
 	"ActionCategorie"=>["PHP/VIEW/","ActionCategories","Action des Categories"],
 
-	"ListeFournisseurs"=>["PHP/VIEW/","ListeFournisseur","Liste des Fournisseurs"],
 	"FormFournisseur"=>["PHP/VIEW/","FormFournisseur","Formulaire des Fournisseurs"],
 	"ActionFournisseur"=>["PHP/VIEW/","ActionFournisseur","Action des Fournisseurs"],
 
-	"ListeCouleurs"=>["PHP/VIEW/","ListeCouleurs","Liste des Couleurs"],
 	"FormCouleur"=>["PHP/VIEW/","FormCouleur","Formulaire des Couleurs"],
 	"ActionCouleur"=>["PHP/VIEW/","ActionCouleur","Action des Couleurs"],
 
-	"ListePromotions"=>["PHP/VIEW/","ListePromotions","Liste des Promotions"],
 	"FormPromotion"=>["PHP/VIEW/","FormPromotion","Formulaire des Promotions"],
 	"ActionPromotion"=>["PHP/VIEW/","ActionPromotion","Action des Promotionss"],
 
-	"ListeClients"=>["PHP/VIEW/","ListeClients","Liste des clients"],
 	"FormClient"=>["PHP/VIEW/","FormClient","Formulaire des clients"],
 	"ActionClient"=>["PHP/VIEW/","ActionClient","Action des clients"],
 

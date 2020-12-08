@@ -4,6 +4,9 @@ class Table_incrementale
 {
 
 	/*****************Attributs***************** */
+	private $listeTypeInput = ["number","text", "hidden", "select"];
+	private $listeInfos = ["Table_incrementale","idIncrementale","refIncrementale"];
+	private $listeLabel = ["Référence Incrémentale"];
 
 	private $_idIncrementale;
 	private $_refIncrementale;
@@ -29,6 +32,20 @@ class Table_incrementale
 	public function setRefIncrementale($refIncrementale)
 	{
 		$this->_refIncrementale=$refIncrementale;
+	}
+	public function getListeTypeInput()
+	{
+		return $this->listeTypeInput;
+	}
+
+	public function getListeInfos()
+	{
+		return $this->listeInfos;
+	}
+
+	public function getListeLabel()
+	{
+		return $this->listeLabel;
 	}
 
 	/*****************Constructeur***************** */
