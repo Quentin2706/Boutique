@@ -6,7 +6,7 @@ class Table_article
 	/*****************Attributs***************** */
 	//CLE ETRANGERE
 	private $listeTypeInput = ["number","text", "hidden", "select"];
-	private $listeInfos = ["Table_article","idArticle","refArticle","libArticle","libUnivers","libCateg","libFournisseur","libCouleur","libTaille","refIncrementale","refLot","quantiteStock","prixAchat","prixVente","seuil"];
+	private $listeInfos = ["Table_article","idArticle","refArticle","libArticle","libUnivers","libCateg","libFournisseur","libCouleur","libTaille","libIncrementale","libLot","quantiteStock","prixAchat","prixVente","seuil"];
 	private $listeLabel = ["Référence de l'article", "Libelle de l'article", "Libellé de  l'Univers","Libellé de la catégorie","Libellé du Fournisseur","Libellé de la couleur","Libellé de la taille","Référence du lot","Quantité en stock","Prix à l'achat","Prix à la vente","Seuil"];
 	private $_idArticle;
 	private $_refArticle;
@@ -302,16 +302,17 @@ class Table_article
 		return ($this->getTaille())->getLibTaille();
 	}
 
-	public function getRefLot()
+	public function getLibLot()
 	{
 		return ($this->getLot())->getRefLot();
 	}
 
-	public function getRefIncrementale()
+	public function getLibIncrementale()
 	{
 		return ($this->getIncrementale())->getRefIncrementale();
 	}
 
+	
 
 	
 
