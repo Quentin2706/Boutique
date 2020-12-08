@@ -25,13 +25,14 @@ class Table_lot
 
 	public function getRefLot()
 	{
-		return $this->_reflot;
+		return $this->_refLot;
 	}
 
-	public function setRefLot($reflot)
+	public function setRefLot($refLot)
 	{
-		$this->_reflot=$reflot;
+		$this->_refLot=$refLot;
 	}
+
 	public function getListeTypeInput()
 	{
 		return $this->listeTypeInput;
@@ -45,6 +46,11 @@ class Table_lot
 	public function getListeLabel()
 	{
 		return $this->listeLabel;
+	}
+
+	public function getLibLot()
+	{
+		return $this->_refLot;
 	}
 
 	/*****************Constructeur***************** */
@@ -108,4 +114,7 @@ class Table_lot
 	{
 		return;
 	}
+
+
+	
 }
