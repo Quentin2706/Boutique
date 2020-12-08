@@ -86,11 +86,11 @@ echo '<div class="conteneur">
                 //             <option value="refUnivers">Cuisine</option>
                 // </select>
                 if($mode=="ajout"){
-                    echo optionComboBox(null,$infos[0],"",$objet,$mode);
+                    echo optionComboBox(null,$infos[$i+2],"",$objet,$mode);
                 }
                 else{
                     $methode="get".$infos[$i+2];
-                    echo optionComboBox($objet->$methode(),$infos[0],"",$objet,$mode);
+                    echo optionComboBox($objet->$methode(),$infos[$i+2],"",$objet,$mode);
                 }
                 
             }
