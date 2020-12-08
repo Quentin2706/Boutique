@@ -94,9 +94,7 @@ class Table_promotion
 	
 	public function setCateg($categ)
 	{
-		$this->_categ = $promotion;
-
-		return $this;
+		$this->_categ = $categ;
 	}
 
 	public function getLibCateg()

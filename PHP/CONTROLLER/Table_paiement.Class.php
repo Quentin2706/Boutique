@@ -109,7 +109,6 @@ class Table_paiement
 	{
 		$this->_vente = $vente;
 
-		return $this;
 	}
 
 	
@@ -123,7 +122,7 @@ class Table_paiement
 	{
 		$this->_modePaiement = $modePaiement;
 
-		return $this;
+
 	}
 
 	
@@ -137,7 +136,7 @@ class Table_paiement
 	{
 		$this->_client = $client;
 
-		return $this;
+
 	}
 
 	public function getDate_vente()

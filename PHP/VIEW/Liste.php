@@ -34,7 +34,9 @@ switch ($table) {
             break;
         }
 }
-
+if (empty($objets)){
+    echo 'La table est vide';
+} else {
 echo '<div class="conteneurTableau">
 <div class="tableau">
     <div class="ligne">';
@@ -67,3 +69,4 @@ foreach ($objets as $unObjet) {
 
 echo '</div>
 </div>';
+}

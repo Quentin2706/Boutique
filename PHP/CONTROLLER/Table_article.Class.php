@@ -191,7 +191,6 @@ class Table_article
 	{
 		$this->_univers = $univers;
 
-		return $this;
 	}
 
 	
@@ -205,7 +204,6 @@ class Table_article
 	{
 		$this->_categ = $categ;
 
-		return $this;
 	}
 
 	
@@ -219,7 +217,6 @@ class Table_article
 	{
 		$this->_fournisseur = $fournisseur;
 
-		return $this;
 	}
 
 	
@@ -233,7 +230,7 @@ class Table_article
 	{
 		$this->_couleur = $couleur;
 
-		return $this;
+
 	}
 
 	
@@ -247,7 +244,6 @@ class Table_article
 	{
 		$this->_taille = $taille;
 
-		return $this;
 	}
 
 	 
@@ -261,7 +257,7 @@ class Table_article
 	{
 		$this->_lot = $lot;
 
-		return $this;
+
 	}
 
 	public function getIncrementale()
@@ -274,7 +270,6 @@ class Table_article
 	{
 		$this->_incrementale = $incrementale;
 
-		return $this;
 	}
 
 	public function getLibUnivers()

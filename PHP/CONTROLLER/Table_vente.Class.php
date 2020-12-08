@@ -73,7 +73,6 @@ class Table_vente
 	{
 		$this->_client = $client;
 
-		return $this;
 	}
 
 	public function getNomClient()

@@ -107,7 +107,6 @@ class Table_detail_vente
 	{
 		$this->_vente = $vente;
 
-		return $this;
 	}
 
 	
@@ -121,7 +120,6 @@ class Table_detail_vente
 	{
 		$this->_article = $article;
 
-		return $this;
 	}
 
 	public function getDateVente()
