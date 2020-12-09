@@ -67,6 +67,11 @@ class Table_client
     {
         return $this->listeLabel;
     }
+
+    public function getLibelle()
+    {
+        return $this->getNomClient();
+    }
     /*****************Constructeur***************** */
 
     public function __construct(array $options = [])

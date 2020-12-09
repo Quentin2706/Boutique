@@ -80,7 +80,10 @@ class Table_fournisseur
 	{
 		return $this->listeLabel;
 	}
-
+	public function getLibelle()
+	{
+		return $this->getLibFournisseur();
+	}
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])

@@ -52,7 +52,10 @@ class Table_incrementale
 	{
 		return $this->_refIncrementale;
 	}
-
+	public function getLibelle()
+	{
+		return $this->getLibIncrementale();
+	}
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])

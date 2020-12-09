@@ -58,7 +58,10 @@ class Table_taille
 	{
 		return $this->listeLabel;
 	}
-
+	public function getLibelle()
+	{
+		return $this->getLibTaille();
+	}
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])

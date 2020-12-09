@@ -52,7 +52,10 @@ class Table_lot
 	{
 		return $this->_refLot;
 	}
-
+	public function getLibelle()
+	{
+		return $this->getRefLot();
+	}
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])

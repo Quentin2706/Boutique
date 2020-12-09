@@ -58,6 +58,10 @@ class Table_couleur
 	{
 		return $this->listeLabel;
 	}
+	public function getLibelle()
+	{
+		return $this->getLibCouleur();
+	}
 
 	/*****************Constructeur***************** */
 

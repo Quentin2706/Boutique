@@ -6,11 +6,12 @@ class Table_article
 	/*****************Attributs***************** */
 	//CLE ETRANGERE
 	
-	private $listeInfos = ["Table_article","idArticle","refArticle","libArticle","libUnivers","libCateg","libFournisseur","libCouleur","libTaille","libIncrementale","libLot","quantiteStock","prixAchat","prixVente","seuil"];
-	private $listeInfosForm = ["Table_article","idArticle","refArticle","libArticle","idUnivers","idCateg","idFournisseur","idCouleur","idTaille","idIncrementale","idLot","quantiteStock","prixAchat","prixVente","seuil"];
-	private $listeTypeInput = ["text","text", "select", "select","select","select","select","select","select","text", "text", "text", "text"];
-	private $listeClass = ["","", "univers", "categ","fournisseur","couleur","taille","incrementale","lot","", "", "", ""];
-	private $listeLabel = ["Référence de l'article", "Libelle de l'article", "Libellé de l'Univers","Libellé de la catégorie","Libellé du Fournisseur","Libellé de la couleur","Libellé de la taille","Référence incrémentale","Référence du lot","Quantité en stock","Prix à l'achat","Prix à la vente","Seuil"];
+	// private $listeInfos = ["Table_article","idArticle","refArticle","libArticle","libUnivers","libCateg","libFournisseur","libCouleur","libTaille","libIncrementale","libLot","quantiteStock","prixAchat","prixVente","seuil"];
+	private $listeAttributs = ["Table_article","idArticle","refArticle","libArticle","idUnivers","idCateg","idFournisseur","idCouleur","idTaille","idIncrementale","idLot","quantiteStock","prixAchat","prixVente","seuil"];
+	// private $listeInfosForm = ["Table_article","idArticle","refArticle","libArticle","idUnivers","idCateg","idFournisseur","idCouleur","idTaille","idIncrementale","idLot","quantiteStock","prixAchat","prixVente","seuil"];
+	private $listeTypeInput = ["","","text","text", "select", "select","select","select","select","select","select","text", "text", "text", "text"];
+	private $listeClass = ["","","","", "univers", "categ","fournisseur","couleur","taille","incrementale","lot","", "", "", ""];
+	private $listeLabel = ["","","Référence de l'article", "Libelle de l'article", "Libellé de l'Univers","Libellé de la catégorie","Libellé du Fournisseur","Libellé de la couleur","Libellé de la taille","Référence incrémentale","Référence du lot","Quantité en stock","Prix à l'achat","Prix à la vente","Seuil"];
 	private $_idArticle;
 	private $_refArticle;
 	private $_libArticle;
@@ -315,26 +316,33 @@ class Table_article
 		return $this->listeTypeInput;
 	}
 
-	public function getListeInfos()
-	{
-		return $this->listeInfos;
-	}
+	// public function getListeInfos()
+	// {
+	// 	return $this->listeInfos;
+	// }
 
 	public function getListeLabel()
 	{
 		return $this->listeLabel;
 	}
 
-	public function getListeInfosForm()
-	{
-		return $this->listeInfosForm;
-	}
+	// public function getListeInfosForm()
+	// {
+	// 	return $this->listeInfosForm;
+	// }
 
 	public function getListeClass()
 	{
 		return $this->listeClass;
 	}
-
+	public function getListeAttributs()
+	{
+		return $this->listeAttributs;
+	}
+	public function getLibelle()
+	{
+		return $this->getLibArticle();
+	}
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])
@@ -397,4 +405,6 @@ class Table_article
 		return;
 	}
 
+
+	
 }

@@ -87,6 +87,11 @@ class Table_categ
 	{
 		return ($this->getUnivers())->getRefUnivers();
 	}
+	public function getLibelle()
+	{
+		return $this->getLibCateg();
+	}
+
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])
