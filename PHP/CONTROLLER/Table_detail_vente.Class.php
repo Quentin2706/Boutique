@@ -5,9 +5,10 @@ class Table_detail_vente
 
 	/*****************Attributs***************** */
 	//CLE ETRANGERE
-	private $listeTypeInput = ["number","text", "hidden", "select"];
-	private $listeInfos = ["Table_detail_vente","idDetailVente","date_vente","quantite","libArticle","prixUnitaire","detailDivers"];
-	private $listeLabel = ["Date de la vente","Quantité","Libellé de l'article", "Prix unitaire", "Détails divers"];
+	private $listeAttributs =["Table_detail_vente","idDetailVente","idVente","quantite","idArticle","prixUnitaire","detailDivers"];
+	private $listeTypeInput = ["","", "select", "text","select","text","text"];
+	private $listeClass=["","","vente","","article","",""];
+	private $listeLabel = ["","","Date de la vente","Quantité","Libellé de l'article", "Prix unitaire", "Détails divers"];
 	private $_idDetailVente;
 	private $_idVente;
 	private $_quantite;
@@ -130,6 +131,15 @@ class Table_detail_vente
 	public function getLibArticle()
 	{
 		return ($this->getArticle())->getLibArticle();
+	}
+
+	public function getListeClass()
+	{
+		return $this->listeClass;
+	}
+	public function getListeAttributs()
+	{
+		return $this->listeAttributs;
 	}
 
 	/*****************Constructeur***************** */

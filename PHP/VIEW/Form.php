@@ -30,7 +30,7 @@ $infos = $objet->getListeAttributs();
 $listeClass = $objet->getListeClass();
 $input = $objet->getListeTypeInput();
 // On affiche tout les champs à renseigner
-for ($i = 1; $i < count($labels); $i++) {
+for ($i = 2; $i < count($labels); $i++) {
     echo '<div>';
     echo '<label for="' . $infos[$i] . '">' . $labels[$i] . '</label>';
 

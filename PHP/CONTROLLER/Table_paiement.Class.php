@@ -5,9 +5,10 @@ class Table_paiement
 
 	/*****************Attributs***************** */
 	//CLE ETRANGERE
-	private $listeTypeInput = ["number","text", "hidden", "select"];
-	private $listeInfos = ["Table_paiement","idpaiement","date_vente","libModePaiement","montant","nomClient","banque"];
-	private $listeLabel = ["Date de la vente", "Mode de paiement", "Montant","Nom du Client","Banque"];
+	private $listeAttributs=["Table_paiement","idpaiement","idVente","idmodePaiement","montant","idClient","banque"];
+	private $listeTypeInput = ["","", "select", "select","text","select","text"];
+	private $listeClass=["","","vente","modepaiement","","client",""];
+	private $listeLabel = ["","","Date de la vente", "Mode de paiement", "Montant","Nom du Client","Banque"];
 	private $_idpaiement;
 	private $_idVente;
 	private $_idmodePaiement;
@@ -152,6 +153,14 @@ class Table_paiement
 	public function getNomClient()
 	{
 		return ($this->getClient())->getNomClient();
+	}
+	public function getListeClass()
+	{
+		return $this->listeClass;
+	}
+	public function getListeAttributs()
+	{
+		return $this->listeAttributs;
 	}
 
 	/*****************Constructeur***************** */
