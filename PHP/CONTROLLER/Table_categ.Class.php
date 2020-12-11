@@ -5,10 +5,10 @@ class Table_categ
 
 	/*****************Attributs***************** */
 
-	
-	private $listeInfos = ["Table_categ","idCateg","refCateg","libCateg","refUnivers"];
-	private $listeTypeInput = ["text","text","select"];
-	private $listeLabel = ["Référence Categories", "Libelle Categories", "Référence Univers"];
+	private $listeAttributs=["Table_categ","idCateg","refCateg","libCateg","idUnivers"];
+	private $listeTypeInput = ["","","text","text","select"];
+	private $listeClass =["","","","","univers"];
+	private $listeLabel = ["","","Référence Categories", "Libelle Categories", "Référence Univers"];
 	private $_idCateg;
 	private $_refCateg;
 	private $_libCateg;
@@ -90,6 +90,14 @@ class Table_categ
 	public function getLibelle()
 	{
 		return $this->getLibCateg();
+	}
+	public function getListeClass()
+	{
+		return $this->listeClass;
+	}
+	public function getListeAttributs()
+	{
+		return $this->listeAttributs;
 	}
 
 	/*****************Constructeur***************** */
