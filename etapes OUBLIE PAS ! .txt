@@ -1,3 +1,3 @@
-1. Ajouter les tableaux dans les classes (label , nom des attributs+table, types d'inputs) et y insérer Getter et Setter
+1. Ajouter les tableaux dans les classes (liste des attributs, liste des type d'input, liste des classes (pour les types select), liste des labels ) et y insérer Getter et Setter
 2. Créer une fonction pour récupérer les informations si la classe possède des clé étrangères
 3. 

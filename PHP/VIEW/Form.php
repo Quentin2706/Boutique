@@ -2,13 +2,19 @@
 
 // on recup la surcharge URL
 $table = $_GET['table'];
-$id = $_GET['id'];
 $mode = $_GET['mode'];
 if ($mode != "ajout") {
     $id = $_GET['id'];
+    // En fonction de la surchage on fait l'action appropriée
+    $objet = appelFindById($table, $id);
 }
-// En fonction de la surchage on fait l'action appropriée
-$objet = appelFindById($table, $id);
+// Pour l'ajout il faut quand même les listes d'info lié aux objets donc on récupère un objet de la table pour avoir les infos
+else if ($table=="modepaiement"){ //gestion de l'ajout modePaiement
+    $objet = appelFindById($table, "CB");
+}else{
+    $objet = appelFindById($table, 1); // gestion de l'ajout
+}
+
 echo '<div class="conteneur">
 <div class="blocform">
     <form action="index.php?page=Actions.php&mode=' . $mode . '" method="POST">
