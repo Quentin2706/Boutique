@@ -4,9 +4,10 @@ class Table_couleur
 {
 
 	/*****************Attributs***************** */
-	private $listeTypeInput = ["number","text", "hidden", "select"];
-	private $listeInfos = ["Table_couleur","idCouleur","libCouleur","refCouleur"];
-	private $listeLabel = ["Libellé des Couleurs", "Référence des Couleurs"];
+	private $listeAttributs=["Table_couleur","idCouleur","libCouleur","refCouleur"];
+	private $listeTypeInput = ["","", "text", "text"];
+	private $listeClass=["","","",""];
+	private $listeLabel = ["","","Libellé des Couleurs", "Référence des Couleurs"];
 	private $_idCouleur;
 	private $_libCouleur;
 	private $_refCouleur;
@@ -62,6 +63,15 @@ class Table_couleur
 	{
 		return $this->getLibCouleur();
 	}
+	public function getListeClass()
+	{
+		return $this->listeClass;
+	}
+	public function getListeAttributs()
+	{
+		return $this->listeAttributs;
+	}
+
 
 	/*****************Constructeur***************** */
 
