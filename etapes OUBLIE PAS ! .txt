@@ -1,3 +1,14 @@
-1. Ajouter les tableaux dans les classes (liste des attributs, liste des type d'input, liste des classes (pour les types select), liste des labels ) et y insérer Getter et Setter
-2. Créer une fonction pour récupérer les informations si la classe possède des clé étrangères
-3. 
+1. Ajout des tableaux remplis manuellement dans les classes :
+    -liste des attributs : elle contient le nom de la table et tout les attributs de la classe. Ex : ["Table_article","idArticle","refArticle","idUnivers", ... ]
+    -liste des type d'input : elle contient les types d'inputs qui seront renseignés dans le formulaire. Ex: ["","","text","text","select", ... ]
+    -liste des classes : elle contient le nom des classes necessaires pour récupérer les informations des inputs de type select. Ex: ["","","","", "univers", ... ]
+    -liste des labels : elle contient les noms des champs qui vont servir pour l'affichage. Ex : ["","","Référence de l'article", "Libelle de l'article", "Libellé de l'Univers", ... ]
+Ces listes seront accessibles via des methodes de type getter.
+Ils doivent également être construits sans décalage dans les champs, d'où les caractères vide.
+
+2. Création des fonction :
+    -appelFindById : renvoi un objet de la table fourni en fonction de son Id .
+    -appelGetList : renvoi la liste des objets de la table fourni .
+    -appelGet : permet d'utiliser la methode get associée à la chaine donnée en paramètre .
+
+3. Création des pages List et Form, générées en fonction des tables et modes surchargés. Elles utilises les points 1 - 2 pour pouvoir se générer.

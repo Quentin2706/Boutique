@@ -29,8 +29,8 @@ $labels = $objet->getListeLabel();
 $infos = $objet->getListeAttributs();
 $listeClass = $objet->getListeClass();
 $input = $objet->getListeTypeInput();
-// On affiche tout les champs à renseigner
-for ($i = 1; $i < count($labels); $i++) {
+// On affiche tout les champs à renseigner 
+for ($i = 2; $i < count($labels); $i++) { //on commmence à 2 car l'id est déja traité avant (index 1 des tableaux)
     echo '<div>';
     echo '<label for="' . $infos[$i] . '">' . $labels[$i] . '</label>';
 
