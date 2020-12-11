@@ -6,9 +6,10 @@ class Table_vente
 	/*****************Attributs***************** */
 
 	//CLE ETRANGERE
-	private $listeTypeInput = ["number","text", "hidden", "select","date"];
-	private $listeInfos = ["Table_vente","idVente","date_vente","nomClient"];
-	private $listeLabel = ["Date de la vente", "Nom du Client"];
+	private $listeAttributs = ["Table_vente","idVente","date_vente", "idClient"];
+	private $listeTypeInput = ["","","date","select"];
+	private $listeClass = ["","","","client"];
+	private $listeLabel = ["","","Date de la vente", "Client"];
 	private $_idVente;
 	private $_date_vente;
 	private $_idClient;
@@ -48,14 +49,20 @@ class Table_vente
 		$this->_idClient=$idClient;
 		$this->setClient(Table_clientManager::findById($idClient));
 	}
+	
+	public function getListeAttributs()
+	{
+		return $this->listeAttributs;
+	}
+
 	public function getListeTypeInput()
 	{
 		return $this->listeTypeInput;
 	}
 
-	public function getListeInfos()
+	public function getListeClass()
 	{
-		return $this->listeInfos;
+		return $this->listeClass;
 	}
 
 	public function getListeLabel()
@@ -141,6 +148,4 @@ class Table_vente
 	{
 		return;
 	}
-
-	 
 }
