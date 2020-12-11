@@ -4,9 +4,10 @@ class Table_client
 {
 
     /*****************Attributs***************** */
-    private $listeTypeInput = ["number", "text", "hidden", "select"];
-    private $listeInfos = ["Table_client", "idClient", "nomClient", "adresseMail", "adressePostale"];
-    private $listeLabel = ["Nom du  Client", "Adresse mail du Client", "Adresse Postale du client"];
+    private $listeAttributs = ["Table_Client","idClient","nomClient","adresseMail","adressePostale"];
+	private $listeTypeInput = ["","","text","text","text", "text", "text", "text"];
+	private $listeClass = ["","","","", "univers", "categ","fournisseur","couleur","taille","incrementale","lot","", "", "", ""];
+	private $listeLabel = ["","","Nom du Client", "Adresse Mail", "Adresse Postale"];
     private $_idClient;
     private $_nomClient;
     private $_adresseMail;
@@ -53,19 +54,24 @@ class Table_client
     {
         $this->_adressePostale = $adressePostale;
     }
-    public function getListeTypeInput()
-    {
-        return $this->listeTypeInput;
-    }
+	public function getListeLabel()
+	{
+		return $this->listeLabel;
+	}
 
-    public function getListeInfos()
-    {
-        return $this->listeInfos;
-    }
+	public function getListeClass()
+	{
+		return $this->listeClass;
+	}
 
-    public function getListeLabel()
+	public function getListeTypeInput()
+	{
+		return $this->listeTypeInput;
+	}
+
+    public function getListeAttributs()
     {
-        return $this->listeLabel;
+        return $this->listeAttributs;
     }
 
     public function getLibelle()

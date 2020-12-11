@@ -4,9 +4,10 @@ class Table_lot
 {
 
 	/*****************Attributs***************** */
-	private $listeTypeInput = ["number","text", "hidden", "select"];
-	private $listeInfos = ["Table_lot","idLot","refLot"];
-	private $listeLabel = ["Référence du Lot"];
+	private $listeAttributs = ["Table_lot","idlot","reflot"];
+	private $listeTypeInput = ["","","text"];
+	private $listeClass = ["","",""];
+	private $listeLabel = ["","","Référence du lot"];
 	private $_idLot;
 	private $_refLot;
 
@@ -33,21 +34,27 @@ class Table_lot
 		$this->_refLot=$refLot;
 	}
 
+
+	public function getListeAttributs()
+	{
+		return $this->listeAttributs;
+	}
+
 	public function getListeTypeInput()
 	{
 		return $this->listeTypeInput;
 	}
 
-	public function getListeInfos()
+	public function getListeClass()
 	{
-		return $this->listeInfos;
+		return $this->listeClass;
 	}
 
 	public function getListeLabel()
 	{
 		return $this->listeLabel;
 	}
-
+	
 	public function getLibLot()
 	{
 		return $this->_refLot;
@@ -119,5 +126,4 @@ class Table_lot
 	}
 
 
-	
 }
