@@ -6,10 +6,10 @@ class Table_fournisseur
 	/*****************Attributs***************** */
 	
 	//private $listeInfos = ["Table_categ","idFournisseur","refFournisseur","libFournisseur","adresseFournisseur", "telephoneFournisseur"];
-	private $listeAttributs = ["Table_fournisseur","idFournisseur","refFournisseur","libFournisseur","adresseFournisseur","telephoneFournisseur"];
-	private $listeTypeInput = ["","","text","text", "text", "text"];
-	private $listeClass = ["","","","","",""];
-	private $listeLabel = ["","","Référence Fournisseur", "Libelle Fournisseur", "Adresse Fournisseur", "Numéro Fournisseur"];
+	private static $listeAttributs = ["Table_fournisseur","idFournisseur","refFournisseur","libFournisseur","adresseFournisseur","telephoneFournisseur"];
+	private static $listeTypeInput = ["","","text","text", "text", "text"];
+	private static $listeClass = ["","","","","",""];
+	private static $listeLabel = ["","","Référence Fournisseur", "Libelle Fournisseur", "Adresse Fournisseur", "Numéro Fournisseur"];
 	private $_idFournisseur;
 	private $_refFournisseur;
 	private $_libFournisseur;
@@ -69,25 +69,24 @@ class Table_fournisseur
 		$this->_telephoneFournisseur=$telephoneFournisseur;
 	}
 
-	public function getListeTypeInput()
-	{
-		return $this->listeTypeInput;
-	}
+	
+	public static function getListeTypeInput()
+    {
+        return self::$listeTypeInput;
+    }
+    public static function getListeLabel()
+    {
+        return self::$listeLabel;
+    }
 
-	public function getListeClass()
-	{
-		return $this->listeClass;
-	}
-
-	public function getListeAttributs()
-	{
-		return $this->listeAttributs;
-	}
-
-	public function getListeLabel()
-	{
-		return $this->listeLabel;
-	}
+    public static function getListeAttributs()
+    {
+        return self::$listeAttributs;
+    }
+    public static function getListeClass()
+    {
+        return self::$listeClass;
+    }
 	public function getLibelle()
 	{
 		return $this->getLibFournisseur();

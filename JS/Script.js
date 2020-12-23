@@ -1,0 +1,36 @@
+/*   MENU   */
+var lesMenus = document.getElementsByClassName("menu");
+for (let i = 0; i < lesMenus.length; i++) {
+    lesMenus[i].addEventListener("click",afficheSousMenu);
+}
+
+var lesSousMenu = document.getElementsByClassName("sousMenu");
+
+var lesContenuSousMenu = document.getElementsByClassName("contenuSousMenu");
+for (let i = 0; i < lesContenuSousMenu.length; i++) {
+    lesContenuSousMenu[i].addEventListener("click",redirige);
+}
+
+
+function afficheSousMenu(event) {
+    //on ferme les sous menu ouvert
+    for (let i = 0; i < lesSousMenu.length; i++) {
+        lesSousMenu[i].style.display="none";
+        
+    }
+    //on ouvre le sous menu correspondant au click
+    var sousMenu = event.target.parentNode.getElementsByClassName("sousMenu")[0];
+    sousMenu.style.display="flex";
+}
+
+function redirige(event) {
+    var cible = event.target.parentNode.getAttribute("cible");
+    if (cible.substring(0,3)=="Lis")
+    {
+        window.location.href="index.php?page=Liste&table="+cible.substring(3);
+    }
+    else{
+        window.location.href="index.php?page=Form&table="+cible.substring(3)+"&mode=ajout";
+    }
+    
+}

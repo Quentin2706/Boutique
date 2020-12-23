@@ -45,35 +45,17 @@ $routes=[
 	"MailTicket"=>["PHP/VIEW/","MailTicket","Envoie ticket par mail"],
 	"Reglement"=>["PHP/VIEW/","Reglement","Caisse"],
 
-	"ListeDonnees"=>["PHP/VIEW/","ListeDonnees","Liste des Données"],
+	"ListeDonnees"=>["PHP/VIEW/DONNEES/","ListeDonnees","Liste des Données"],
 
-	"ListeArticles"=>["PHP/VIEW/","ListeArticles","Liste des Articles"],
-	"FormArticle"=>["PHP/VIEW/","FormArticle","Formulaire des Articles"],
-	"ActionArticle"=>["PHP/VIEW/","ActionArticle","Action Article"],
+		
+	"Liste"=>["PHP/VIEW/","Liste","Liste"],
+	"Form"=>["PHP/VIEW/","Form","Formulaire"],
+	"Action"=>["PHP/VIEW/","Action","Action"],
 
-	"FormUnivers"=>["PHP/VIEW/","FormUnivers","Formulaire des Univers"],
-	"ActionUnivers"=>["PHP/VIEW/","ActionUnivers","Action des Univers"],
-
-	"Liste"=>["PHP/VIEW/","Liste","Liste des Categories"],
-	"FormCategorie"=>["PHP/VIEW/","FormCategories","Formulaire des Categories"],
-	"ActionCategorie"=>["PHP/VIEW/","ActionCategories","Action des Categories"],
-
-	"FormFournisseur"=>["PHP/VIEW/","FormFournisseur","Formulaire des Fournisseurs"],
-	"ActionFournisseur"=>["PHP/VIEW/","ActionFournisseur","Action des Fournisseurs"],
-
-	"FormCouleur"=>["PHP/VIEW/","FormCouleur","Formulaire des Couleurs"],
-	"ActionCouleur"=>["PHP/VIEW/","ActionCouleur","Action des Couleurs"],
-
-	"FormPromotion"=>["PHP/VIEW/","FormPromotion","Formulaire des Promotions"],
-	"ActionPromotion"=>["PHP/VIEW/","ActionPromotion","Action des Promotionss"],
-
-	"FormClient"=>["PHP/VIEW/","FormClient","Formulaire des clients"],
-	"ActionClient"=>["PHP/VIEW/","ActionClient","Action des clients"],
-
+	
 	"ListeAchatsClients"=>["PHP/VIEW/","ListeAchatsClients","Liste d'achats des clients"],
 	"AffichageTicket"=>["PHP/VIEW/","AffichageTicket","Affichage des tickets du client"],
 
-	"Form"=>["PHP/VIEW/","Form","Formulaire"],
 ];
 
 if(isset($_GET["page"]))

@@ -29,7 +29,7 @@
 
                 </div>
                 <div class="grosBouton">
-                    <a href="donnees.html">
+                    <a href="index.php?page=ListeDonnees">
                     <div class="picto donnees">
                         <img src="IMG/data.png" alt="Données">
                     </div>

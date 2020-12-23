@@ -1,135 +1,127 @@
 <?php
 
-class Table_univers 
+class Table_univers
 {
 
-	/*****************Attributs***************** */
-	private $listeTypeInput = ["","hidden", "text", "text"];
-	private $listeAttributs = ["Table_univers","idUnivers","refUnivers","libUnivers"];
-	private $listeLabel = ["","","Référence de l'univers", "Libellé de l'univers"];
-	private $listeClass;
-	private $_idUnivers;
-	private $_refUnivers;
-	private $_libUnivers;
+    /*****************Attributs***************** */
+    private static $listeTypeInput = ["", "hidden", "text", "text"];
+    private static $listeAttributs = ["Table_univers", "idUnivers", "refUnivers", "libUnivers"];
+    private static $listeLabel = ["", "", "Référence de l'univers", "Libellé de l'univers"];
+    private static $listeClass;
+    private $_idUnivers;
+    private $_refUnivers;
+    private $_libUnivers;
 
-	/***************** Accesseurs ***************** */
+    /***************** Accesseurs ***************** */
 
+    public function getIdUnivers()
+    {
+        return $this->_idUnivers;
+    }
 
-	public function getIdUnivers()
-	{
-		return $this->_idUnivers;
-	}
+    public function setIdUnivers($idUnivers)
+    {
+        $this->_idUnivers = $idUnivers;
+    }
 
-	public function setIdUnivers($idUnivers)
-	{
-		$this->_idUnivers=$idUnivers;
-	}
+    public function getRefUnivers()
+    {
+        return $this->_refUnivers;
+    }
 
-	public function getRefUnivers()
-	{
-		return $this->_refUnivers;
-	}
+    public function setRefUnivers($refUnivers)
+    {
+        $this->_refUnivers = $refUnivers;
+    }
 
-	public function setRefUnivers($refUnivers)
-	{
-		$this->_refUnivers=$refUnivers;
-	}
+    public function getLibUnivers()
+    {
+        return $this->_libUnivers;
+    }
 
-	public function getLibUnivers()
-	{
-		return $this->_libUnivers;
-	}
+    public function setLibUnivers($libUnivers)
+    {
+        $this->_libUnivers = $libUnivers;
+    }
+    public function getLibelle()
+    {
+        return $this->getLibUnivers();
+    }
+    public static function getListeTypeInput()
+    {
+        return self::$listeTypeInput;
+    }
 
-	public function setLibUnivers($libUnivers)
-	{
-		$this->_libUnivers=$libUnivers;
-	}
+    public static function getListeLabel()
+    {
+        return self::$listeLabel;
+    }
 
-	public function getListeTypeInput()
-	{
-		return $this->listeTypeInput;
-	}
+    public static function getListeAttributs()
+    {
+        return self::$listeAttributs;
+    }
+    public static function getListeClass()
+    {
+        return self::$listeClass;
+    }
+    /*****************Constructeur***************** */
 
+    public function __construct(array $options = [])
+    {
+        if (!empty($options)) // empty : renvoi vrai si le tableau est vide
+        {
+            $this->hydrate($options);
+        }
+    }
+    public function hydrate($data)
+    {
+        foreach ($data as $key => $value)
+        {
+            $methode = "set" . ucfirst($key); //ucfirst met la 1ere lettre en majuscule
+            if (is_callable(([$this, $methode]))) // is_callable verifie que la methode existe
+            {
+                $this->$methode($value);
+            }
+        }
+    }
 
-	public function getListeLabel()
-	{
-		return $this->listeLabel;
-	}
-	public function getLibelle()
-	{
-		return $this->getLibUnivers();
-	}
+    /*****************Autres Méthodes***************** */
 
-	public function getListeAttributs()
-	{
-		return $this->listeAttributs;
-	}
-	public function getListeClass()
-	{
-		return $this->listeClass;
-	}
-	/*****************Constructeur***************** */
+    /**
+     * Transforme l'objet en chaine de caractères
+     *
+     * @return String
+     */
+    public function toString()
+    {
+        return "IdUnivers : " . $this->getIdUnivers() . "RefUnivers : " . $this->getRefUnivers() . "LibUnivers : " . $this->getLibUnivers() . "\n";
+    }
 
-	public function __construct(array $options = [])
-	{
- 		if (!empty($options)) // empty : renvoi vrai si le tableau est vide
-		{
-			$this->hydrate($options);
-		}
-	}
-	public function hydrate($data)
-	{
- 		foreach ($data as $key => $value)
-		{
- 			$methode = "set".ucfirst($key); //ucfirst met la 1ere lettre en majuscule
-			if (is_callable(([$this, $methode]))) // is_callable verifie que la methode existe
-			{
-				$this->$methode($value);
-			}
-		}
-	}
+    /* Renvoit Vrai si lobjet en paramètre est égal
+     * à l'objet appelant
+     *
+     * @param [type] $obj
+     * @return bool
+     */
+    public function equalsTo($obj)
+    {
+        return;
+    }
 
-	/*****************Autres Méthodes***************** */
+    /**
+     * Compare l'objet à un autre
+     * Renvoi 1 si le 1er est >
+     *        0 si ils sont égaux
+     *      - 1 si le 1er est <
+     *
+     * @param [type] $obj1
+     * @param [type] $obj2
+     * @return Integer
+     */
+    public function compareTo($obj)
+    {
+        return;
+    }
 
-	/**
-	* Transforme l'objet en chaine de caractères
-	*
-	* @return String
-	*/
-	public function toString()
-	{
-		return "IdUnivers : ".$this->getIdUnivers()."RefUnivers : ".$this->getRefUnivers()."LibUnivers : ".$this->getLibUnivers()."\n";
-	}
-
-
-	
-	/* Renvoit Vrai si lobjet en paramètre est égal 
-	* à l'objet appelant
-	*
-	* @param [type] $obj
-	* @return bool
-	*/
-	public function equalsTo($obj)
-	{
-		return;
-	}
-
-
-	/**
-	* Compare l'objet à un autre
-	* Renvoi 1 si le 1er est >
-	*        0 si ils sont égaux
-	*      - 1 si le 1er est <
-	*
-	* @param [type] $obj1
-	* @param [type] $obj2
-	* @return Integer
-	*/
-	public function compareTo($obj)
-	{
-		return;
-	}
-
-
-	
 }

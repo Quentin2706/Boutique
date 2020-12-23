@@ -5,10 +5,10 @@ class Table_categ
 
 	/*****************Attributs***************** */
 
-	private $listeAttributs=["Table_categ","idCateg","refCateg","libCateg","idUnivers"];
-	private $listeTypeInput = ["","","text","text","select"];
-	private $listeClass =["","","","","univers"];
-	private $listeLabel = ["","","Référence Categories", "Libelle Categories", "Référence Univers"];
+	private static $listeAttributs=["Table_categ","idCateg","refCateg","libCateg","idUnivers"];
+	private static $listeTypeInput = ["","","text","text","select"];
+	private static $listeClass =["","","","","Univers"];
+	private static $listeLabel = ["","","Référence Categories", "Libelle Categories", "Référence Univers"];
 	private $_idCateg;
 	private $_refCateg;
 	private $_libCateg;
@@ -68,9 +68,9 @@ class Table_categ
 	{
 		$this->_univers = $univers;
 	}
-	public function getListeTypeInput()
+	public static function getListeTypeInput()
 	{
-		return $this->listeTypeInput;
+		return self::$listeTypeInput;
 	}
 
 	public function getListeInfos()
@@ -78,9 +78,9 @@ class Table_categ
 		return $this->listeInfos;
 	}
 
-	public function getListeLabel()
+	public static function getListeLabel()
 	{
-		return $this->listeLabel;
+		return self::$listeLabel;
 	}
 
 	public function getRefUnivers()
@@ -91,13 +91,13 @@ class Table_categ
 	{
 		return $this->getLibCateg();
 	}
-	public function getListeClass()
+	public static function getListeClass()
 	{
-		return $this->listeClass;
+		return self::$listeClass;
 	}
-	public function getListeAttributs()
+	public static function getListeAttributs()
 	{
-		return $this->listeAttributs;
+		return self::$listeAttributs;
 	}
 
 	/*****************Constructeur***************** */

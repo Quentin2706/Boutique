@@ -6,10 +6,10 @@ class Table_vente
 	/*****************Attributs***************** */
 
 	//CLE ETRANGERE
-	private $listeAttributs = ["Table_vente","idVente","date_vente", "idClient"];
-	private $listeTypeInput = ["","","date","select"];
-	private $listeClass = ["","","","client"];
-	private $listeLabel = ["","","Date de la vente", "Client"];
+	private static $listeAttributs = ["Table_vente","idVente","date_vente", "idClient"];
+	private static $listeTypeInput = ["","","date","select"];
+	private static $listeClass = ["","","","client"];
+	private static $listeLabel = ["","","Date de la vente", "Client"];
 	private $_idVente;
 	private $_date_vente;
 	private $_idClient;
@@ -50,26 +50,6 @@ class Table_vente
 		$this->setClient(Table_clientManager::findById($idClient));
 	}
 	
-	public function getListeAttributs()
-	{
-		return $this->listeAttributs;
-	}
-
-	public function getListeTypeInput()
-	{
-		return $this->listeTypeInput;
-	}
-
-	public function getListeClass()
-	{
-		return $this->listeClass;
-	}
-
-	public function getListeLabel()
-	{
-		return $this->listeLabel;
-	}
-
 	public function getClient()
 	{
 		return $this->_client;
@@ -86,7 +66,24 @@ class Table_vente
 	{
 		return ($this->getClient())->getNomClient();
 	}
+	public static function getListeTypeInput()
+    {
+        return self::$listeTypeInput;
+    }
 
+    public static function getListeLabel()
+    {
+        return self::$listeLabel;
+    }
+
+    public static function getListeAttributs()
+    {
+        return self::$listeAttributs;
+    }
+    public static function getListeClass()
+    {
+        return self::$listeClass;
+    }
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])

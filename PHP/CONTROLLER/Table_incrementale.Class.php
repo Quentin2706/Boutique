@@ -4,10 +4,10 @@ class Table_incrementale
 {
 
 	/*****************Attributs***************** */
-	private $listeAttributs=["Table_incrementale","idIncrementale","refIncrementale"];
-	private $listeTypeInput = ["","", "text"];
-	private $listeClass=["","",""];
-	private $listeLabel = ["","","Référence Incrémentale"];
+	private static $listeAttributs=["Table_incrementale","idIncrementale","refIncrementale"];
+	private static $listeTypeInput = ["","", "text"];
+	private static $listeClass=["","",""];
+	private static $listeLabel = ["","","Référence Incrémentale"];
 
 	private $_idIncrementale;
 	private $_refIncrementale;
@@ -34,25 +34,31 @@ class Table_incrementale
 	{
 		$this->_refIncrementale=$refIncrementale;
 	}
-	public function getListeTypeInput()
-	{
-		return $this->listeTypeInput;
-	}
 
-	public function getListeInfos()
-	{
-		return $this->listeInfos;
-	}
 
-	public function getListeLabel()
-	{
-		return $this->listeLabel;
-	}
 
 	public function getLibIncrementale()
 	{
 		return $this->_refIncrementale;
+	}	
+	public static function getListeTypeInput()
+    {
+        return self::$listeTypeInput;
+    }
+    public static function getListeLabel()
+    {
+        return self::$listeLabel;
+    }
+
+    public static function getListeAttributs()
+    {
+        return self::$listeAttributs;
+    }
+    public static function getListeClass()
+    {
+        return self::$listeClass;
 	}
+	
 	public function getLibelle()
 	{
 		return $this->getLibIncrementale();
@@ -77,14 +83,7 @@ class Table_incrementale
 			}
 		}
 	}
-	public function getListeClass()
-	{
-		return $this->listeClass;
-	}
-	public function getListeAttributs()
-	{
-		return $this->listeAttributs;
-	}
+
 
 	/*****************Autres Méthodes***************** */
 

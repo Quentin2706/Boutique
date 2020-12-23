@@ -4,10 +4,10 @@ class Table_client
 {
 
     /*****************Attributs***************** */
-    private $listeAttributs = ["Table_Client","idClient","nomClient","adresseMail","adressePostale"];
-	private $listeTypeInput = ["","","text","text","text", "text", "text", "text"];
-	private $listeClass = ["","","","", "univers", "categ","fournisseur","couleur","taille","incrementale","lot","", "", "", ""];
-	private $listeLabel = ["","","Nom du Client", "Adresse Mail", "Adresse Postale"];
+    private static $listeAttributs = ["Table_Client","idClient","nomClient","adresseMail","adressePostale"];
+	private static $listeTypeInput = ["","","text","text","text", "text", "text", "text"];
+	private static $listeClass = ["","","","", "univers", "categ","fournisseur","couleur","taille","incrementale","lot","", "", "", ""];
+	private static $listeLabel = ["","","Nom du Client", "Adresse Mail", "Adresse Postale"];
     private $_idClient;
     private $_nomClient;
     private $_adresseMail;
@@ -54,29 +54,29 @@ class Table_client
     {
         $this->_adressePostale = $adressePostale;
     }
-	public function getListeLabel()
-	{
-		return $this->listeLabel;
-	}
 
-	public function getListeClass()
-	{
-		return $this->listeClass;
-	}
 
-	public function getListeTypeInput()
-	{
-		return $this->listeTypeInput;
-	}
-
-    public function getListeAttributs()
-    {
-        return $this->listeAttributs;
-    }
 
     public function getLibelle()
     {
         return $this->getNomClient();
+    }
+    public static function getListeTypeInput()
+    {
+        return self::$listeTypeInput;
+    }
+    public static function getListeLabel()
+    {
+        return self::$listeLabel;
+    }
+
+    public static function getListeAttributs()
+    {
+        return self::$listeAttributs;
+    }
+    public static function getListeClass()
+    {
+        return self::$listeClass;
     }
     /*****************Constructeur***************** */
 

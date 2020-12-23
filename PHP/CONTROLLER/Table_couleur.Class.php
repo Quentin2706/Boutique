@@ -4,10 +4,10 @@ class Table_couleur
 {
 
 	/*****************Attributs***************** */
-	private $listeAttributs=["Table_couleur","idCouleur","libCouleur","refCouleur"];
-	private $listeTypeInput = ["","", "text", "text"];
-	private $listeClass=["","","",""];
-	private $listeLabel = ["","","Libellé des Couleurs", "Référence des Couleurs"];
+	private static $listeAttributs=["Table_couleur","idCouleur","libCouleur","refCouleur"];
+	private static $listeTypeInput = ["","", "text", "text"];
+	private static $listeClass=["","","",""];
+	private static $listeLabel = ["","","Libellé des Couleurs", "Référence des Couleurs"];
 	private $_idCouleur;
 	private $_libCouleur;
 	private $_refCouleur;
@@ -44,35 +44,27 @@ class Table_couleur
 	{
 		$this->_refCouleur=$refCouleur;
 	}
-
-	public function getListeTypeInput()
-	{
-		return $this->listeTypeInput;
-	}
-
-	public function getListeInfos()
-	{
-		return $this->listeInfos;
-	}
-
-	public function getListeLabel()
-	{
-		return $this->listeLabel;
-	}
 	public function getLibelle()
 	{
 		return $this->getLibCouleur();
 	}
-	public function getListeClass()
-	{
-		return $this->listeClass;
-	}
-	public function getListeAttributs()
-	{
-		return $this->listeAttributs;
-	}
+    public static function getListeTypeInput()
+    {
+        return self::$listeTypeInput;
+    }
+    public static function getListeLabel()
+    {
+        return self::$listeLabel;
+    }
 
-
+    public static function getListeAttributs()
+    {
+        return self::$listeAttributs;
+    }
+    public static function getListeClass()
+    {
+        return self::$listeClass;
+    }
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])

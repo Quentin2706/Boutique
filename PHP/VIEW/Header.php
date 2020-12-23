@@ -8,7 +8,7 @@ $action = (isset($_GET['action'])) ? $_GET['action'] : '';
     <header>
         <div class="gauche top">
             <div class="logo">
-                <img src="IMG/fleurDeLin.png" alt="logo fleur de lin">
+               <a href="index.php"> <img src="IMG/fleurDeLin.png" alt="logo fleur de lin"></a>
             </div>
         </div>
 
@@ -27,6 +27,5 @@ $action = (isset($_GET['action'])) ? $_GET['action'] : '';
             </div><div></div>
         </div>
     </header>
-    <div id="container">
-<div></div>
+    <div id="container" class="ligne">
 <div>

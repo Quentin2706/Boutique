@@ -2,6 +2,7 @@
 
 // on recup la surcharge URL
 $table = $_GET['table'];
+$classe="table_".ucfirst($table);
 $mode = $_GET['mode'];
 if ($mode != "ajout") {
     $id = $_GET['id'];
@@ -14,21 +15,21 @@ else if ($table=="modepaiement"){ //gestion de l'ajout modePaiement
 }else{
     $objet = appelFindById($table, 1); // gestion de l'ajout
 }
-
+$labels = $classe::getListeLabel();
+$infos = $classe::getListeAttributs();
+$listeClass = $classe::getListeClass();
+$input = $classe::getListeTypeInput();
 echo '<div class="conteneur">
 <div class="blocform">
-    <form action="index.php?page=Actions.php&mode=' . $mode . '" method="POST">
+    <form action="index.php?page=Action&table='.$table.'&mode=' . $mode . '" method="POST">
         <div class="colonne">';
 
 // On ajoute l'id en caché si on est pas en ajout
 if ($mode != "ajout") {
-    echo '<input name="' . $objet->getListeAttributs()[1] . '" type="hidden" id="' . $objet->getListeAttributs()[1] . '" value="' . $objet->getListeAttributs()[1] . '"/>';
+    echo '<input name="' . $infos[1] . '" type="hidden" id="' . appelGet($objet,$infos[1]) . '" value="' . appelGet($objet,$infos[1]) . '"/>';
 }
 
-$labels = $objet->getListeLabel();
-$infos = $objet->getListeAttributs();
-$listeClass = $objet->getListeClass();
-$input = $objet->getListeTypeInput();
+
 // On affiche tout les champs à renseigner 
 for ($i = 2; $i < count($labels); $i++) { //on commmence à 2 car l'id est déja traité avant (index 1 des tableaux)
     echo '<div>';
@@ -61,8 +62,15 @@ for ($i = 2; $i < count($labels); $i++) { //on commmence à 2 car l'id est déja
 }
 
 echo '<div class="espace"></div>
-<div class="centrer">
-    <input  class="bouton centrer" type="submit" value="Ajouter">
+<div class="centrer ligne">';
+    switch ($mode)
+    {
+        case "ajout": echo '<input  class="bouton centrer" type="submit" value="Ajouter">';break;
+        case "modif": echo '<input  class="bouton centrer" type="submit" value="Modifier">';break;
+        case "delete": echo '<input  class="bouton centrer" type="submit" value="Supprimer">';break;
+    }
+    echo '<div class="foisDemi"></div><a href="index.php?page=Liste&table='.$table.'"><input  class="bouton centrer" value="Annuler"></a>';
+echo     '
 </div>
 
 </div>

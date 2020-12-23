@@ -4,10 +4,10 @@ class Table_lot
 {
 
 	/*****************Attributs***************** */
-	private $listeAttributs = ["Table_lot","idlot","reflot"];
-	private $listeTypeInput = ["","","text"];
-	private $listeClass = ["","",""];
-	private $listeLabel = ["","","Référence du lot"];
+	private static $listeAttributs = ["Table_lot","idlot","reflot"];
+	private static $listeTypeInput = ["","","text"];
+	private static $listeClass = ["","",""];
+	private static $listeLabel = ["","","Référence du lot"];
 	private $_idLot;
 	private $_refLot;
 
@@ -35,25 +35,7 @@ class Table_lot
 	}
 
 
-	public function getListeAttributs()
-	{
-		return $this->listeAttributs;
-	}
-
-	public function getListeTypeInput()
-	{
-		return $this->listeTypeInput;
-	}
-
-	public function getListeClass()
-	{
-		return $this->listeClass;
-	}
-
-	public function getListeLabel()
-	{
-		return $this->listeLabel;
-	}
+	
 	
 	public function getLibLot()
 	{
@@ -62,6 +44,23 @@ class Table_lot
 	public function getLibelle()
 	{
 		return $this->getRefLot();
+	}
+	public static function getListeTypeInput()
+    {
+        return self::$listeTypeInput;
+    }
+    public static function getListeLabel()
+    {
+        return self::$listeLabel;
+    }
+
+    public static function getListeAttributs()
+    {
+        return self::$listeAttributs;
+    }
+    public static function getListeClass()
+    {
+        return self::$listeClass;
 	}
 	/*****************Constructeur***************** */
 

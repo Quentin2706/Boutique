@@ -231,6 +231,7 @@ fieldset {
     font-size: 0.9em;
     font-weight: bold;
     width: 20%;
+    text-align: center;
 }
 
 .bouton:hover {
@@ -418,7 +419,7 @@ select {
 
 /*****************Menu Deroulant*****************/
 #menuDeroulant {
-    width: 50%;
+    /* width: 50%; */
     padding: 20px;
 }
 
