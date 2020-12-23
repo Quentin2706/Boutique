@@ -1,6 +1,7 @@
 <?php
 // on recup la surcharge URL
 $table = $_GET['table']; 
+$classe="table_".$table;
 $objets = appelGetList("Table_".$table);
 
 if (empty($objets)){
@@ -21,7 +22,7 @@ echo '<div class="conteneurTableau">
     </div>';
 
     // on recupere les attributs de la classe
-        $infos=$objets[0]->getListeAttributs();
+        $infos=$classe::getListeAttributs();
 
     // On parcourt tout les objets pour afficher les differentes informations
 foreach ($objets as $unObjet) {
