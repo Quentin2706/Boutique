@@ -7,6 +7,74 @@ $objets = appelGetList("Table_".$table);
 if (empty($objets)){
     echo 'La table est vide';
 } else {
+    // On ajoute le bloc de recherche si la liste a afficher c'est la liste de la table Article. //
+    if ($classe = "table_article")
+    {
+        echo '<div class="colonne">
+        <div class="blocRecherche">
+            <div class="ligneRecherche ligne">
+                <div>
+                    <label for="refArticle">Ref. Article</label>
+                    <input name="refArticle" type="text" id="refArticle" class="filtre">
+                </div>
+                <div>
+                    <label for="libArticle">Libellé Article</label>
+                    <input name="libArticle" type="text" id="libArticle" class="filtre" >
+                </div>
+                <div>
+                    <label for="univers">Univers</label>
+                    <select name="univers" id="univers" class="filtre">';
+                        $liste = appelGetList("Table_univers");
+                        echo '<option value="null"> Rechercher par univers </option>';
+                        for($i = 0; $i < count($liste); $i++)
+                        {
+                            echo '<option value="'.$liste[$i]->getIdUnivers().'">'.$liste[$i]->getLibUnivers().'</option>';
+                        }
+                    echo'</select>
+                </div>
+            </div>
+            <div class="ligneRecherche ligne">
+                <div>
+                    <label for="categorie">Catégorie</label>
+                    <select name="categorie" id="categorie" class="filtre">';
+                    $liste = appelGetList("Table_categ");
+                    echo '<option value="null"> Rechercher par catégorie </option>';
+                    for($i = 0; $i < count($liste); $i++)
+                    {
+                        echo '<option value="'.$liste[$i]->getIdCateg().'">'.$liste[$i]->getLibCateg().'</option>';
+                    }
+                echo'</select>
+                </div>
+                <div>
+                    <label for="couleur">Couleur</label>
+                    <select name="couleur" id="couleur" class="filtre">';
+                    $liste = appelGetList("Table_couleur");
+                    echo '<option value="null"> Rechercher par couleur </option>';
+                    for($i = 0; $i < count($liste); $i++)
+                    {
+                        echo '<option value="'.$liste[$i]->getIdCouleur().'">'.$liste[$i]->getLibCouleur().'</option>';
+                    }
+                echo'</select>
+                </div>
+                <div>
+                    <label for="fournisseur">Fournisseur</label>
+                    <select name="fournisseur" id="fournisseur" class="filtre">';
+                    $liste = appelGetList("Table_fournisseur");
+                    echo '<option value="null"> Rechercher par fournisseur </option>';
+                    for($i = 0; $i < count($liste); $i++)
+                    {
+                        echo '<option value="'.$liste[$i]->getIdFournisseur().'">'.$liste[$i]->getLibFournisseur().'</option>';
+                    }
+                echo'</select>
+                </div>
+            </div>
+            <div class="espace">
+            </div>
+            <div class="centrer">
+                <input  class="bouton centrer" type="submit" value="Rechercher" id="recherche">
+            </div>
+        </div>';
+    }
 echo '<div class="conteneurTableau">
 <div class="tableau">
     <div class="ligne">';
