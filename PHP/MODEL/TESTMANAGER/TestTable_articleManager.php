@@ -52,5 +52,8 @@
 // echo Table_articleManager::calculPrixPromotion($obj);
 
 
+$test=[ "refArticle"=> "", "libArticle"=> "", "idUnivers"=> "null", "idCateg"=> "1", "idCouleur"=> "null", "idFournisseur"=> "null" ];
+$liste=Table_articleManager::getListApi($test);
+var_dump($liste);
 
 ?>

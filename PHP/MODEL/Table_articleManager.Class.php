@@ -101,16 +101,39 @@ class Table_articleManager
 
     public static function calculPrixPromotion(Table_article $article)
     {
-		$db = DbConnect::getDb();
-		$auj = new DateTime("now");
-		$auj = Date_format($auj,"Y-m-d H:i:s");
+        $db = DbConnect::getDb();
+        $auj = new DateTime("now");
+        $auj = Date_format($auj, "Y-m-d H:i:s");
         $q = $db->query("SELECT taux FROM table_promotion WHERE idCateg=" . $article->getIdCateg() . " AND dateDebut < '" . $auj . "' AND dateFin > '" . $auj . "'");
         if ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             return $article->getPrixVente() * ($donnees["taux"] / 100);
         } else {
-            return $article->getPrixVente	();
+            return $article->getPrixVente();
         }
 
     }
 
+    public static function getListApi($filtrage)
+    {
+        $db = DbConnect::getDb();
+        $liste = [];
+        $cpt = 0;
+        $requete = "SELECT * FROM Table_article WHERE ";
+        foreach ($filtrage as $nom => $elt) {
+            $cpt++;
+            if ($filtrage[$nom] != "null" || $filtrage[$nom] != "") {
+                $requete += $nom+"="+$elt;
+                if ($cpt != count($filtrage)) {
+                    $requete += " AND ";
+                }
+            }
+        }
+        $q = $db->query($requete);
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            if ($donnees != false) {
+                $liste[] = $donnees;
+            }
+        }
+        return $liste;
+    }
 }
