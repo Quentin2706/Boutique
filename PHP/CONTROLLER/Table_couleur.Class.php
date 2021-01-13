@@ -8,6 +8,8 @@ class Table_couleur
 	private static $listeTypeInput = ["","", "text", "text"];
 	private static $listeClass=["","","",""];
 	private static $listeLabel = ["","","Libellé des Couleurs", "Référence des Couleurs"];
+	private static $nbColonne= 4;
+	
 	private $_idCouleur;
 	private $_libCouleur;
 	private $_refCouleur;
@@ -64,7 +66,11 @@ class Table_couleur
     public static function getListeClass()
     {
         return self::$listeClass;
-    }
+	}
+	public static function getNbColonne()
+	{
+		return self::$nbColonne;
+	}
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])

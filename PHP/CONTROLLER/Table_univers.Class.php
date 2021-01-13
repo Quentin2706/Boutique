@@ -7,6 +7,8 @@ class Table_univers
     private static $listeTypeInput = ["", "hidden", "text", "text"];
     private static $listeAttributs = ["Table_univers", "idUnivers", "refUnivers", "libUnivers"];
     private static $listeLabel = ["", "", "Référence de l'univers", "Libellé de l'univers"];
+    private static $nbColonne= 4;
+	
     private static $listeClass;
     private $_idUnivers;
     private $_refUnivers;
@@ -65,6 +67,10 @@ class Table_univers
     {
         return self::$listeClass;
     }
+    public static function getNbColonne()
+	{
+		return self::$nbColonne;
+	}
     /*****************Constructeur***************** */
 
     public function __construct(array $options = [])

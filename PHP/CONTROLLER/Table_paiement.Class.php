@@ -5,10 +5,12 @@ class Table_paiement
 
 	/*****************Attributs***************** */
 	//CLE ETRANGERE
-	private $listeAttributs=["Table_paiement","idpaiement","idVente","idmodePaiement","montant","idClient","banque"];
-	private $listeTypeInput = ["","", "select", "select","text","select","text"];
-	private $listeClass=["","","vente","modepaiement","","client",""];
-	private $listeLabel = ["","","Date de la vente", "Mode de paiement", "Montant","Nom du Client","Banque"];
+	private static $listeAttributs=["Table_paiement","idpaiement","idVente","idmodePaiement","montant","idClient","banque"];
+	private static $listeTypeInput = ["","", "select", "select","text","select","text"];
+	private static $listeClass=["","","vente","modepaiement","","client",""];
+	private static $listeLabel = ["","","Date de la vente", "Mode de paiement", "Montant","Nom du Client","Banque"];
+	private static $nbColonne= 7;
+	
 	private $_idpaiement;
 	private $_idVente;
 	private $_idmodePaiement;
@@ -85,19 +87,14 @@ class Table_paiement
 	{
 		$this->_banque=$banque;
 	}
-	public function getListeTypeInput()
+	public static function getListeTypeInput()
 	{
-		return $this->listeTypeInput;
+		return self::$listeTypeInput;
 	}
 
-	public function getListeInfos()
+	public static function getListeLabel()
 	{
-		return $this->listeInfos;
-	}
-
-	public function getListeLabel()
-	{
-		return $this->listeLabel;
+		return self::$listeLabel;
 	}
 
 	public function getVente()
@@ -154,15 +151,19 @@ class Table_paiement
 	{
 		return ($this->getClient())->getNomClient();
 	}
-	public function getListeClass()
+	public static function getListeClass()
 	{
-		return $this->listeClass;
+		return self::$listeClass;
 	}
-	public function getListeAttributs()
+	public static function getListeAttributs()
 	{
-		return $this->listeAttributs;
+		return self::$listeAttributs;
 	}
-
+public static function getNbColonne()
+	{
+		return self::$nbColonne;
+	}
+	
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])

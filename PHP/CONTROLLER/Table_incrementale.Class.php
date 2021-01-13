@@ -8,7 +8,8 @@ class Table_incrementale
 	private static $listeTypeInput = ["","", "text"];
 	private static $listeClass=["","",""];
 	private static $listeLabel = ["","","Référence Incrémentale"];
-
+	private static $nbColonne= 3;
+	
 	private $_idIncrementale;
 	private $_refIncrementale;
 
@@ -62,6 +63,10 @@ class Table_incrementale
 	public function getLibelle()
 	{
 		return $this->getLibIncrementale();
+	}
+	public static function getNbColonne()
+	{
+		return self::$nbColonne;
 	}
 	/*****************Constructeur***************** */
 

@@ -51,6 +51,12 @@
 // $obj = Table_articleManager::findById(2328);
 // echo Table_articleManager::calculPrixPromotion($obj);
 
+$test=["refArticle"=>"","libArticle"=>"","idUnivers"=>"null","idCateg"=>"1","idCouleur"=>"1","idFournisseur"=>"null"];
+$api=Table_articleManager::apiRech($test);
+var_dump($api); 
+
+echo json_encode($api);
+
 
 
 ?>

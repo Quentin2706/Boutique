@@ -6,12 +6,11 @@ class Table_article
 	/*****************Attributs***************** */
 	//CLE ETRANGERE
 	
-	// private $listeInfos = ["Table_article","idArticle","refArticle","libArticle","libUnivers","libCateg","libFournisseur","libCouleur","libTaille","libIncrementale","libLot","quantiteStock","prixAchat","prixVente","seuil"];
 	private static $listeAttributs = ["Table_article","idArticle","refArticle","libArticle","idUnivers","idCateg","idFournisseur","idCouleur","idTaille","idIncrementale","idLot","quantiteStock","prixAchat","prixVente","seuil"];
-	// private $listeInfosForm = ["Table_article","idArticle","refArticle","libArticle","idUnivers","idCateg","idFournisseur","idCouleur","idTaille","idIncrementale","idLot","quantiteStock","prixAchat","prixVente","seuil"];
 	private static $listeTypeInput = ["","","text","text", "select", "select","select","select","select","select","select","text", "text", "text", "text"];
 	private static $listeClass = ["","","","", "univers", "categ","fournisseur","couleur","taille","incrementale","lot","", "", "", ""];
 	private static $listeLabel = ["","","Référence de l'article", "Libelle de l'article", "Libellé de l'Univers","Libellé de la catégorie","Libellé du Fournisseur","Libellé de la couleur","Libellé de la taille","Référence incrémentale","Référence du lot","Quantité en stock","Prix à l'achat","Prix à la vente","Seuil"];
+	private static $nbColonne= 8;
 	private $_idArticle;
 	private $_refArticle;
 	private $_libArticle;
@@ -332,7 +331,11 @@ class Table_article
     public static function getListeClass()
     {
         return self::$listeClass;
-    }
+	}
+	public static function getNbColonne()
+	{
+		return self::$nbColonne;
+	}
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])
@@ -395,6 +398,10 @@ class Table_article
 		return;
 	}
 
+
+	
+
+	
 
 	
 }

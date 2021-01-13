@@ -8,20 +8,20 @@ if (empty($objets)){
     echo 'La table est vide';
 } else {
     // On ajoute le bloc de recherche si la liste a afficher c'est la liste de la table Article. //
-    if ($classe = "table_article")
+    if ($classe == "table_Article")
     {
-        echo '<div class="colonne">
+        echo '<div class="colonne centrer">
         <div class="blocRecherche">
             <div class="ligneRecherche ligne">
-                <div>
+                <div class="centrer">
                     <label for="refArticle">Ref. Article</label>
                     <input name="refArticle" type="text" id="refArticle" class="filtre">
                 </div>
-                <div>
+                <div class="centrer">
                     <label for="libArticle">Libellé Article</label>
                     <input name="libArticle" type="text" id="libArticle" class="filtre" >
                 </div>
-                <div>
+                <div class="centrer">
                     <label for="univers">Univers</label>
                     <select name="univers" id="univers" class="filtre">';
                         $liste = appelGetList("Table_univers");
@@ -34,7 +34,7 @@ if (empty($objets)){
                 </div>
             </div>
             <div class="ligneRecherche ligne">
-                <div>
+                <div class="centrer">
                     <label for="categorie">Catégorie</label>
                     <select name="categorie" id="categorie" class="filtre">';
                     $liste = appelGetList("Table_categ");
@@ -45,7 +45,7 @@ if (empty($objets)){
                     }
                 echo'</select>
                 </div>
-                <div>
+                <div class="centrer">
                     <label for="couleur">Couleur</label>
                     <select name="couleur" id="couleur" class="filtre">';
                     $liste = appelGetList("Table_couleur");
@@ -56,7 +56,7 @@ if (empty($objets)){
                     }
                 echo'</select>
                 </div>
-                <div>
+                <div class="centrer">
                     <label for="fournisseur">Fournisseur</label>
                     <select name="fournisseur" id="fournisseur" class="filtre">';
                     $liste = appelGetList("Table_fournisseur");
@@ -80,7 +80,8 @@ echo '<div class="conteneurTableau">
     <div class="ligne">';
     // le foreach affiche les noms des colonnes du tableau 
     $listeLabel = $objets[0]->getListeLabel();
-        for($i=2;$i<count($listeLabel);$i++)
+    $nbColonne=$classe::getNbColonne();
+        for($i=2;$i<$nbColonne;$i++)
         {
             echo'<div class="enTete">'.$listeLabel[$i].'</div>';
         }
@@ -100,7 +101,7 @@ foreach ($objets as $unObjet) {
     $listeClasse = $objets[0]->getListeClass();
     $id = appelGet($unObjet,"id".$table);
     // Affichage des information une par une de l'objet
-    for ($i = 2; $i<count($infos); $i++)
+    for ($i = 2; $i<$nbColonne; $i++)
     {
         if ($listeTypeInput[$i]=="select")
         {

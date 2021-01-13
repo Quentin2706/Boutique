@@ -5,11 +5,12 @@ class Table_detail_vente
 
 	/*****************Attributs***************** */
 	//CLE ETRANGERE
-	private $listeAttributs =["Table_detail_vente","idDetailVente","idVente","quantite","idArticle","prixUnitaire","detailDivers"];
-	private $listeTypeInput = ["","", "select", "text","select","text","text"];
-	private $listeClass=["","","vente","","article","",""];
-	private $listeLabel = ["","","Date de la vente","Quantité","Libellé de l'article", "Prix unitaire", "Détails divers"];
-	private $_idDetailVente;
+	private static $listeAttributs =["Table_detail_vente","idDetail_vente","idVente","quantite","idArticle","prixUnitaire","detailDivers"];
+	private static $listeTypeInput = ["","", "select", "text","select","text","text"];
+	private static $listeClass=["","","vente","","article","",""];
+	private static $listeLabel = ["","","Date de la vente","Quantité","Libellé de l'article", "Prix unitaire", "Détails divers"];
+	private static $nbColonne= 7;
+	private $_idDetail_vente;
 	private $_idVente;
 	private $_quantite;
 	private $_idArticle;
@@ -22,14 +23,14 @@ class Table_detail_vente
 	/***************** Accesseurs ***************** */
 
 
-	public function getIdDetailVente()
+	public function getIdDetail_vente()
 	{
-		return $this->_idDetailVente;
+		return $this->_idDetail_vente;
 	}
 
-	public function setIdDetailVente($idDetailVente)
+	public function setIdDetail_vente($idDetail_vente)
 	{
-		$this->_idDetailVente=$idDetailVente;
+		$this->_idDetail_vente=$idDetail_vente;
 	}
 
 	public function getIdVente()
@@ -83,19 +84,14 @@ class Table_detail_vente
 	{
 		$this->_detailDivers=$detailDivers;
 	}
-	public function getListeTypeInput()
+	public static function getListeTypeInput()
 	{
-		return $this->listeTypeInput;
+		return self::$listeTypeInput;
 	}
 
-	public function getListeInfos()
+	public static function getListeLabel()
 	{
-		return $this->listeInfos;
-	}
-
-	public function getListeLabel()
-	{
-		return $this->listeLabel;
+		return self::$listeLabel;
 	}
 
 	public function getVente()
@@ -133,15 +129,22 @@ class Table_detail_vente
 		return ($this->getArticle())->getLibArticle();
 	}
 
-	public function getListeClass()
+	public static function getListeClass()
 	{
-		return $this->listeClass;
+		return self::$listeClass;
 	}
-	public function getListeAttributs()
+	public static function getListeAttributs()
 	{
-		return $this->listeAttributs;
+		return self::$listeAttributs;
 	}
-
+	public static function getNbColonne()
+	{
+		return self::$nbColonne;
+	}
+	public function getLibelle()
+	{
+		return $this->getLibArticle();
+	}
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])
@@ -172,7 +175,7 @@ class Table_detail_vente
 	*/
 	public function toString()
 	{
-		return "IdDetailVente : ".$this->getIdDetailVente()."IdVente : ".$this->getIdVente()."Quantite : ".$this->getQuantite()."IdArticle : ".$this->getIdArticle()."PrixUnitaire : ".$this->getPrixUnitaire()."DetailDivers : ".$this->getDetailDivers()."\n";
+		return "IdDetail_vente : ".$this->getIdDetail_vente()."IdVente : ".$this->getIdVente()."Quantite : ".$this->getQuantite()."IdArticle : ".$this->getIdArticle()."PrixUnitaire : ".$this->getPrixUnitaire()."DetailDivers : ".$this->getDetailDivers()."\n";
 	}
 
 

@@ -8,6 +8,8 @@ class Table_lot
 	private static $listeTypeInput = ["","","text"];
 	private static $listeClass = ["","",""];
 	private static $listeLabel = ["","","Référence du lot"];
+	private static $nbColonne= 3;
+	
 	private $_idLot;
 	private $_refLot;
 
@@ -61,6 +63,10 @@ class Table_lot
     public static function getListeClass()
     {
         return self::$listeClass;
+	}
+	public static function getNbColonne()
+	{
+		return self::$nbColonne;
 	}
 	/*****************Constructeur***************** */
 

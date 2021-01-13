@@ -63,7 +63,7 @@ class Table_articleManager
     {
         $db = DbConnect::getDb();
         $liste = [];
-        $q = $db->query("SELECT * FROM Table_article");
+        $q = $db->query("SELECT * FROM Table_article LIMIT 10");
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             if ($donnees != false) {
                 $liste[] = new Table_article($donnees);
@@ -101,16 +101,44 @@ class Table_articleManager
 
     public static function calculPrixPromotion(Table_article $article)
     {
-		$db = DbConnect::getDb();
-		$auj = new DateTime("now");
-		$auj = Date_format($auj,"Y-m-d H:i:s");
+        $db = DbConnect::getDb();
+        $auj = new DateTime("now");
+        $auj = Date_format($auj, "Y-m-d H:i:s");
         $q = $db->query("SELECT taux FROM table_promotion WHERE idCateg=" . $article->getIdCateg() . " AND dateDebut < '" . $auj . "' AND dateFin > '" . $auj . "'");
         if ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             return $article->getPrixVente() * ($donnees["taux"] / 100);
         } else {
-            return $article->getPrixVente	();
+            return $article->getPrixVente();
         }
 
+    }
+
+    public static function apiRech($filtrage)
+    {
+        $db = DbConnect::getDb();
+        $liste = [];
+        $flag = false;
+        $requete = "SELECT * FROM Table_article WHERE ";
+        // ON COMPOSE LA REQUETE
+        foreach ($filtrage as $nom => $elt) {
+            if ($elt != "" && $elt != "null") {
+                // LE FLAG SERT JUSTE A NE PAS METTRE LE "AND" LA PREMIERE FOIS
+                if ($flag) {
+                    $requete .= " AND ";
+                    
+                }
+                $flag = true;
+                // C'EST POUR METTRE LES VALEUR ENTRE QUOTES (Entrecotes)
+                $requete .= $nom . "=\"" . $elt . "\"";
+            }
+        }
+        $q = $db->query($requete);
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            if ($donnees != false) {
+                $liste[] = $donnees;
+            }
+        }
+        return $liste;
     }
 
 }

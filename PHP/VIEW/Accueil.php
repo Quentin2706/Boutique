@@ -2,7 +2,7 @@
         <div class="bloc">
             <div class="fois5 ligne">
                 <div class="grosBouton">
-                    <a href="menuCaisse.html">
+                    <a href="index.php?page=MenuCaisse">
                         <div class="picto caisse">
                             <img src="IMG/caisse.png" alt="Caisse">
                         </div>
@@ -10,7 +10,7 @@
                     <div class="nomPicto">Caisse</div>
                 </div>
                 <div class="grosBouton">
-                    <a href="clients.html">
+                    <a href="index.php?page=Liste&table=Client">
                         <div class="picto clients">
                             <img src="IMG/personne.png" alt="Clients">
                         </div>
@@ -20,7 +20,7 @@
             </div>
             <div class="fois5 ligne">
                 <div class="grosBouton">
-                    <a href="articles.html">
+                    <a href="index.php?page=Liste&table=Article">
                     <div class="picto articles">
                         <img src="IMG/entrepot.png" alt="Articles">
                     </div>

@@ -28,4 +28,3 @@ $action = (isset($_GET['action'])) ? $_GET['action'] : '';
         </div>
     </header>
     <div id="container" class="ligne">
-<div>
