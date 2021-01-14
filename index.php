@@ -57,7 +57,9 @@ $routes=[
 	"ListeAchatsClients"=>["PHP/VIEW/","ListeAchatsClients","Liste d'achats des clients",false],
 	"AffichageTicket"=>["PHP/VIEW/","AffichageTicket","Affichage des tickets du client",false],
 
-	"apiArticle"=>["PHP/MODEL/","apiArticle","APIARTICLE",true]
+	"apiArticle"=>["PHP/MODEL/","apiArticle","APIARTICLE",true],
+	"ticketAchats"=>["PHP/VIEW/","ticketAchats","ticketAchats",true],
+	"reader"=>["PHP/VIEW/","reader","reader",true],
 ];
 
 if(isset($_GET["page"]))
