@@ -7,6 +7,7 @@ for (var i = 0; i < parts.length; i++) {
 }
 /*******************LES VARIABLES*********************/
 const requ = new XMLHttpRequest();
+const requ2= new XMLHttpRequest();
 /*********LES VARIABLES LISTE DONNEES********/
 if ($_GET["page"] == "ListeDonnees") {
     var lesMenus = document.getElementsByClassName("menu");
@@ -19,8 +20,17 @@ if ($_GET["page"] == "Liste" && $_GET["table"] == "Article") {
     var rech = document.getElementById("recherche");
     var tableauArticles = document.getElementsByClassName("tableau")[0];
 }
-/*********LES VARIABLES LISTE CLIENTS********/
+/*********LES VARIABLES LISTE ACHATS********/
+if ($_GET["page"] == "ListeAchats") {
 var lesClients = document.getElementsByClassName("ligne");
+}
+
+/*********LES VARIABLES LISTE VENTES********/
+if ($_GET["page"] == "ListeVentes") {
+var entete= document.getElementById("hautTableau");
+
+var rechVente=document.getElementsByTagName("input");
+}
 
 /*******************LES FONCTIONS*********************/
 /*********LISTE DONNEES********/
@@ -44,6 +54,7 @@ function redirige(event) {
         window.location.href = "index.php?page=Form&table=" + cible.substring(3) + "&mode=ajout";
     }
 }
+
 function detailAchat(e) {
     var href = e.target.parentNode.children[3].children[0].children[0].children[0].getAttribute("href");
     href = href.substr(1).split("&");
@@ -54,7 +65,6 @@ function detailAchat(e) {
     }
     window.location.href = "index.php?page=ListeAchats&id=" + infos['id'];
 }
-
 /*********LISTE ARTICLES********/
 function rechFiltre() {
     var filtrage = {
@@ -75,6 +85,18 @@ function afficheDetail(e) {
     e.target.parentNode.nextSibling.setAttribute("class", "ligne");
 }
 
+/*********LISTE VENTES********/
+function filtreVente(){
+    var filtrageVente ={
+        "dateDebut":rechVente[0].value,
+        "datefin":rechVente[1].value
+    }
+    filtrageVente=JSON.stringify(filtrageVente);
+    requ2.open('POST', './index.php?page=apiVente', true);
+    requ2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    requ2.send("filtrageVente="+filtrageVente)
+}
+
 /*******************EVENTS*********************/
 /*********LISTE DONNEES********/
 if ($_GET["page"] == "ListeDonnees") {
@@ -89,13 +111,19 @@ if ($_GET["page"] == "ListeDonnees") {
 if ($_GET["page"] == "Liste" && $_GET["table"] == "Article") {
     rech.addEventListener("click", rechFiltre);
 }
-/*********LISTE CLIENT********/
-if ($_GET["page"] == "Liste" && $_GET["table"] == "Client") {
+/*********LISTE ACHATS********/
+if ($_GET["page"] == "ListeAchats") {
     for (let i = 1; i < lesClients.length; i++) {
         lesClients[i].addEventListener("click", function (e) {
             detailAchat(e);
         });
     }
+}
+/*********LISTE VENTES********/
+if ($_GET["page"] == "ListeVentes") {
+    rechVente[2].addEventListener("click",function(e){
+        filtreVente(e);
+    })
 }
 /*********************API***********************/
 /*********LISTE ARTICLES********/

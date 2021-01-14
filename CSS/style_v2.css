@@ -22,7 +22,6 @@ body {
 }
 div {
     flex-direction: column;
-    flex: 1;
     justify-content: center;
 }
 
@@ -41,7 +40,6 @@ header {
 }
 
 .top {
-    flex: 1;
     text-align: left;
     align-items: center;
 }
@@ -53,7 +51,6 @@ header {
 }
 
 .logo {
-    flex: 1;
     padding-top: 10px;
 }
 
@@ -535,4 +532,32 @@ fieldset {
 
 .logoBtn{
     padding-top: 1em;
+}
+
+/****Listes Ventes****/
+
+.boutonCaisse{
+    border: white 4px solid;
+    background-color: var(--violet);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.boutonCaisse:hover{
+    background-color: var(--gris);
+}
+
+.colonneCaisse{
+    flex:15;
+}
+
+.marginCote{
+    margin: 0 1em;
+}
+
+#dateDebut,#dateFin{
+    padding:1em;
 }

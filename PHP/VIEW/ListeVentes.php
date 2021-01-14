@@ -19,24 +19,29 @@
     <div class="blocRecherche ligne">
       <div class="colonneCaisse">
         <div class="tableau">
-          <div class="ligne">
+          <div class="ligne" id="hautTableau">
             <div class="enTete">Date Achat</div>
             <div class="enTete">N° Vente</div>
             <div class="enTete">Ticket</div>
           </div>
-
-
-          <div class="ligne">
-            <div class="contenu">12/06/2020</div>
-            <div class="contenu">15</div>
-            <div class="contenu">
+          <?php
+            $date=new DateTime('NOW');
+            $auj=$date->format('Y-m-d');
+            $ventes=Table_venteManager::findByDate($auj);
+            for ($i=0;$i<count($ventes);$i++)
+            {
+                echo '
+                <div class="ligne">
+                    <div class="contenu">'.$ventes[$i]->getDate_vente().'</div>
+                    <div class="contenu">'.$ventes[$i]->getIdVente().'</div>
+                    <div class="contenu">
               <div class="miniBouton">
                 <button><img src="./IMG/voir.png" alt="Voir Ticket"></button>
               </div>
             </div>
-          </div>
-
-          
+                </div>';
+            };
+          ?>
         </div>
       </div>
       <div></div>
