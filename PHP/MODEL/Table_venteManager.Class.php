@@ -87,7 +87,7 @@ class Table_venteManager
 
 	public static function findListByClient(table_client $client)
 	{
- 		$db=DbConnect::getDb();
+		$db=DbConnect::getDb();
 		$q=$db->query('SELECT * FROM Table_vente WHERE idClient ='.$client->getIdClient());
 		$liste = [];
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC))

@@ -8,21 +8,19 @@ for (var i = 0; i < parts.length; i++) {
 /*******************LES VARIABLES*********************/
 const requ = new XMLHttpRequest();
 /*********LES VARIABLES LISTE DONNEES********/
-if ($_GET["page"]=="ListeDonnees")
-{
-var lesMenus = document.getElementsByClassName("menu");
-var lesSousMenu = document.getElementsByClassName("sousMenu");
-var lesContenuSousMenu = document.getElementsByClassName("contenuSousMenu");
+if ($_GET["page"] == "ListeDonnees") {
+    var lesMenus = document.getElementsByClassName("menu");
+    var lesSousMenu = document.getElementsByClassName("sousMenu");
+    var lesContenuSousMenu = document.getElementsByClassName("contenuSousMenu");
 }
 /*********LES VARIABLES LISTE ARTICLES********/
-if ($_GET["page"]=="Liste" && $_GET["table"]=="Article")
-{
-var filtres = document.getElementsByClassName("filtre");
-var rech = document.getElementById("recherche");
-var tableauArticles = document.getElementsByClassName("tableau")[0];
+if ($_GET["page"] == "Liste" && $_GET["table"] == "Article") {
+    var filtres = document.getElementsByClassName("filtre");
+    var rech = document.getElementById("recherche");
+    var tableauArticles = document.getElementsByClassName("tableau")[0];
 }
 /*********LES VARIABLES LISTE CLIENTS********/
-var lesClients = document.getElementsByClassName("ligne"); 
+var lesClients = document.getElementsByClassName("ligne");
 
 /*******************LES FONCTIONS*********************/
 /*********LISTE DONNEES********/
@@ -48,13 +46,13 @@ function redirige(event) {
 }
 function detailAchat(e) {
     var href = e.target.parentNode.children[3].children[0].children[0].children[0].getAttribute("href");
-    href=href.substr(1).split("&");
+    href = href.substr(1).split("&");
     var infos = [];
-for (var i = 0; i < href.length; i++) {
-    var temp = href[i].split("=");
-    infos[temp[0]] = temp[1];
-}
-    window.location.href = "index.php?page=ListeAchats&id="+infos['id'];
+    for (var i = 0; i < href.length; i++) {
+        var temp = href[i].split("=");
+        infos[temp[0]] = temp[1];
+    }
+    window.location.href = "index.php?page=ListeAchats&id=" + infos['id'];
 }
 
 /*********LISTE ARTICLES********/
@@ -74,32 +72,27 @@ function rechFiltre() {
     requ.send("filtrage=" + filtrage);
 }
 function afficheDetail(e) {
-    e.target.parentNode.nextSibling.setAttribute("class","ligne");
+    e.target.parentNode.nextSibling.setAttribute("class", "ligne");
 }
 
 /*******************EVENTS*********************/
 /*********LISTE DONNEES********/
-if ($_GET["page"]=="ListeDonnees")
-{
-for (let i = 0; i < lesMenus.length; i++) {
-    lesMenus[i].addEventListener("click", afficheSousMenu);
-}
-for (let i = 0; i < lesContenuSousMenu.length; i++) {
-    lesContenuSousMenu[i].addEventListener("click", redirige);
-}
+if ($_GET["page"] == "ListeDonnees") {
+    for (let i = 0; i < lesMenus.length; i++) {
+        lesMenus[i].addEventListener("click", afficheSousMenu);
+    }
+    for (let i = 0; i < lesContenuSousMenu.length; i++) {
+        lesContenuSousMenu[i].addEventListener("click", redirige);
+    }
 }
 /*********LISTE ARTICLES********/
-if ($_GET["page"]=="Liste" && $_GET["table"]=="Article")
-{
-rech.addEventListener("click", rechFiltre);
+if ($_GET["page"] == "Liste" && $_GET["table"] == "Article") {
+    rech.addEventListener("click", rechFiltre);
 }
 /*********LISTE CLIENT********/
-if ($_GET["page"]=="Liste" && $_GET["table"]=="Client")
-{
-    for(let i = 1; i < lesClients.length; i++)
-    {
-        lesClients[i].addEventListener("click", function(e)
-        {
+if ($_GET["page"] == "Liste" && $_GET["table"] == "Client") {
+    for (let i = 1; i < lesClients.length; i++) {
+        lesClients[i].addEventListener("click", function (e) {
             detailAchat(e);
         });
     }
@@ -124,67 +117,67 @@ requ.onreadystatechange = function (event) {
                 tableauArticles.appendChild(ligne);
                 // création des cases
                 // AFFICHAGE REFARTICLE
-                    uneCase = document.createElement("div");
-                    uneCase.setAttribute("class", "contenu");
-                    uneCase.innerHTML = reponse[i].refArticle;
-                    ligne.appendChild(uneCase);
-                    // AFFICHAGE LIBARTICLE
-                    uneCase = document.createElement("div");
-                    uneCase.setAttribute("class", "contenu");
-                    uneCase.innerHTML = reponse[i].libArticle;
-                    ligne.appendChild(uneCase);
-                    // AFFICHAGE IDUNIVERS
-                    uneCase = document.createElement("div");
-                    uneCase.setAttribute("class", "contenu");
-                    uneCase.innerHTML = reponse[i].idUnivers;
-                    ligne.appendChild(uneCase);
-                    // AFFICHAGE IDCATEG
-                    uneCase = document.createElement("div");
-                    uneCase.setAttribute("class", "contenu");
-                    uneCase.innerHTML = reponse[i].idCateg;
-                    ligne.appendChild(uneCase);
-                    // AFFICHAGE IDFOURNISSEUR
-                    uneCase = document.createElement("div");
-                    uneCase.setAttribute("class", "contenu");
-                    uneCase.innerHTML = reponse[i].idFournisseur;
-                    ligne.appendChild(uneCase);
-                    // AFFICHAGE IDCOULEUR
-                    uneCase = document.createElement("div");
-                    uneCase.setAttribute("class", "contenu");
-                    uneCase.innerHTML = reponse[i].idCouleur;
-                    ligne.appendChild(uneCase);
-                
+                uneCase = document.createElement("div");
+                uneCase.setAttribute("class", "contenu");
+                uneCase.innerHTML = reponse[i].refArticle;
+                ligne.appendChild(uneCase);
+                // AFFICHAGE LIBARTICLE
+                uneCase = document.createElement("div");
+                uneCase.setAttribute("class", "contenu");
+                uneCase.innerHTML = reponse[i].libArticle;
+                ligne.appendChild(uneCase);
+                // AFFICHAGE IDUNIVERS
+                uneCase = document.createElement("div");
+                uneCase.setAttribute("class", "contenu");
+                uneCase.innerHTML = reponse[i].idUnivers;
+                ligne.appendChild(uneCase);
+                // AFFICHAGE IDCATEG
+                uneCase = document.createElement("div");
+                uneCase.setAttribute("class", "contenu");
+                uneCase.innerHTML = reponse[i].idCateg;
+                ligne.appendChild(uneCase);
+                // AFFICHAGE IDFOURNISSEUR
+                uneCase = document.createElement("div");
+                uneCase.setAttribute("class", "contenu");
+                uneCase.innerHTML = reponse[i].idFournisseur;
+                ligne.appendChild(uneCase);
+                // AFFICHAGE IDCOULEUR
+                uneCase = document.createElement("div");
+                uneCase.setAttribute("class", "contenu");
+                uneCase.innerHTML = reponse[i].idCouleur;
+                ligne.appendChild(uneCase);
+
 
                 // AFFICHAGE DES BOUTONS
 
-                    uneCase = document.createElement("div");
-                    uneCase.setAttribute("class", "contenu ligne");
-                    ligne.appendChild(uneCase);
+                uneCase = document.createElement("div");
+                uneCase.setAttribute("class", "contenu ligne");
+                ligne.appendChild(uneCase);
 
-                    lesBoutons = document.createElement("div");
-                    lesBoutons.setAttribute("class", "miniBouton centrer ligne");
-                    uneCase.appendChild(lesBoutons);
-                    // ==========  BOUTON 1 =================
-                    bouton = document.createElement("button");
-                    lesBoutons.appendChild(bouton);
-                    ahref = document.createElement("a");
-                    ahref.setAttribute("href", "index.php?page=Form&table=Article&mode=modif&id=" + reponse[i].idArticle)
-                    bouton.appendChild(ahref);
-                    img = document.createElement("img");
-                    img.setAttribute("src", "./IMG/modifie.png");
-                    img.setAttribute("alt", "Modifier Univers");
-                    ahref.appendChild(img);
+                lesBoutons = document.createElement("div");
+                lesBoutons.setAttribute("class", "miniBouton centrer ligne");
+                uneCase.appendChild(lesBoutons);
+                // ==========  BOUTON 1 =================
+                bouton = document.createElement("button");
+                lesBoutons.appendChild(bouton);
+                ahref = document.createElement("a");
+                ahref.setAttribute("href", "index.php?page=Form&table=Article&mode=modif&id=" + reponse[i].idArticle)
+                bouton.appendChild(ahref);
+                img = document.createElement("img");
+                img.setAttribute("src", "./IMG/modifie.png");
+                img.setAttribute("alt", "Modifier Univers");
+                ahref.appendChild(img);
 
-                    // ==========  BOUTON 2 =================
-                    bouton = document.createElement("button");
-                    lesBoutons.appendChild(bouton);
-                    ahref = document.createElement("a");
-                    ahref.setAttribute("href", "index.php?page=Form&table=Article&mode=delete&id=" + reponse[i].idArticle)
-                    bouton.appendChild(ahref);
-                    img = document.createElement("img");
-                    img.setAttribute("src", "./IMG/supprimer.png");
-                    img.setAttribute("alt", "Supprimer Univers");
-                    ahref.appendChild(img);
+                // ==========  BOUTON 2 =================
+                bouton = document.createElement("button");
+                lesBoutons.appendChild(bouton);
+                ahref = document.createElement("a");
+                ahref.setAttribute("href", "index.php?page=Form&table=Article&mode=delete&id=" + reponse[i].idArticle)
+                bouton.appendChild(ahref);
+                img = document.createElement("img");
+                img.setAttribute("src", "./IMG/supprimer.png");
+                img.setAttribute("alt", "Supprimer Univers");
+                ahref.appendChild(img);
 
 
                 //LIGNES DETAILS INVISIBLE PAR DEFAUT
@@ -199,42 +192,42 @@ requ.onreadystatechange = function (event) {
                 // AFFICHAGE IDTAILLE
                 uneCase = document.createElement("div");
                 uneCase.setAttribute("class", "contenu marronFonce");
-                uneCase.innerHTML = "<b>Taille : </b>"+reponse[i].idTaille;
+                uneCase.innerHTML = "<b>Taille : </b>" + reponse[i].idTaille;
                 ligneInv.appendChild(uneCase);
                 // AFFICHAGE IDINCREMENTALE
                 uneCase = document.createElement("div");
                 uneCase.setAttribute("class", "contenu  marronFonce");
-                uneCase.innerHTML = "<b>Ref incrementale : </b>"+reponse[i].idIncrementale;
+                uneCase.innerHTML = "<b>Ref incrementale : </b>" + reponse[i].idIncrementale;
                 ligneInv.appendChild(uneCase);
                 // AFFICHAGE IDLOT
                 uneCase = document.createElement("div");
                 uneCase.setAttribute("class", "contenu  marronFonce");
-                uneCase.innerHTML = "<b>Lot : </b>"+reponse[i].idLot;
+                uneCase.innerHTML = "<b>Lot : </b>" + reponse[i].idLot;
                 ligneInv.appendChild(uneCase);
                 // AFFICHAGE QUANTITE STOCK
                 uneCase = document.createElement("div");
                 uneCase.setAttribute("class", "contenu  marronFonce");
-                uneCase.innerHTML = "<b>Quantité en stock : </b>"+reponse[i].quantiteStock;
+                uneCase.innerHTML = "<b>Quantité en stock : </b>" + reponse[i].quantiteStock;
                 ligneInv.appendChild(uneCase);
                 // AFFICHAGE PRIX ACHAT
                 uneCase = document.createElement("div");
                 uneCase.setAttribute("class", "contenu  marronFonce");
-                uneCase.innerHTML = "<b>Prix d'achat : </b>"+reponse[i].prixAchat;
+                uneCase.innerHTML = "<b>Prix d'achat : </b>" + reponse[i].prixAchat;
                 ligneInv.appendChild(uneCase);
                 // AFFICHAGE PRIX VENTE
                 uneCase = document.createElement("div");
                 uneCase.setAttribute("class", "contenu  marronFonce");
-                uneCase.innerHTML = "<b>Prix de vente : </b>"+reponse[i].prixVente;
+                uneCase.innerHTML = "<b>Prix de vente : </b>" + reponse[i].prixVente;
                 ligneInv.appendChild(uneCase);
                 // AFFICHAGE SEUIL
                 uneCase = document.createElement("div");
                 uneCase.setAttribute("class", "contenu  marronFonce");
-                uneCase.innerHTML = "<b>Seuil : </b>"+reponse[i].seuil;
+                uneCase.innerHTML = "<b>Seuil : </b>" + reponse[i].seuil;
                 ligneInv.appendChild(uneCase);
             }
-            var donnees=document.getElementsByClassName("donnees");
-            for(let i =0;i<donnees.length;i++){
-                donnees[i].addEventListener("click",afficheDetail)
+            var donnees = document.getElementsByClassName("donnees");
+            for (let i = 0; i < donnees.length; i++) {
+                donnees[i].addEventListener("click", afficheDetail)
             }
         } else {
             console.log("Status de la réponse: %d (%s)", this.status, this.statusText);
