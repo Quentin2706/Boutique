@@ -18,7 +18,7 @@ $tabAchat = Table_venteManager::findListByClient($client);
                     <div class="contenu">'.$tabAchat[$i]->getIdVente().'</div>
                     <div class="contenu">
                     <div class="miniBouton">
-                        <button><img src="./IMG/voir.png" alt="Voir Ticket"></button>
+                        <a href="./index.php?page=PDFGenerator&idClient='.$id.'&idVente='.$tabAchat[$i]->getIdVente().'" target="_blank" ><button><img src="./IMG/voir.png" alt="Voir Ticket"></button></a>
                     </div>
                     </div>
                     </div>';

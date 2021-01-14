@@ -60,4 +60,19 @@ class Table_detail_venteManager
 		}
 		return $liste;
 	}
+
+	public static function findByVente($id)
+	{
+ 		$db=DbConnect::getDb();
+		$id = (int) $id;
+		$q=$db->query("SELECT * FROM Table_detail_vente WHERE idVente =".$id);
+		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
+		{
+			if($donnees != false)
+			{
+				$liste[] = new Table_detail_vente($donnees);
+			}
+		}
+		return $liste;
+	}
 }

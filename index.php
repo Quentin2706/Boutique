@@ -60,7 +60,7 @@ $routes=[
 	"apiArticle"=>["PHP/MODEL/","apiArticle","APIARTICLE",true],
 	"apiVente"=>["PHP/MODEL/","apiVente","APIVENTE",true],
 	"ticketAchats"=>["PHP/VIEW/","ticketAchats","ticketAchats",false],
-	"reader"=>["PHP/VIEW/","reader","reader",false],
+	"PDFGenerator"=>["PHP/VIEW/","PDFGenerator","PDFGenerator",false],
 ];
 
 if(isset($_GET["page"]))

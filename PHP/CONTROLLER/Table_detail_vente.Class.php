@@ -207,5 +207,8 @@ class Table_detail_vente
 		return;
 	}
 
-	
+	public function Total()
+	{
+		return $this->getQuantite()*$this->getPrixUnitaire();
+	}
 }
