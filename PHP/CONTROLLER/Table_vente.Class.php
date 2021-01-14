@@ -10,6 +10,8 @@ class Table_vente
 	private static $listeTypeInput = ["","","date","select"];
 	private static $listeClass = ["","","","client"];
 	private static $listeLabel = ["","","Date de la vente", "Client"];
+	private static $nbColonne= 4;
+	
 	private $_idVente;
 	private $_date_vente;
 	private $_idClient;
@@ -83,7 +85,15 @@ class Table_vente
     public static function getListeClass()
     {
         return self::$listeClass;
-    }
+	}
+	public static function getNbColonne()
+	{
+		return self::$nbColonne;
+	}
+	public function getLibelle()
+	{
+		return $this->getDate_vente();
+	}
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])

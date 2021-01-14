@@ -63,7 +63,7 @@ class Table_articleManager
     {
         $db = DbConnect::getDb();
         $liste = [];
-        $q = $db->query("SELECT * FROM Table_article");
+        $q = $db->query("SELECT * FROM Table_article LIMIT 10");
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             if ($donnees != false) {
                 $liste[] = new Table_article($donnees);
@@ -113,19 +113,23 @@ class Table_articleManager
 
     }
 
-    public static function getListApi($filtrage)
+    public static function apiRech($filtrage)
     {
         $db = DbConnect::getDb();
         $liste = [];
-        $cpt = 0;
+        $flag = false;
         $requete = "SELECT * FROM Table_article WHERE ";
+        // ON COMPOSE LA REQUETE
         foreach ($filtrage as $nom => $elt) {
-            $cpt++;
-            if ($filtrage[$nom] != "null" || $filtrage[$nom] != "") {
-                $requete += $nom+"="+$elt;
-                if ($cpt != count($filtrage)) {
-                    $requete += " AND ";
+            if ($elt != "" && $elt != "null") {
+                // LE FLAG SERT JUSTE A NE PAS METTRE LE "AND" LA PREMIERE FOIS
+                if ($flag) {
+                    $requete .= " AND ";
+                    
                 }
+                $flag = true;
+                // C'EST POUR METTRE LES VALEUR ENTRE QUOTES (Entrecotes)
+                $requete .= $nom . "=\"" . $elt . "\"";
             }
         }
         $q = $db->query($requete);

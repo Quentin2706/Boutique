@@ -4,10 +4,12 @@ class Table_taille
 {
 
 	/*****************Attributs***************** */
-	private $listeAttributs=["Table_taille","idTaille","libTaille","refTaille"];
-	private $listeTypeInput = ["","","text", "text"];
-	private $listeClass=["","","",""];
-	private $listeLabel = ["","","Libellé de la taille", "Référence de la taille"];
+	private static $listeAttributs=["Table_taille","idTaille","libTaille","refTaille"];
+	private static $listeTypeInput = ["","","text", "text"];
+	private static $listeClass=["","","",""];
+	private static $listeLabel = ["","","Libellé de la taille", "Référence de la taille"];
+	private static $nbColonne= 4;
+	
 	private $_idTaille;
 	private $_libTaille;
 	private $_refTaille;
@@ -45,33 +47,32 @@ class Table_taille
 		$this->_refTaille=$refTaille;
 	}
 
-	public function getListeTypeInput()
+	public static function getListeTypeInput()
 	{
-		return $this->listeTypeInput;
+		return self::$listeTypeInput;
 	}
 
-	public function getListeInfos()
-	{
-		return $this->listeInfos;
-	}
 
-	public function getListeLabel()
+	public static function getListeLabel()
 	{
-		return $this->listeLabel;
+		return self::$listeLabel;
 	}
 	public function getLibelle()
 	{
 		return $this->getLibTaille();
 	}
-	public function getListeClass()
+	public static function getListeClass()
 	{
-		return $this->listeClass;
+		return self::$listeClass;
 	}
-	public function getListeAttributs()
+	public static function getListeAttributs()
 	{
-		return $this->listeAttributs;
+		return self::$listeAttributs;
 	}
-	
+	public static function getNbColonne()
+	{
+		return self::$nbColonne;
+	}
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])

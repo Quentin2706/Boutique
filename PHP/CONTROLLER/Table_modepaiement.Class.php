@@ -4,10 +4,12 @@ class Table_modepaiement
 {
 
 	/*****************Attributs***************** */
-	private $listeAttributs=["Table_modepaiement","idModePaiement","libModePaiement"];
-	private $listeTypeInput = ["","", "text"];
-	private $listeClass=["","",""];
-	private $listeLabel = ["","","Mode de paiement"];
+	private static $listeAttributs=["Table_modepaiement","idModePaiement","libModePaiement"];
+	private static $listeTypeInput = ["","", "text"];
+	private static $listeClass=["","",""];
+	private static $listeLabel = ["","","Mode de paiement"];
+	private static $nbColonne= 3;
+	
 	private $_idModePaiement;
 	private $_libModePaiement;
 
@@ -33,29 +35,31 @@ class Table_modepaiement
 	{
 		$this->_libModePaiement=$libModePaiement;
 	}
-	public function getListeTypeInput()
+	public static function getListeTypeInput()
 	{
-		return $this->listeTypeInput;
+		return self::$listeTypeInput;
 	}
 
-	public function getListeInfos()
+	public static function getListeLabel()
 	{
-		return $this->listeInfos;
+		return self::$listeLabel;
 	}
-
-	public function getListeLabel()
+	public static function getListeClass()
 	{
-		return $this->listeLabel;
+		return self::$listeClass;
 	}
-	public function getListeClass()
+	public static function getListeAttributs()
 	{
-		return $this->listeClass;
+		return self::$listeAttributs;
 	}
-	public function getListeAttributs()
-	{
-		return $this->listeAttributs;
-	}
-
+	public static function getNbColonne()
+		{
+			return self::$nbColonne;
+		}
+		public function getLibelle()
+		{
+			return $this->getLibModePaiement();
+		}
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])

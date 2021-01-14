@@ -7,7 +7,8 @@ class Table_client
     private static $listeAttributs = ["Table_Client","idClient","nomClient","adresseMail","adressePostale"];
 	private static $listeTypeInput = ["","","text","text","text", "text", "text", "text"];
 	private static $listeClass = ["","","","", "univers", "categ","fournisseur","couleur","taille","incrementale","lot","", "", "", ""];
-	private static $listeLabel = ["","","Nom du Client", "Adresse Mail", "Adresse Postale"];
+    private static $listeLabel = ["","","Nom du Client", "Adresse Mail", "Adresse Postale"];
+    private static $nbColonne= 5;
     private $_idClient;
     private $_nomClient;
     private $_adresseMail;
@@ -78,6 +79,10 @@ class Table_client
     {
         return self::$listeClass;
     }
+    public static function getNbColonne()
+	{
+		return self::$nbColonne;
+	}
     /*****************Constructeur***************** */
 
     public function __construct(array $options = [])

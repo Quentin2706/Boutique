@@ -9,6 +9,8 @@ class Table_categ
 	private static $listeTypeInput = ["","","text","text","select"];
 	private static $listeClass =["","","","","Univers"];
 	private static $listeLabel = ["","","Référence Categories", "Libelle Categories", "Référence Univers"];
+	private static $nbColonne= 5;
+	
 	private $_idCateg;
 	private $_refCateg;
 	private $_libCateg;
@@ -99,7 +101,10 @@ class Table_categ
 	{
 		return self::$listeAttributs;
 	}
-
+	public static function getNbColonne()
+		{
+			return self::$nbColonne;
+		}
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])

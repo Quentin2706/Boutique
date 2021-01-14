@@ -6,10 +6,12 @@ class Table_promotion
     /*****************Attributs***************** */
     //CLE ETRANGERE
 
-    private $listeAttributs = ["Table_Promotion", "idPromotion", "idCateg", "dateDebut", "dateFin", "taux"];
-    private $listeTypeInput = ["", "", "select", "date", "date", "text"];
-    private $listeClass = ["", "", "categ", "", "", ""];
-    private $listeLabel = ["", "", "Catégorie", "Date de début", "Date de fin", "Taux de la promotion"];
+    private static $listeAttributs = ["Table_Promotion", "idPromotion", "idCateg", "dateDebut", "dateFin", "taux"];
+    private static $listeTypeInput = ["", "", "select", "date", "date", "text"];
+    private static $listeClass = ["", "", "categ", "", "", ""];
+    private static $listeLabel = ["", "", "Catégorie", "Date de début", "Date de fin", "Taux de la promotion"];
+    private static $nbColonne= 6;
+	
     private $_idPromotion;
     private $_idCateg;
     private $_dateDebut;
@@ -86,25 +88,29 @@ class Table_promotion
         return ($this->getCateg())->getLibCateg();
     }
 
-    public function getListeAttributs()
+    public static function getListeAttributs()
     {
-        return $this->listeAttributs;
+        return self::$listeAttributs;
     }
 
-    public function getListeTypeInput()
+    public static function getListeTypeInput()
     {
-        return $this->listeTypeInput;
+        return self::$listeTypeInput;
     }
 
-    public function getListeClass()
+    public static function getListeClass()
     {
-        return $this->listeClass;
+        return self::$listeClass;
     }
 
-    public function getListeLabel()
+    public static function getListeLabel()
     {
-        return $this->listeLabel;
+        return self::$listeLabel;
     }
+    public static function getNbColonne()
+	{
+		return self::$nbColonne;
+	}
     /*****************Constructeur***************** */
 
     public function __construct(array $options = [])

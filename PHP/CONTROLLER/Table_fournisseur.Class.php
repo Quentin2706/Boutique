@@ -10,6 +10,8 @@ class Table_fournisseur
 	private static $listeTypeInput = ["","","text","text", "text", "text"];
 	private static $listeClass = ["","","","","",""];
 	private static $listeLabel = ["","","Référence Fournisseur", "Libelle Fournisseur", "Adresse Fournisseur", "Numéro Fournisseur"];
+	private static $nbColonne= 6;
+	
 	private $_idFournisseur;
 	private $_refFournisseur;
 	private $_libFournisseur;
@@ -90,6 +92,10 @@ class Table_fournisseur
 	public function getLibelle()
 	{
 		return $this->getLibFournisseur();
+	}
+	public static function getNbColonne()
+	{
+		return self::$nbColonne;
 	}
 	/*****************Constructeur***************** */
 
