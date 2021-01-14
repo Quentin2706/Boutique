@@ -8,6 +8,11 @@
 }
 
 /************Général****************/
+div,header{
+    display:flex;
+    flex:1;
+}
+
 body {
     font-family: 'Sriracha', sans-serif;
     margin: 0;
@@ -16,7 +21,6 @@ body {
     font-size: 1.2em;
 }
 div {
-    display: flex;
     flex-direction: column;
     flex: 1;
     justify-content: center;
@@ -25,9 +29,12 @@ div {
 img {
     width: 100%;
 }
+a{
+    text-decoration: none;
+}
+
 /*******Header*********/
 header {
-    display: flex;
     background-color: var(--marron);
     border: solid var(--vert) 2px;
     color: white;
@@ -485,4 +492,47 @@ fieldset {
 
 .petitBouton button:hover {
     background-color: var(--gris);
+}
+
+/******Menu Caisse******/
+.boutonMenuCaisse{
+    cursor: pointer;
+    display: flex;
+    height:150px;
+    width: 500px;
+    background-color: var(--violet);
+    border: white solid 2px;
+    color: white;
+    margin: 20px;
+    border-radius: 20px;
+    align-items: center
+}
+.boutonMenuCaisse a{
+    color: white;
+    text-decoration: none;
+}
+.boutonMenuCaisse img{
+    width: 70px;
+    margin: 10px;
+}
+
+.boutonMenuCaisse p{
+    font-size: 1.5em;
+}
+
+.boutonMenuCaisse:hover{
+    background-color: var(--gris);
+}
+
+.blocMC{
+    background-color: var(--marron);
+    border: var(--vert) solid 2px;
+    border-radius: 20px;
+    padding: 2vh;
+    margin: 20px;
+    margin-top: 5em;
+}
+
+.logoBtn{
+    padding-top: 1em;
 }
