@@ -36,7 +36,7 @@
                     <div class="contenu">'.$ventes[$i]->getIdVente().'</div>
                     <div class="contenu">
               <div class="miniBouton">
-                <button><img src="./IMG/voir.png" alt="Voir Ticket"></button>
+                <a href=""><button><img src="./IMG/voir.png" alt="Voir Ticket"></button></a>
               </div>
             </div>
                 </div>';

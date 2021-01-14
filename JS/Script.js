@@ -7,7 +7,7 @@ for (var i = 0; i < parts.length; i++) {
 }
 /*******************LES VARIABLES*********************/
 const requ = new XMLHttpRequest();
-const requ2= new XMLHttpRequest();
+const requ2 = new XMLHttpRequest();
 /*********LES VARIABLES LISTE DONNEES********/
 if ($_GET["page"] == "ListeDonnees") {
     var lesMenus = document.getElementsByClassName("menu");
@@ -22,14 +22,15 @@ if ($_GET["page"] == "Liste" && $_GET["table"] == "Article") {
 }
 /*********LES VARIABLES LISTE ACHATS********/
 if ($_GET["page"] == "ListeAchats") {
-var lesClients = document.getElementsByClassName("ligne");
+    var lesClients = document.getElementsByClassName("ligne");
 }
 
 /*********LES VARIABLES LISTE VENTES********/
 if ($_GET["page"] == "ListeVentes") {
-var entete= document.getElementById("hautTableau");
+    var entete = document.getElementById("hautTableau");
+    var tableauVente = document.getElementsByClassName("tableau")[0];
 
-var rechVente=document.getElementsByTagName("input");
+    var rechVente = document.getElementsByTagName("input");
 }
 
 /*******************LES FONCTIONS*********************/
@@ -86,15 +87,15 @@ function afficheDetail(e) {
 }
 
 /*********LISTE VENTES********/
-function filtreVente(){
-    var filtrageVente ={
-        "dateDebut":rechVente[0].value,
-        "datefin":rechVente[1].value
+function filtreVente() {
+    var filtrageVente = {
+        "dateDebut": rechVente[0].value,
+        "dateFin": rechVente[1].value
     }
-    filtrageVente=JSON.stringify(filtrageVente);
+    filtrageVente = JSON.stringify(filtrageVente);
     requ2.open('POST', './index.php?page=apiVente', true);
     requ2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    requ2.send("filtrageVente="+filtrageVente)
+    requ2.send("filtrageVente=" + filtrageVente)
 }
 
 /*******************EVENTS*********************/
@@ -121,7 +122,7 @@ if ($_GET["page"] == "ListeAchats") {
 }
 /*********LISTE VENTES********/
 if ($_GET["page"] == "ListeVentes") {
-    rechVente[2].addEventListener("click",function(e){
+    rechVente[2].addEventListener("click", function (e) {
         filtreVente(e);
     })
 }
@@ -263,3 +264,52 @@ requ.onreadystatechange = function (event) {
     }
 };
 
+requ2.onreadystatechange = function (event) {
+    // XMLHttpRequest.DONE === 4
+    if (this.readyState === XMLHttpRequest.DONE) {
+        if (this.status === 200) {
+            console.log("Réponse reçue: %s", this.responseText);
+            reponse = JSON.parse(this.responseText);
+            console.log(reponse);
+            tableauVente.innerHTML = "";
+            tableauVente.appendChild(entete);
+            for (let i = 0; i < reponse.length; i++) {
+                ligne = document.createElement("div");
+                ligne.setAttribute("class", "ligne");
+                tableauVente.appendChild(ligne);
+
+                uneCase = document.createElement("div");
+                uneCase.setAttribute("class", "contenu");
+                uneCase.innerHTML = reponse[i].date_vente;
+                ligne.appendChild(uneCase);
+
+                uneCase = document.createElement("div");
+                uneCase.setAttribute("class", "contenu");
+                uneCase.innerHTML = reponse[i].idVente;
+                ligne.appendChild(uneCase);
+
+                uneCase = document.createElement("div");
+                uneCase.setAttribute("class", "contenu");
+                ligne.appendChild(uneCase);
+
+                divBouton = document.createElement("div");
+                divBouton.setAttribute("class", "miniBouton");
+                uneCase.appendChild(divBouton);
+
+                btn = document.createElement("button");
+                divBouton.appendChild(btn);
+
+                lien = document.createElement("a");
+                lien.setAttribute("href", "");
+                btn.appendChild(lien);
+
+                image = document.createElement("img");
+                image.setAttribute("src", "./IMG/voir.png");
+                image.setAttribute("alt", "Voir Ticket");
+                lien.appendChild(image);
+
+
+            }
+        }
+    }
+}

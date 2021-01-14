@@ -90,4 +90,17 @@ class Table_venteManager
         return $liste;
     }
 
+	public static function apiRech($tab)
+    {
+        $db = DbConnect::getDb();
+		$json = [];
+        $q = $db->query('SELECT * FROM Table_vente WHERE date_vente BETWEEN "'.$tab["dateDebut"].'" AND "'.$tab["dateFin"].'"');
+        while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+            if ($donnees != false) {
+                $json[] = $donnees;
+            }
+        }
+        return $json;
+    }
+
 }
