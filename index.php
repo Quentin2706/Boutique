@@ -49,6 +49,7 @@ $routes=[
 
 		
 	"Liste"=>["PHP/VIEW/","Liste","Liste",false],
+	"ListeAchats"=>["PHP/VIEW/","ListeAchats","Liste desd Achats",false],
 	"Form"=>["PHP/VIEW/","Form","Formulaire",false],
 	"Action"=>["PHP/VIEW/","Action","Action",false],
 

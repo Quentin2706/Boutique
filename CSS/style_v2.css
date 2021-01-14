@@ -1,5 +1,6 @@
 :root {
     --marron: #BCAD86;
+    --marronFonce: #9b8f71;
     --beige: #ECE4CE;
     --violet: #6D7AB1;
     --vert: #44A33D;
@@ -384,6 +385,7 @@ select {
     color: white;
     margin-top: 10px;
     padding : 1em;
+    text-align: center;
 }
 
 .contenu {
@@ -507,4 +509,8 @@ footer p {
 
 .footer{
     visibility:hidden;
+}
+.marronFonce
+{
+    background-color: var(--marronFonce);
 }
