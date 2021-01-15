@@ -114,6 +114,10 @@ footer p {
     align-items: center;
     justify-content: center;
 }
+
+.alignself {
+    align-self: center;
+}
 /**Changement poids**/
 
 .fois5 {
@@ -140,6 +144,7 @@ footer p {
 .reduireBouton {
     flex: 0.2;
 }
+
 /*****************Bloc*******************/
 
 .bloc {

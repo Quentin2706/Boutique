@@ -20,8 +20,8 @@ if ($_GET["page"] == "Liste" && $_GET["table"] == "Article") {
     var rech = document.getElementById("recherche");
     var tableauArticles = document.getElementsByClassName("tableau")[0];
 }
-/*********LES VARIABLES LISTE ACHATS********/
-if ($_GET["page"] == "ListeAchats") {
+/*********LES VARIABLES LISTE CLIENTS********/
+if ($_GET["page"] == "Liste" && $_GET["table"] == "Client") {
     var lesClients = document.getElementsByClassName("ligne");
 }
 
@@ -31,6 +31,10 @@ if ($_GET["page"] == "ListeVentes") {
     var tableauVente = document.getElementsByClassName("tableau")[0];
 
     var rechVente = document.getElementsByTagName("input");
+}
+/*********LES VARIABLES PASSAGE A LA CAISSE********/
+if ($_GET["page"] == "PassageCaisse") {
+    var boutonsCaisse = document.getElementsByClassName("boutonCaisse");
 }
 
 /*******************LES FONCTIONS*********************/
@@ -97,7 +101,20 @@ function filtreVente() {
     requ2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     requ2.send("filtrageVente=" + filtrageVente)
 }
+/********* PASSAGE CAISSE ********/
+function ajoutLigneVente(e)
+{
+    var tableau = document.getElementsByClassName("tableau")[0];
+    alerte = window.prompt("test","testeee","tesssste");
+    ligne = document.createElement("div");
+    ligne.setAttribute("class", "ligne");
+    tableau.appendChild(ligne);
 
+    // uneCase= document.createElement("div");
+    // uneCase.setAttribute("class","contenu");
+    // uneCase.innerHTML =  "";  
+
+}
 /*******************EVENTS*********************/
 /*********LISTE DONNEES********/
 if ($_GET["page"] == "ListeDonnees") {
@@ -112,8 +129,8 @@ if ($_GET["page"] == "ListeDonnees") {
 if ($_GET["page"] == "Liste" && $_GET["table"] == "Article") {
     rech.addEventListener("click", rechFiltre);
 }
-/*********LISTE ACHATS********/
-if ($_GET["page"] == "ListeAchats") {
+/*********LISTE CLIENTS********/
+if ($_GET["page"] == "Liste" && $_GET["table"] == "Client") {
     for (let i = 1; i < lesClients.length; i++) {
         lesClients[i].addEventListener("click", function (e) {
             detailAchat(e);
@@ -125,6 +142,13 @@ if ($_GET["page"] == "ListeVentes") {
     rechVente[2].addEventListener("click", function (e) {
         filtreVente(e);
     })
+}
+/*********PASSAGE CAISSE********/
+if ($_GET["page"] == "PassageCaisse") {
+    // Bouton + pour ajouter un article a la main
+    boutonsCaisse[3].addEventListener("click", function (e) {
+        ajoutLigneVente(e);
+    });
 }
 /*********************API***********************/
 /*********LISTE ARTICLES********/
@@ -263,7 +287,7 @@ requ.onreadystatechange = function (event) {
         }
     }
 };
-
+/*********LISTE CLIENTS********/
 requ2.onreadystatechange = function (event) {
     // XMLHttpRequest.DONE === 4
     if (this.readyState === XMLHttpRequest.DONE) {
@@ -274,33 +298,36 @@ requ2.onreadystatechange = function (event) {
             tableauVente.innerHTML = "";
             tableauVente.appendChild(entete);
             for (let i = 0; i < reponse.length; i++) {
+                // ON CREE UNE LIGNE
                 ligne = document.createElement("div");
                 ligne.setAttribute("class", "ligne");
                 tableauVente.appendChild(ligne);
-
+                // ON MET LES CASES PUIS ON LES INSERE DANS LA LIGNE
+                // Date de la vente
                 uneCase = document.createElement("div");
                 uneCase.setAttribute("class", "contenu");
                 uneCase.innerHTML = reponse[i].date_vente;
                 ligne.appendChild(uneCase);
-
+                // On affiche le numéro de vente
                 uneCase = document.createElement("div");
                 uneCase.setAttribute("class", "contenu");
                 uneCase.innerHTML = reponse[i].idVente;
                 ligne.appendChild(uneCase);
-
+                // ON CREE LA CASES POUR ACCUEILLIR LES BOUTONS
                 uneCase = document.createElement("div");
                 uneCase.setAttribute("class", "contenu");
                 ligne.appendChild(uneCase);
-
+                // ON INSERE LES BOUTONS
                 divBouton = document.createElement("div");
                 divBouton.setAttribute("class", "miniBouton");
                 uneCase.appendChild(divBouton);
 
                 btn = document.createElement("button");
                 divBouton.appendChild(btn);
-
+                // On crée le bouton pour afficher le ticket de caisse
                 lien = document.createElement("a");
-                lien.setAttribute("href", "");
+                lien.setAttribute("href", "./Tickets/Ticket"+reponse[i].idVente);
+                lien.setAttribute("target", "_blank");
                 btn.appendChild(lien);
 
                 image = document.createElement("img");

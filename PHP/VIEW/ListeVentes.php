@@ -4,7 +4,7 @@ $auj=$date->format('Y-m-d');
 $ventes=Table_venteManager::findByDate($auj);
 ?>
 <div class="colonne">
-  <div class="blocRecherche">
+  <div class="blocRecherche alignself">
     <div class="ligneRecherche ligne">
       <div class="marginCote centrer">
         <label for="dateDebut ">Du</label>
@@ -20,7 +20,7 @@ $ventes=Table_venteManager::findByDate($auj);
       <input class="bouton centrer" type="submit" value="Rechercher">
     </div>
   </div>
-  <div class="blocCaisse">
+  <div class="blocCaisse centrer">
     <div class="blocRecherche ligne">
       <div class="colonneCaisse">
         <div class="tableau">
@@ -39,7 +39,7 @@ $ventes=Table_venteManager::findByDate($auj);
                     <div class="contenu">'.$ventes[$i]->getIdVente().'</div>
                     <div class="contenu">
               <div class="miniBouton">
-                <a href=""><button><img src="./IMG/voir.png" alt="Voir Ticket"></button></a>
+                <a href="./Tickets/Ticket'.$ventes[$i]->getIdVente().'" target="_blank" ><button><img src="./IMG/voir.png" alt="Voir Ticket"></button></a>
               </div>
             </div>
                 </div>';

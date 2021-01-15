@@ -110,4 +110,19 @@ class Table_paiementManager
 		$sommePaye=Table_paiementManager::sommePaiement($idVente);
 		return ($montantTotal-$sommePaye);
 	}
+
+	public static function findByVente($id)
+	{
+		$db=DbConnect::getDb();
+	    $liste = [];
+	    $q = $db->query("SELECT * FROM Table_paiement WHERE idVente=".$id);
+	    while($donnees = $q->fetch(PDO::FETCH_ASSOC))
+	    {
+		   if($donnees != false)
+		   {
+			   $liste[] = new Table_paiement($donnees);
+		   }
+	    }
+	    return $liste;
+   }
 }

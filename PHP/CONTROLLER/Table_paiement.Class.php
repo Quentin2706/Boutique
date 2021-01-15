@@ -144,7 +144,7 @@ class Table_paiement
 
 	public function getLibModePaiement()
 	{
-		return ($this->getModePaiement())->getLibeModePaiement();
+		return ($this->getModePaiement())->getLibModePaiement();
 	}
 
 	public function getNomClient()
