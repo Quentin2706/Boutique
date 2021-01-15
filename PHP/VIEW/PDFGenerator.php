@@ -25,7 +25,7 @@ $pdf->Text(180,34,"Sous-total");
 $ligne=40;
 $total=0;
 for($i=0;$i<count($detailVente);$i++){
-    $pdf->Text(15,$ligne,$detailVente[$i]->getArticle()->getLibelle());
+    $pdf->Text(15,$ligne,$detailVente[$i]->getArticle()->getRefArticle());
     $pdf->Text(100,$ligne,$detailVente[$i]->getQuantite());
     $pdf->Text(140,$ligne,$detailVente[$i]->getPrixUnitaire());
     $pdf->Text(180,$ligne,$detailVente[$i]->Total());
