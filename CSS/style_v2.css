@@ -90,7 +90,7 @@ footer p {
     display:none;
 }
 
-.ligne {
+.ligne,.ligneRemise,.lignePC {
     flex-direction: row;
 }
 
@@ -541,7 +541,7 @@ fieldset {
 
 /****Listes Ventes****/
 
-.boutonCaisse{
+.boutonCaisse,.supprLigne{
     border: white 4px solid;
     background-color: var(--violet);
     border-radius: 10px;
@@ -565,4 +565,25 @@ fieldset {
 
 #dateDebut,#dateFin{
     padding:1em;
+}
+
+/****Passage Caisse****/
+.redimInput{
+    min-width: unset;
+}
+
+.absoluteMail{
+    position: absolute;
+    margin-left:0em;
+    margin-top: -2em;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    padding:0.2em;
+}
+
+.supprLigne{
+    flex:0.3;
+    border-radius: unset;
+    border: white 2px solid;
+    padding:0.27em;
 }

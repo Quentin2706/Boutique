@@ -70,4 +70,20 @@ class Table_clientManager
 			return false;
 		}
 	}
+
+	public static function findByIdAPI($id)
+	{
+		 $db=DbConnect::getDb();
+		 $id=(int)$id;
+		$q=$db->query('SELECT * FROM Table_client WHERE idClient ='.$id);
+		$results = $q->fetch(PDO::FETCH_ASSOC);
+		if($results != false)
+		{
+			return $results;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

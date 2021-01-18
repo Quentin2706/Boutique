@@ -16,17 +16,22 @@ for ($i = 0; $i < count($clients); $i++) {
         <div class="ligne">
         <div class="boutonCaisse" >
             <a href="./index.php?page=Form&table=Client&mode=ajout">
-            <img src="../IMG/plus.png">
+            <img src="./IMG/plus.png">
         </a>
         </div>
         <div></div>
         <div class="boutonCaisse " id="mailClient">
-            <img src="../IMG/mail.png">
+            <img src="./IMG/mail.png">
+        </div>
+        <div class="invisible absoluteMail">
+            <?php 
+                echo "Adresse mail non renseignée";
+            ?>
         </div>
         <div></div>
         <div class="boutonCaisse">
-            <a href="clients.html">
-            <img src="../IMG/personne.png">
+            <a href="index.php?page=Form&table=client&mode=modif&id=0">
+            <img src="./IMG/personne.png">
         </a>
         </div>
 </div>
@@ -38,50 +43,69 @@ for ($i = 0; $i < count($clients); $i++) {
         <div class="colonneCaisse">
             <div class="tableau">
                 <div class="ligne">
+                    <div class="enTete supprLigne"></div>
+                    <div class="enTete supprLigne"></div>
                     <div class="enTete">Référence</div>
                     <div class="enTete">Article</div>
-                    <div class="enTete">Prix U</div>
+                    <div class="enTete">Prix unitaire</div>
                     <div class="enTete">Quantité</div>
                     <div class="enTete">Total</div>
                 </div>
                 <div class="ligne">
-                    <div class="contenu"><input name="" value="" autofocus/></div>
-                    <div class="contenu">Chaussette</div>
-                    <div class="contenu">1</div>
-                    <div class="contenu"><input name="" type="number" id="" value=""/></div>
-                    <div class="contenu">10</div>
+                    <div class="supprLigne"><img src="./IMG/supprimer.png"></div>
+                    <div class="supprLigne"><img src="./IMG/remise.png"></div>
+                    <div class="contenu"><input name="" value="" autofocus class="redimInput" /></div>
+                    <div class="contenu"></div>
+                    <div class="contenu"></div>
+                    <div class="contenu"><input name="" type="number" id="" value="" class="redimInput" disabled/></div>
+                    <div class="contenu"></div>
                 </div>
             </div>
 
             <div class="conteneur">
                 <div class="blocCaissePrix">
-                    <p>Sous-Total</p>
-                    <p>Remise</p>
+                    <div class="lignePC">
+                        <div class="fois2">
+                        <p>Sous-Total</p>
+                        </div>
+                        <div>0</div>
+                        <div class="colonneCaisse"></div>
+                    </div>
+                    <div class="lignePC">
+                    <div class="fois2">
+                        <p>Remise</p>
+                    </div>
+                        <div>0%</div>
+                        <div class="colonneCaisse"></div>
+                    </div>
                     <div class="traitNoir"></div>
-                    <p>Total</p>
+                    <div class="lignePC">
+                    <div class="fois2">
+                        <p>Total</p>
+                        </div>
+                        <div>0</div>
+                        <div class="colonneCaisse"></div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="colonne fois2">
             <div class="ligne">
                 <div class="boutonCaisse">
-                    <img src="../IMG/plus.png">
-                </div>
-                <div class="boutonCaisse">
-                    <img src="../IMG/supprimer.png">
+                    <img src="./IMG/supprimer.png">
                 </div>
             </div>
             <div class="ligne">
                 <div class="boutonCaisse">
-                    <img src="../IMG/remise.png">
+                    <img src="./IMG/remise.png">
                 </div>
                 <div class="boutonCaisse">
-                    <img src="../IMG/imprime.png">
+                    <img src="./IMG/imprime.png">
                 </div>
             </div>
             <div class="ligne">
                 <div class="boutonCaisse" id="paiement">
-                    <img src="../IMG/paiement.png">
+                    <img src="./IMG/paiement.png">
                 </div>
             </div>
         </div>

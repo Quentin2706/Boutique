@@ -125,7 +125,7 @@ class Table_articleManager
                 // LE FLAG SERT JUSTE A NE PAS METTRE LE "AND" LA PREMIERE FOIS
                 if ($flag) {
                     $requete .= " AND ";
-                    
+
                 }
                 $flag = true;
                 // C'EST POUR METTRE LES VALEUR ENTRE QUOTES (Entrecotes)
@@ -139,5 +139,22 @@ class Table_articleManager
             }
         }
         return $liste;
+    }
+
+    public static function findByReferenceAPI($ref)
+    {
+        $db = DbConnect::getDb();
+        if (!in_array(";", str_split($ref))) {
+            $q = $db->query('SELECT * FROM Table_article WHERE refArticle ="' . $ref.'"');
+            $results = $q->fetch(PDO::FETCH_ASSOC);
+            if ($results != false) {
+                return $results;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+
     }
 }
