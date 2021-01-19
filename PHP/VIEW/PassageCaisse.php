@@ -75,7 +75,7 @@ for ($i = 0; $i < count($clients); $i++) {
                     <div class="fois2">
                         <p>Remise</p>
                     </div>
-                        <div>0%</div>
+                        <div id="remise">0%</div>
                         <div class="colonneCaisse"></div>
                     </div>
                     <div class="traitNoir"></div>
