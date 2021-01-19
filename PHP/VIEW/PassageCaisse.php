@@ -111,3 +111,62 @@ for ($i = 0; $i < count($clients); $i++) {
         </div>
     </div>
 </div>
+
+  <!-- POP UP Remise sur Ligne -->
+<div id="modalRemiseLigne" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="ligneModal">
+        <div></div>
+        <span class="close">&times;</span>
+    </div>
+
+    <div class="ligneModal centrer">
+        <div class="label">Remise : </div>
+        <div class="fois2">
+            <input  type="texte" >
+        </div>
+        <div class="flexRemise">
+            <select class="redimInput">
+                <option value="euro">€</option>
+                <option value="pourcentage">%</option>
+            </select>
+        </div>
+    </div>
+    <div class="ligneModal centrer">
+        <div class="label">Reférence de la remise :</div>
+        <div class="fois2">
+            <div id="referenceRemiseLigne"></div>
+        </div>
+        <div class="flexRemise"></div>
+    </div>
+    <div class="ligneModal centrer">
+        <div class="label">Prix total : </div>
+        <div class="fois2">
+            <div id="prixTotalRemiseLigne"></div>
+        </div>
+        <div class="flexRemise"></div>
+    </div>
+    
+    <div class="ligneModal centrer">
+        <div class="label">Montant de la remise : </div>
+        <div class="fois2">
+            <div id="montantRemiseLigne"></div>
+        </div>
+        <div class="flexRemise"></div>
+    </div>
+    <div class="ligneModal centrer">
+        <div class="label">Prix total après remise : </div>
+        <div class="fois2">
+            <div id="prixTotalApresRemiseLigne"></div>
+        </div>
+        <div class="flexRemise"></div>
+    </div>
+    <div class="ligneModal">
+        <input  type="submit" value="Ajouter la remise">
+    </div>
+  </div>
+
+</div>
+

@@ -15,6 +15,8 @@ var blocFinal = document.getElementsByClassName("blocCaissePrix")[0];
 var divRemise = document.getElementById("remise");
 var regExpQuantite = new RegExp(/^[0-9]+$/);
 var regExpRemise = new RegExp(/^[0-9]+$/);
+var modalRemiseLigne= document.getElementById("modalRemiseLigne");
+var exitRemiseLigne = document.getElementsByClassName("close")[0];
 
 /********* PASSAGE CAISSE ********/
 
@@ -203,6 +205,7 @@ function supprTableau(e) {
 }
 
 function remiseLigne(e) { //Fonction de remise sur la ligne
+    //modalRemiseLigne.style.display = "block";
     var remise = window.prompt("Remise en %"); //Demande de remise en %
     if (remise != null) {
         var ligneMere = e.target.parentNode.parentNode;
@@ -296,6 +299,11 @@ btnSuppr1.addEventListener("click", supprLigne); //Event de suppression de ligne
 btnRem1.addEventListener("click", remiseLigne) //Event de remise sur une ligne
 
 boutonsCaisse[4].addEventListener("click", remiseTotaleDuTicket); //Event de remise sur le tout
+
+exitRemiseLigne.addEventListener("click",function(){
+    modalRemiseLigne.style.display = "none";
+})
+
 /*****PASSAGE CAISSE*****/
 
 requ3.onreadystatechange = function (e) {
