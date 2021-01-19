@@ -83,8 +83,8 @@ DROP TABLE IF EXISTS `table_client`;
 CREATE TABLE IF NOT EXISTS `table_client` (
   `idClient` int(11) NOT NULL AUTO_INCREMENT,
   `nomClient` text NOT NULL,
-  `adresseMail` text NOT NULL,
-  `adressePostale` text NOT NULL,
+  `adresseMail` text,
+  `adressePostale` text,
   UNIQUE KEY `idClient` (`idClient`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 

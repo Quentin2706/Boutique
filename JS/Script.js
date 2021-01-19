@@ -349,7 +349,6 @@ function remiseTotaleDuTicket(){
     sousTotal();
 }
 
-
 function sousTotal(){ 
     var totalLignes=tableau.getElementsByClassName("ligne"); // Récupération des lignes dans le tableau
     var somme=0;
