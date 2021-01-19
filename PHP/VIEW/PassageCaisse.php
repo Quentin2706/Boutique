@@ -125,10 +125,10 @@ for ($i = 0; $i < count($clients); $i++) {
     <div class="ligneModal centrer">
         <div class="label">Remise : </div>
         <div class="fois2">
-            <input  type="texte" >
+            <input  type="texte" id="inputRemiseLigne">
         </div>
         <div class="flexRemise">
-            <select class="redimInput">
+            <select class="redimInput" id="selectTypeRemise">
                 <option value="euro">€</option>
                 <option value="pourcentage">%</option>
             </select>
@@ -164,7 +164,7 @@ for ($i = 0; $i < count($clients); $i++) {
         <div class="flexRemise"></div>
     </div>
     <div class="ligneModal">
-        <input  type="submit" value="Ajouter la remise">
+        <input id="submitRemiseLigne" type="submit" value="Ajouter la remise">
     </div>
   </div>
 
