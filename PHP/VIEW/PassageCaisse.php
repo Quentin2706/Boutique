@@ -170,3 +170,43 @@ for ($i = 0; $i < count($clients); $i++) {
 
 </div>
 
+ <!-- POP UP Remise sur TOTAL -->
+ <div id="modalRemiseTotale" class="modal">
+
+<!-- Modal content -->
+<div class="modal-content">
+    <div class="ligneModal">
+        <div></div>
+        <span class="close">&times;</span>
+    </div>
+
+    <div class="ligneModal centrer">
+        <div class="label">Remise : </div>
+        <div class="fois2">
+            <input type="texte" id="inputRemiseTotale">
+        </div>
+        <div class="flexRemise">
+            <select class="redimInput" id="selectTypeRemiseTotale">
+                <option value="euro">€</option>
+                <option value="pourcentage">%</option>
+            </select>
+        </div>
+    </div>
+    <div class="ligneModal centrer">
+        <div class="label">Montant de la remise : </div>
+        <div class="fois2">
+            <div id="montantRemiseTotale"></div>
+        </div>
+        <div class="flexRemise"></div>
+    </div>
+    <div class="ligneModal centrer">
+        <div class="label">Prix total après remise : </div>
+        <div class="fois2">
+            <div id="prixTotalApresRemiseTotale"></div>
+        </div>
+        <div class="flexRemise"></div>
+    </div>
+    <div class="ligneModal">
+        <input id="submitRemiseTotale" type="submit" value="Ajouter la remise totale du ticket ">
+    </div>
+</div>
