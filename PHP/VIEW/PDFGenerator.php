@@ -48,7 +48,7 @@ $pdf->SetFont("Helvetica","IB",10);
 $pdf->Text(150,$ligne+6,"Total_vente : ");
 $pdf->SetTextColor(0);
 $pdf->SetFont("Helvetica","",10);
-$pdf->Text(180,$ligne+6,$total+($total*$TVA).chr(128));
+$pdf->Text(180,$ligne+6,$total.chr(128));
 $pdf->SetTextColor(0,0,128);
 $pdf->SetFont("Helvetica","IB",10);
 $pdf->Text(150,$ligne+16,"dont TVA : ");

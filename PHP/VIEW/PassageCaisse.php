@@ -39,42 +39,65 @@ for ($i = 0; $i < count($clients); $i++) {
     <div class="fois9"></div>
 </div>
 
-    <div class="blocRecherche ligne alignself">
-        <div class="colonneCaisse">
-            <div class="tableau">
+    <div class="blocRecherche alignself">
+        <div class="ligneModal">
+            <div class="colonneCaisse">
+                <div class="tableau">
+                    <div class="ligne">
+                        <div class="enTete supprLigne"></div>
+                        <div class="enTete supprLigne"></div>
+                        <div class="enTete">Référence</div>
+                        <div class="enTete">Article</div>
+                        <div class="enTete">Prix unitaire</div>
+                        <div class="enTete">Quantité</div>
+                        <div class="enTete">Total</div>
+                    </div>
+                    <div class="ligne">
+                        <div class="supprLigne"><img src="./IMG/supprimer.png"></div>
+                        <div class="supprLigne"><img src="./IMG/remise.png"></div>
+                        <div class="contenu"><input name="" value="" autofocus class="redimInput" /></div>
+                        <div class="contenu"></div>
+                        <div class="contenu"></div>
+                        <div class="contenu"><input name="" type="number" id="" value="" class="redimInput" disabled/></div>
+                        <div class="contenu"></div>
+                    </div>
+                </div>
+
+                
+            </div>
+            <div class="colonne fois2 max">
                 <div class="ligne">
-                    <div class="enTete supprLigne"></div>
-                    <div class="enTete supprLigne"></div>
-                    <div class="enTete">Référence</div>
-                    <div class="enTete">Article</div>
-                    <div class="enTete">Prix unitaire</div>
-                    <div class="enTete">Quantité</div>
-                    <div class="enTete">Total</div>
+                    <div class="foisDemi"></div>
+                    <div class="boutonCaisse">
+                        <img src="./IMG/supprimer.png">
+                    </div>
+                    <div class="foisDemi"></div>
                 </div>
                 <div class="ligne">
-                    <div class="supprLigne"><img src="./IMG/supprimer.png"></div>
-                    <div class="supprLigne"><img src="./IMG/remise.png"></div>
-                    <div class="contenu"><input name="" value="" autofocus class="redimInput" /></div>
-                    <div class="contenu"></div>
-                    <div class="contenu"></div>
-                    <div class="contenu"><input name="" type="number" id="" value="" class="redimInput" disabled/></div>
-                    <div class="contenu"></div>
+                    <div class="foisDemi"></div>
+                    <div class="boutonCaisse">
+                        <img src="./IMG/remise.png">
+                    </div>
+                    <div class="foisDemi"></div>
                 </div>
             </div>
-
-            <div class="conteneur">
-                <div class="blocCaissePrix">
+        </div>
+        <div class="conteneur ligneModal">
+                <div></div>
+                <div class="blocCaissePrix foisDemi">
                     <div class="lignePC">
                         <div class="fois2">
                         <p>Sous-Total</p>
                         </div>
-                        <div>0</div>
+                        <div></div>
+                        <div>0€</div>
                         <div class="colonneCaisse"></div>
                     </div>
                     <div class="lignePC">
-                    <div class="fois2">
-                        <p>Remise</p>
-                    </div>
+                        <div class="fois2">
+                            <p>Remise</p>
+                        </div>
+                        <div></div>
                         <div id="remise">0%</div>
                         <div class="colonneCaisse"></div>
                     </div>
@@ -83,31 +106,17 @@ for ($i = 0; $i < count($clients); $i++) {
                     <div class="fois2">
                         <p>Total</p>
                         </div>
-                        <div>0</div>
+                        <div></div>
+                        <div>0€</div>
                         <div class="colonneCaisse"></div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="colonne fois2">
-            <div class="ligne">
-                <div class="boutonCaisse">
-                    <img src="./IMG/supprimer.png">
-                </div>
-            </div>
-            <div class="ligne">
-                <div class="boutonCaisse">
-                    <img src="./IMG/remise.png">
-                </div>
-                <div class="boutonCaisse">
-                    <img src="./IMG/imprime.png">
-                </div>
-            </div>
-            <div class="ligne">
-                <div class="boutonCaisse" id="paiement">
-                    <img src="./IMG/paiement.png">
-                </div>
-            </div>
+                <div class="ligne max">
+                    <div class="boutonCaisse" id="paiement">
+                        <img src="./IMG/paiement.png">
+                    </div>
+                    <div class="fois5"></div>
+                </div>           
         </div>
     </div>
 </div>
@@ -170,7 +179,7 @@ for ($i = 0; $i < count($clients); $i++) {
 
 </div>
 
- <!-- POP UP Remise sur TOTAL -->
+ <!-- POP UP Remise TOTAL -->
  <div id="modalRemiseTotale" class="modal">
 
 <!-- Modal content -->
@@ -196,6 +205,13 @@ for ($i = 0; $i < count($clients); $i++) {
         <div class="label">Montant de la remise : </div>
         <div class="fois2">
             <div id="montantRemiseTotale"></div>
+        </div>
+        <div class="flexRemise"></div>
+    </div>
+    <div class="ligneModal centrer">
+        <div class="label">Prix total avant remise : </div>
+        <div class="fois2">
+            <div id="prixTotalAvantRemiseTotale"></div>
         </div>
         <div class="flexRemise"></div>
     </div>

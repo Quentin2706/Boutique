@@ -72,6 +72,10 @@ footer {
     width:100%;
 }
 
+p{
+    white-space: nowrap;
+}
+
 footer p {
     font-size: 1.3em;
     text-align: center;
@@ -92,6 +96,7 @@ footer p {
 
 .ligne,.ligneRemise,.lignePC,.ligneModal {
     flex-direction: row;
+    width: 100%;
 }
 
 .espace {
@@ -641,4 +646,17 @@ select{
 
 .ligneModal{
     padding: 0.5em 0;
+}
+
+.max{
+    max-height: 30vh;
+    margin-block-start: auto;
+}
+
+.blocCaissePrix{
+    margin-right: 1em;
+}
+
+.erreur{
+    box-shadow: 0px 0px 3px 2px red;
 }

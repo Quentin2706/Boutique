@@ -14,8 +14,8 @@ var btnRem1 = document.getElementsByClassName("supprLigne")[3];
 var blocFinal = document.getElementsByClassName("blocCaissePrix")[0];
 var divRemise = document.getElementById("remise");
 var regExpQuantite = new RegExp(/^[0-9]+$/);
-var regExpRemise = new RegExp(/^[0-9]+$/);
-
+var regExpRemiseEuro = new RegExp(/^[0-9]+(\.[0-9][0-9]?)?$/);
+var regExpRemisePourcentage = new RegExp(/^[0-9]{1,2}$/);
 
 ////////////Modal Remise Ligne
 var modalRemiseLigne = document.getElementById("modalRemiseLigne");
@@ -38,12 +38,15 @@ var inputRemiseTotale = document.getElementById("inputRemiseTotale");
 var typeRemiseTotale = document.getElementById("selectTypeRemiseTotale");
 var subRemTotale = document.getElementById("submitRemiseTotale");
 var montantRemiseTotale = document.getElementById("montantRemiseTotale");
+var prixAvantRemiseTotale = document.getElementById("prixTotalAvantRemiseTotale");
 var prixApresRemiseTotale = document.getElementById("prixTotalApresRemiseTotale");
+
 /********* FUNCTIONS ********/
 
 function remplissageAuto(e) {
     target = e.target;
     if (target.value.length == 12) {
+        e.target.setAttribute("disabled", "");
         var refPC = e.target.value.toUpperCase(); //On récupère la référence de l'article
         requ3.open('POST', './index.php?page=apiPassageCaisse', true);
         requ3.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -232,8 +235,15 @@ function supprTableau(e) {
     sousTotal();
 }
 /******************************  MODAL REMISE LIGNE **************************************** */
-function exitModalLigne() { // Fonction qui permet d'enelver le Popup
+function exitModalLigne() { // Fonction qui permet d'enlever le Popup
     modalRemiseLigne.style.display = "none";
+    // On remet a zéro de tous les inputs du PopUp Remise ligne
+    inputRemiseLigne.value = "";
+    refRemiseLigne.innerHTML = "";
+    totRemLigne.innerHTML = "";
+    prixApresRemise.innerHTML = "";
+    montantRemiseLigne.innerHTML = "";
+    inputRemiseLigne.setAttribute("class","");
 }
 
 function execModalLigne() { // permet d'executer la remise et d'ajouter la ligne en dessous de l'article concerné
@@ -296,27 +306,47 @@ function execModalLigne() { // permet d'executer la remise et d'ajouter la ligne
 }
 
 function remiseLigne(e) {
-    // On prépare le popup et on calcul on fonction de l'unité de remise
+    // On prépare le popup et on calcul en fonction de l'unité de remise
     var totalLigne = parseFloat(ligneMereRemiseLigne.children[6].innerHTML);
-    if (regExpRemise.test(inputRemiseLigne)) {
-        var remiseLigne = parseFloat(inputRemiseLigne.value);
-        var type = typeRemiseLigne.value;
+    var type = typeRemiseLigne.value;
+    if (type == "euro") {
+        reg = regExpRemiseEuro;
+    } else {
+        reg = regExpRemisePourcentage;
+    }
+    if(reg.test(inputRemiseLigne.value)) {
+        inputRemiseLigne.setAttribute("class","");
+        var remiseLigne = parseFloat(inputRemiseLigne.value).toFixed(2);
         refRemiseLigne.innerHTML = "ZZZXX0000010";
         totRemLigne.innerHTML = totalLigne;
-        if (inputRemiseLigne.value != "") {
-            if (type == "euro") {
-                montantRemiseLigne.innerHTML = remiseLigne + "€";
-                prixApresRemise.innerHTML = totalLigne - remiseLigne;
-                prixApresRemise.innerHTML += "€";
-            } else {
-                montantRemiseLigne.innerHTML = totalLigne * remiseLigne / 100;
-                montantRemiseLigne.innerHTML += "€";
-                prixApresRemise.innerHTML = totalLigne - parseFloat(montantRemiseLigne.innerHTML);
-                prixApresRemise.innerHTML += "€";
-            }
-            subRemLigne.addEventListener("click", execModalLigne)
+        if (type == "euro") {
+            montantRemiseLigne.innerHTML = remiseLigne + "€";
+            prixApresRemise.innerHTML = totalLigne - remiseLigne;
+            prixApresRemise.innerHTML += "€";
+        } else {
+            montantRemiseLigne.innerHTML = (totalLigne * remiseLigne / 100).toFixed(2);
+            montantRemiseLigne.innerHTML += "€";
+            prixApresRemise.innerHTML = (totalLigne - parseFloat(montantRemiseLigne.innerHTML)).toFixed(2);
+            prixApresRemise.innerHTML += "€";
+        }
+        subRemLigne.addEventListener("click", execModalLigne)
+        // Vérifie si le montant de la remise en € est bien inférieur au total de la ligne si oui, on ne permet pas le click
+        if(remiseLigne>totalLigne && type=="euro"){
+            subRemLigne.removeEventListener("click", execModalLigne)
+            inputRemiseLigne.setAttribute("class","erreur"); //Affichage erreur
+        }
+    }else{
+        montantRemiseLigne.innerHTML=""
+        prixApresRemise.innerHTML=""
+        subRemLigne.removeEventListener("click", execModalLigne)
+        // Gestion affichage d'erreur si l'input vide on affiche pas d'erreur
+        if(inputRemiseLigne.value==""){
+            inputRemiseLigne.setAttribute("class","");
+        }else{
+            inputRemiseLigne.setAttribute("class","erreur");
         }
     }
+
 }
 // On affiche le popup
 function affichePopup(e) { //Fonction de remise sur la ligne
@@ -327,53 +357,80 @@ function affichePopup(e) { //Fonction de remise sur la ligne
     }
 }
 /***************************  FIN MODAL REMISE LIGNE  ************************************* */
+
 /******************************  MODAL REMISE  TOTALE **************************************** */
 function exitModalTotale() { // Fonction qui permet d'enlever le Popup
     modalRemiseTotale.style.display = "none";
+    inputRemiseTotale.value = "";
+    inputRemiseTotale.setAttribute("class","")
+    montantRemiseTotale.innerHTML = "";
+    prixAvantRemiseTotale.innerHTML="";
+    prixApresRemiseTotale.innerHTML = "";
 }
 
 function remiseTotaleDuTicket() {
     modalRemiseTotale.style.display = "block";
-    sousTotal();
 }
 
 
-function sendRemiseTotale()
-{
+function sendRemiseTotale() {
     var remiseTotale = inputRemiseTotale.value;
     var typeRemise = typeRemiseTotale.value;
-    if (remiseTotale != "")
-    {
-        blocFinal.children[3].children[1].innerHTML = prixApresRemiseTotale.innerHTML
-        if (typeRemise == "pourcentage")
-        {
-            blocFinal.children[1].children[1].innerHTML = remiseTotale;
-            blocFinal.children[1].children[1].innerHTML += "%"
+    if (remiseTotale != "") {
+        blocFinal.children[3].children[2].innerHTML = prixApresRemiseTotale.innerHTML
+        if (typeRemise == "pourcentage") {
+            blocFinal.children[1].children[2].innerHTML = remiseTotale;
+            blocFinal.children[1].children[2].innerHTML += "%"
         } else {
-            blocFinal.children[1].children[1].innerHTML = remiseTotale;
-            blocFinal.children[1].children[1].innerHTML += "€"
+            blocFinal.children[1].children[2].innerHTML = remiseTotale;
+            blocFinal.children[1].children[2].innerHTML += "€"
         }
         inputRemiseTotale.value = "";
         montantRemiseTotale.innerHTML = "";
+        prixAvantRemiseTotale.innerHTML="";
         prixApresRemiseTotale.innerHTML = "";
         exitModalTotale();
     }
 }
 
-function remiseTotale()
-{
+function remiseTotale() {
     var remiseTotale = inputRemiseTotale.value;
     var typeRemise = typeRemiseTotale.value;
-    if (typeRemise == "euro")
-    {
-        montantRemiseTotale.innerHTML = remiseTotale +"€"
+    prixAvantRemiseTotale.innerHTML=parseFloat(blocFinal.children[0].children[2].innerHTML).toFixed(2);
+    if (typeRemise == "euro") {
+        reg = regExpRemiseEuro;
     } else {
-        console.log(blocFinal.children[3].children[1].innerHTML.substring(0,blocFinal.children[3].children[1].innerHTML.length-1));
-        montantRemiseTotale.innerHTML = parseFloat(blocFinal.children[3].children[1].innerHTML.substring(0,blocFinal.children[3].children[1].innerHTML.length-1))*parseFloat(remiseTotale)/100;
-        montantRemiseTotale.innerHTML += "€"
+        reg = regExpRemisePourcentage;
     }
-    prixApresRemiseTotale.innerHTML = parseFloat(blocFinal.children[0].children[1].innerHTML.substring(0,blocFinal.children[0].children[1].innerHTML.length-1)) - parseFloat(montantRemiseTotale.innerHTML.substring(0,montantRemiseTotale.innerHTML.length-1))
-    prixApresRemiseTotale.innerHTML += "€"
+    if (reg.test(inputRemiseTotale.value)) {
+        inputRemiseTotale.setAttribute("class","");
+        if (typeRemise == "euro") {
+            montantRemiseTotale.innerHTML = remiseTotale + "€"
+        } else {
+            montantRemiseTotale.innerHTML = (parseFloat(blocFinal.children[3].children[2].innerHTML.substring(0, blocFinal.children[3].children[2].innerHTML.length - 1)) * parseFloat(remiseTotale) / 100).toFixed(2);
+            montantRemiseTotale.innerHTML += "€"
+        }
+        prixApresRemiseTotale.innerHTML = (parseFloat(blocFinal.children[0].children[2].innerHTML.substring(0, blocFinal.children[0].children[2].innerHTML.length - 1)) - parseFloat(montantRemiseTotale.innerHTML.substring(0, montantRemiseTotale.innerHTML.length - 1))).toFixed(2)
+        prixApresRemiseTotale.innerHTML += "€"
+        subRemTotale.addEventListener("click", sendRemiseTotale) // On envoie les infos pour effectuer la remise totale
+        console.log(remiseTotale);
+        console.log(prixAvantRemiseTotale.innerHTML);
+        if(parseFloat(remiseTotale)>parseFloat(prixAvantRemiseTotale.innerHTML) && typeRemise=="euro"){
+            subRemTotale.removeEventListener("click", sendRemiseTotale);
+            inputRemiseTotale.setAttribute("class","erreur");
+        }
+    } else {
+        montantRemiseTotale.innerHTML = "";
+        prixApresRemiseTotale.innerHTML = "";
+        prixAvantRemiseTotale.innerHTML="";
+        subRemTotale.removeEventListener("click", sendRemiseTotale);
+         // Gestion affichage d'erreur si l'input vide on affiche pas d'erreur
+        if(inputRemiseTotale.value==""){
+            inputRemiseTotale.setAttribute("class","");
+        }else{
+            inputRemiseTotale.setAttribute("class","erreur");
+        }
+    }
 
 }
 /***************************  FIN MODAL REMISE TOTALE  ************************************* */
@@ -401,18 +458,21 @@ function sousTotal() {
             somme += parseFloat(totalLignes[i].children[6].innerHTML);
         }
     }
-    blocFinal.children[0].children[1].innerHTML = somme + "€";
+    blocFinal.children[0].children[2].innerHTML = somme + "€";
     totalFinal()
 }
 
 function totalFinal() {
-    var sousTotal = parseFloat(blocFinal.children[0].children[1].innerHTML.substring(0, blocFinal.children[0].children[1].innerHTML.length - 1))
+    var sousTotal = parseFloat(blocFinal.children[0].children[2].innerHTML.substring(0, blocFinal.children[0].children[2].innerHTML.length - 1))
+    var remiseFinale = parseFloat(blocFinal.children[1].children[2].innerHTML.substring(0, blocFinal.children[1].children[2].innerHTML.length - 1));
+    if (blocFinal.children[1].children[2].innerHTML.substring(blocFinal.children[1].children[2].innerHTML.length - 1) == "€") {
+        var prixTotalFinal = (sousTotal - remiseFinale).toFixed(2);
+    } else {
+        var prixTotalFinal = (sousTotal - (sousTotal * remiseFinale / 100)).toFixed(2);
+    }
 
-    var remiseFinale = parseFloat(blocFinal.children[1].children[1].innerHTML.substring(0, blocFinal.children[1].children[1].innerHTML.length - 1));
 
-    var prixTotalFinal = sousTotal - (sousTotal * remiseFinale / 100);
-
-    blocFinal.children[3].children[1].innerHTML = prixTotalFinal + "€";
+    blocFinal.children[3].children[2].innerHTML = prixTotalFinal + "€";
 }
 
 /********* EVENT LISTENERS ********/
@@ -446,8 +506,6 @@ typeRemiseLigne.addEventListener("input", remiseLigne); // event pour le select 
 
 /// MODAL REMISE TOTALE
 exitRemiseTotale.addEventListener("click", exitModalTotale) // event pour fermer le Pop-up Remise Totale
-
-subRemTotale.addEventListener("click", sendRemiseTotale) // On envoie les infos pour effectuer la remise totale
 
 inputRemiseTotale.addEventListener("input", remiseTotale); // event pour l'input de la remise pour mettre a jour le pop-up Remise Totale
 
