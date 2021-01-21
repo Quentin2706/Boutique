@@ -6,3 +6,6 @@ DANS LA GENERATION PDF:
 TVA deja appliquée sur les articles
 prixTTC/1.2 = PrixHT
 PrixTTC-PrixHT = Montant TVA
+
+
+rendre cliquable la ligne dans recherche vente, pour revenir sur passageCaisse.

@@ -25,7 +25,6 @@ foreach($tablo as $elt){
     $elt["idIncrementale"]=$incr;
     $elt["idLot"]=$lot;
 
-
     //On insère les nouvelles données dans le nouveau tableau
     $nouvTab[]=$elt;
 

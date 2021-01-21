@@ -30,7 +30,7 @@ for ($i = 0; $i < count($clients); $i++) {
         </div>
         <div></div>
         <div class="boutonCaisse">
-            <a href="index.php?page=Form&table=client&mode=modif&id=0">
+            <a href="">
             <img src="./IMG/personne.png">
         </a>
         </div>
@@ -112,9 +112,11 @@ for ($i = 0; $i < count($clients); $i++) {
                     </div>
                 </div>
                 <div class="ligne max">
+                <a > 
                     <div class="boutonCaisse" id="paiement">
                         <img src="./IMG/paiement.png">
                     </div>
+                    </a>
                     <div class="fois5"></div>
                 </div>           
         </div>

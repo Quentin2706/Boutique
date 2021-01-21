@@ -1,5 +1,6 @@
 const requ3 = new XMLHttpRequest();//API Passage Caisse
 const requ4 = new XMLHttpRequest();//API Recup mail client
+const requ5 = new XMLHttpRequest();//API Envoi des infos vers reglement
 /*********LES VARIABLES PASSAGE A LA CAISSE********/
 
 var boutonsCaisse = document.getElementsByClassName("boutonCaisse");
@@ -40,6 +41,10 @@ var subRemTotale = document.getElementById("submitRemiseTotale");
 var montantRemiseTotale = document.getElementById("montantRemiseTotale");
 var prixAvantRemiseTotale = document.getElementById("prixTotalAvantRemiseTotale");
 var prixApresRemiseTotale = document.getElementById("prixTotalApresRemiseTotale");
+
+////// PAIEMENTS
+var paiement = document.getElementById("paiement");
+
 
 /********* FUNCTIONS ********/
 
@@ -137,6 +142,7 @@ function chargeInfoMail() { //Charge le mail de la personne selectionnée
     requ4.open('POST', './index.php?page=apiInfoMail', true);
     requ4.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     requ4.send("nomClient=" + nomClient.value);
+
 }
 
 function afficheInfoMail(bool) { //Affiche l'adresse mail en hover sur l'image de l'enveloppe
@@ -475,6 +481,45 @@ function totalFinal() {
     blocFinal.children[3].children[2].innerHTML = prixTotalFinal + "€";
 }
 
+function envoiVersReglement()
+{
+    // On créer une boucle pour récuperer toutes les lignes du tickets autrement dit la liste d'achats
+    var lignesTicket = [];
+    var cpt = 0;    
+    for (let i = 1; i<tableau.childElementCount-1; i++)
+    {   
+        var ligne = tableau.children[i];
+        // on recupe que les lignes PAS les REMISES
+        if(ligne.getAttribute("class") == "ligne")
+        {
+            var reference = ligne.children[2].children[0].value;
+            var quantite = ligne.children[5].children[0].value;
+            lignesTicket[cpt] = [reference, quantite];
+            if(ligne.hasAttribute("remise"))
+            {
+                var remise = ligne.nextElementSibling.children[3].innerHTML;
+                var temp = remise.split(":")
+                tempdeux = temp[1].substring(1, temp[1].length-1);
+                lignesTicket[cpt].push(tempdeux);
+            }
+            cpt++; 
+        }
+    }
+
+    var infos = {
+        "idClient" : nomClient.value,
+        "lignesTicket" : lignesTicket,
+        "sousTotal" : blocFinal.children[0].children[2].innerHTML,
+        "remise" : blocFinal.children[1].children[2].innerHTML,
+        "Total" : blocFinal.children[3].children[2].innerHTML,
+    }
+        infostest = JSON.stringify(infos);
+        console.log(infostest);
+        requ5.open('POST', './index.php?page=apiEnvoiInfoReglement', true);
+        requ5.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        requ5.send("infos="+infostest);
+}
+
 /********* EVENT LISTENERS ********/
 
 infoPC[0].children[0].addEventListener("input", remplissageAuto);//Remplissange auto pour la première ligne après le remplissage de la ref
@@ -511,6 +556,9 @@ inputRemiseTotale.addEventListener("input", remiseTotale); // event pour l'input
 
 typeRemiseTotale.addEventListener("input", remiseTotale); // event pour le select du type de la remise pour mettre a jour le pop-up Remise ligne
 
+
+//// PAIEMENTS
+paiement.addEventListener("click", envoiVersReglement)
 
 
 
@@ -549,8 +597,23 @@ requ4.onreadystatechange = function (e) {
             } else {
                 popupMail.innerHTML = "Adresse mail non renseignée"
             }
-
-            boutonsCaisse[2].children[0].setAttribute("href", "index.php?page=Form&table=client&mode=modif&id=" + reponse.idClient)
+            // on vérifie si le client sélectionné n'est pas le client non renseigné (id 1), pour éviter l'envoi vers le formulaire de celui ci
+            if (reponse.idClient != 1)
+            {
+            boutonsCaisse[2].children[0].setAttribute("href", "index.php?page=Form&table=client&mode=modif&id=" + reponse.idClient);
+            } else {
+            boutonsCaisse[2].children[0].setAttribute("href", "");
+            }
+        }
+    }
+}
+requ5.onreadystatechange = function (e) {
+    // XMLHttpRequest.DONE === 4
+    if (this.readyState === XMLHttpRequest.DONE) {
+        if (this.status === 200) {
+            console.log("Réponse reçue: %s", this.responseText);
+            // reponse = JSON.parse(this.responseText);
+            // console.log(reponse);
         }
     }
 }
