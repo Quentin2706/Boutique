@@ -103,4 +103,28 @@ class Table_venteManager
         return $json;
     }
 
+    public static function findLastByVente(Table_vente $obj)
+    {
+        $db = DbConnect::getDb();
+        $q = $db->query("SELECT `idVente` FROM `table_vente` WHERE `idVente` = (SELECT MAX(`idVente`) FROM `table_vente`)");
+        $results = $q->fetch(PDO::FETCH_ASSOC);
+        if ($results != false) {
+            return $results["idVente"];
+        } else {
+            return false;
+        }
+    }
+
+    public static function findLastByClient(Table_client $obj)
+    {
+        $db = DbConnect::getDb();
+        $q = $db->query("SELECT * FROM `table_vente` WHERE `idClient` = ".$obj->getIdClient()." AND `idVente`= (SELECT MAX(`idVente`) FROM `table_vente`)");
+        $results = $q->fetch(PDO::FETCH_ASSOC);
+        if ($results != false) {
+            return new Table_vente($results);
+        } else {
+            return false;
+        }
+    }
+
 }

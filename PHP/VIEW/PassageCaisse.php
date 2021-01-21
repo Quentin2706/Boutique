@@ -112,7 +112,7 @@ for ($i = 0; $i < count($clients); $i++) {
                     </div>
                 </div>
                 <div class="ligne max">
-                <a > 
+                <a> 
                     <div class="boutonCaisse" id="paiement">
                         <img src="./IMG/paiement.png">
                     </div>

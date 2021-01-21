@@ -145,6 +145,10 @@ function chargeInfoMail() { //Charge le mail de la personne selectionnée
 
 }
 
+// function surchargeReglement(){
+//     paiement.parentNode.setAttribute("href","index.php?page=Reglement&idClient="+nomClient.value)
+// }
+
 function afficheInfoMail(bool) { //Affiche l'adresse mail en hover sur l'image de l'enveloppe
     if (bool) {
         popupMail.style.display = "unset";
@@ -511,14 +515,15 @@ function envoiVersReglement()
         "lignesTicket" : lignesTicket,
         "sousTotal" : blocFinal.children[0].children[2].innerHTML,
         "remise" : blocFinal.children[1].children[2].innerHTML,
-        "Total" : blocFinal.children[3].children[2].innerHTML,
+        "total" : blocFinal.children[3].children[2].innerHTML,
     }
         infostest = JSON.stringify(infos);
         console.log(infostest);
         requ5.open('POST', './index.php?page=apiEnvoiInfoReglement', true);
         requ5.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         requ5.send("infos="+infostest);
-}
+        setTimeout(function(){window.location.replace("index.php?page=Reglement&idClient="+infos["idClient"]+"&total="+infos["total"])},1000);
+}   
 
 /********* EVENT LISTENERS ********/
 
@@ -527,6 +532,7 @@ infoPC[0].children[0].addEventListener("input", remplissageAuto);//Remplissange 
 infoPC[3].children[0].addEventListener("change", calculTotalLigne);//Calcul du total ligne de la première ligne après le remplissage de la quantité
 
 nomClient.addEventListener("input", chargeInfoMail)//Chargement du mail du client dans la div attribuée
+// nomClient.addEventListener("input", surchargeReglement)
 divEnv.addEventListener("mouseover", function () {
     afficheInfoMail(true);
 })//Affichage du mail du client selectionné

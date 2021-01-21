@@ -141,6 +141,10 @@ footer p {
     flex: 0.5;
 }
 
+.petitFlex{
+    flex:0.01;
+}
+
 .miniIcon {
     margin: 2vh;
     padding: 0;

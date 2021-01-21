@@ -157,4 +157,21 @@ class Table_articleManager
         }
 
     }
+
+    public static function findByReference($ref)
+    {
+        $db = DbConnect::getDb();
+        if (!in_array(";", str_split($ref))) {
+            $q = $db->query('SELECT * FROM Table_article WHERE refArticle ="' . $ref.'"');
+            $results = $q->fetch(PDO::FETCH_ASSOC);
+            if ($results != false) {
+                return new Table_article($results);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+    }
 }

@@ -1,14 +1,72 @@
-<pre class='xdebug-var-dump' dir='ltr'>
-  <small>E:\Developpement_Web\Boutique\PHP\MODEL\apiEnvoiInfoReglement.php:2:</small>
-  <b>object</b>(<i>stdClass</i>)[<i>2</i>]
-    <i>public</i> 'idClient' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'1'</font> <i>(length=1)</i>
-    <i>public</i> 'lignesTicket' <font color='#888a85'>=&gt;</font> 
-      <b>array</b> <i>(size=1)</i>
-        0 <font color='#888a85'>=&gt;</font> 
-          <b>array</b> <i>(size=2)</i>
-            0 <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'DECCA0000010'</font> <i>(length=12)</i>
-            1 <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'20'</font> <i>(length=2)</i>
-    <i>public</i> 'sousTotal' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'500€'</font> <i>(length=6)</i>
-    <i>public</i> 'remise' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'0%'</font> <i>(length=2)</i>
-    <i>public</i> 'Total' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'500.00€'</font> <i>(length=9)</i>
-  </pre>
+<div>
+  <div class="ligne">
+    <div class="tableau">
+      <div class="ligne">
+        <div class="enTete">Mode Paiement</div>
+        <div class="enTete">Montant</div>
+        <div class="enTete">Libellé Mode</div>
+      </div>
+      <!--Une ligne par mode de paiement diff-->
+      <!--
+           <div class="ligne">
+                <div class="contenu">CB</div>
+                <div class="contenu">120€</div>
+                <div class="contenu">Carte Bancaire</div>
+            </div> 
+        -->
+    </div>
+
+    <div id="blocPaiement">
+      <div>
+        <label for="moyenPaiement">Mode Paiement</label>
+        <div class="ligne blocPaiement">
+          <select name="moyenPaiement" id="moyenPaiement">
+            <?php 
+                          for ($i = 1; $i < count($paiements); $i++)
+                          {
+                              echo'<option value ='.$paiements[$i]->getIdModePaiement().'>'.$paiements[$i]->getLibModePaiement().'</option>';
+                          }
+                      ?>
+          </select>
+
+          <div class="boutonCaisse boutonPaiement">
+            <img src="./IMG/plus.png">
+          </div>
+          <div class="boutonCaisse boutonPaiement">
+            <div><img src="./IMG/supprimer.png"></div>
+          </div>
+          <div class="boutonCaisse boutonPaiement">
+            <img src="./IMG/imprime.png">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="conteneur">
+    <div class="ligne">
+      <div></div>
+      <div class="centrer blocRecherche">
+        <div class="ligne">
+          <div class="foisDemi"></div>
+          <div class="centrer">
+            <p>Total Règlement</p>
+          </div>
+          <div class="foisDemi"></div>
+          <div>0</div>
+        </div>
+        <div class="ligne">
+          <div class="foisDemi"></div>
+          <div class="centrer">
+            <p>Reste dû</p>
+          </div>
+          <div class="foisDemi"></div>
+          <div>
+            <?php echo $total?>
+          </div>
+        </div>
+
+      </div>
+      <div></div>
+    </div>
+  </div>
