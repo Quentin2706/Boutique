@@ -62,6 +62,7 @@ $routes=[
 	"apiPassageCaisse"=>["PHP/MODEL/","apiPassageCaisse","APIPASSAGECAISSE",true],
 	"apiInfoMail"=>["PHP/MODEL/","apiInfoMail","APIINFOMAIL",true],
 	"apiEnvoiInfoReglement"=>["PHP/MODEL/","apiEnvoiInfoReglement","APIENVOIINFOREGLEMENT",true],
+	"apiPaiement"=>["PHP/MODEL/","apiPaiement","APIPAIEMENT",true],
 
 	"ticketAchats"=>["PHP/VIEW/","ticketAchats","ticketAchats",false],
 	"PDFGenerator"=>["PHP/VIEW/","PDFGenerator","PDFGenerator",false],

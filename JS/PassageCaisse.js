@@ -160,7 +160,6 @@ function afficheInfoMail(bool) { //Affiche l'adresse mail en hover sur l'image d
 function supprLigne(e) { //Supprime la ligne
     var confirm = window.confirm("Voulez vraiment supprimer cette ligne ?")
     if (confirm) {
-        console.log(e.target.tagName);
         if (e.target.tagName == "IMG") {
             var ligneSuppr = e.target.parentNode.parentNode;
         } else {

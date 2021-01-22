@@ -6,16 +6,21 @@ $vente = Table_venteManager::findLastByClient($client);
 ?>
 
 <div>
+  <input type="text" value="<?php echo $vente->getIdVente()?>" class="invisible">
+  <input type="text" value="<?php echo $client->getIdClient()?>" class="invisible">
   <div class="ligne">
     <div class="tableau">
       <div class="ligne">
+        <div class="enTete supprLigne"></div>
         <div class="enTete">Mode Paiement</div>
         <div class="enTete">Montant</div>
         <div class="enTete">Libellé Mode</div>
+        <div class="enTete">Banque</div>
       </div>
       <!--Une ligne par mode de paiement diff-->
       <!--
            <div class="ligne">
+           <div class="supprLigne"><img src="./IMG/supprimer.png"></div>
                 <div class="contenu">CB</div>
                 <div class="contenu">120€</div>
                 <div class="contenu">Carte Bancaire</div>
@@ -59,7 +64,7 @@ $vente = Table_venteManager::findLastByClient($client);
           <div class="centrer">
             <p>Total Règlement :</p>
           </div>
-          <div class="centrer">0€</div>
+          <div class="centrer" id="totalReglement">0€</div>
           <div  class="fois2"></div>
         </div>
         <div class="ligne">
@@ -67,7 +72,7 @@ $vente = Table_venteManager::findLastByClient($client);
           <div class="centrer">
             <p>Reste dû :</p>
           </div>
-          <div class="centrer">
+          <div class="centrer" id="resteDu">
             <?php echo $total?>
           </div>
           <div  class="fois2"></div>
@@ -77,3 +82,10 @@ $vente = Table_venteManager::findLastByClient($client);
       <div></div>
     </div>
   </div>
+  <div class="ligne">
+    <div class="fois2"></div>
+  <div class="boutonCaisse payer centrer">
+            Payer
+          </div>
+          <div class="fois2"></div>
+                        </div>
