@@ -144,6 +144,10 @@ footer p {
 .petitFlex{
     flex:0.01;
 }
+.recalibreHeader
+{
+    flex:0.20;
+}
 
 .miniIcon {
     margin: 2vh;
@@ -673,4 +677,11 @@ select{
     padding: 1em;
     color: white;
     font-size: 1.2em;
+}
+
+#retour {
+    transform: rotate(180deg);
+}
+.retour  {
+    margin: 1.2em 1em;
 }
