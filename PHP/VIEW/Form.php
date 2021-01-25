@@ -48,7 +48,12 @@ for ($i = 2; $i < count($labels); $i++) { //on commmence à 2 car l'id est déja
     else {
         echo '<input name="' . $infos[$i] . '" type="' . $input[$i] . '" required';
         if ($mode != "ajout") {
+            if($infos[$i] != "password")
+            {
             echo ' value= "' . appelGet($objet, $infos[$i]) . '"';
+            } else {
+                echo ' value= ""';
+            }
         }
         // Insertions des données si on n'est pas dans ajout
         if ($mode == "detail" || $mode == "delete") {

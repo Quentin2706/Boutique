@@ -1,4 +1,6 @@
-const requ = new XMLHttpRequest();
+const requ = new XMLHttpRequest();//Envoie info base de données
+const requ2 = new XMLHttpRequest();//Envoi mail
+
 /********************VARIABLES********************/
 var ajout = document.getElementsByClassName("boutonCaisse")[0];
 var supprTout = document.getElementsByClassName("boutonCaisse")[1];
@@ -10,6 +12,17 @@ const coutTicket = parseFloat(resteDu.innerHTML.substring(0, resteDu.innerHTML.l
 var payer = document.getElementsByClassName("payer")[0];
 var idClient = document.getElementsByClassName("invisible")[1];
 var idVente = document.getElementsByClassName("invisible")[0];
+
+var checkEventPayer = false;
+
+/**Modal Mail**/
+var submitMail = document.getElementById("submitEnvoiMail");
+var submitSansMail = document.getElementById("submitSansMail");
+
+var modalEnvoiMail = document.getElementById("modalEnvoiMail");
+var exitModalMail = document.getElementsByClassName("close")[0];
+var inputMail = document.getElementById("inputMailClient");
+var checkEventMail = false;
 /********************FONCTIONS********************/
 function ajoutLigne() {
     idModePaiement = moyenPaiement.value;
@@ -50,12 +63,11 @@ function ajoutLigne() {
     contenu.setAttribute("class", "contenu")
     ligne.appendChild(contenu);
 
-    if(idModePaiement == "CH")
-    {
-    var inputCheque = document.createElement("input");
-    inputCheque.setAttribute("class", "inputLigne redimInput");
-    contenu.appendChild(inputCheque);
-    //inputCheque.addEventListener("input", );
+    if (idModePaiement == "CH") {
+        var inputCheque = document.createElement("input");
+        inputCheque.setAttribute("class", "inputLigne redimInput");
+        contenu.appendChild(inputCheque);
+        //inputCheque.addEventListener("input", );
     }
 
     input.focus();
@@ -89,11 +101,20 @@ function calcul() {
     totalReglement.innerHTML += "€";
 
     resteDu.innerHTML = coutTicket - somme;
+    if (resteDu.innerHTML == "0") {
+        checkEventPayer = true;
+        payer.addEventListener("click", affichePopupMail)
+    } else {
+        if (checkEventPayer == true) {
+
+            payer.removeEventListener("click", affichePopupMail)
+            checkEventPayer = false;
+        }
+    }
     resteDu.innerHTML += "€";
 }
 
-function supprLigne(e)
-{
+function supprLigne(e) {
     var confirm = window.confirm("Voulez vraiment supprimer cette ligne ?")
     if (confirm) {
         if (e.target.tagName == "IMG") {
@@ -107,26 +128,22 @@ function supprLigne(e)
     calcul();
 }
 
-function supprTableau()
-{
+function supprTableau() {
     var entete = tableau.children[0];
-    tableau.innerHTML=""
+    tableau.innerHTML = ""
     tableau.appendChild(entete);
     calcul();
 }
 
-function recupLaMoula()
-{
+function recupLaMoula(e) {
     var lignesModePaiement = [];
-    var cpt = 0;    
-    for (let i = 1; i<tableau.childElementCount; i++)
-    {   
+    var cpt = 0;
+    for (let i = 1; i < tableau.childElementCount; i++) {
         var ligne = tableau.children[i];
         var idModePaiement = ligne.children[1].innerHTML;
         var montant = ligne.children[2].children[0].value;
         lignesModePaiement[cpt] = [idModePaiement, montant];
-        if (idModePaiement == "CH")
-        {
+        if (idModePaiement == "CH") {
             inputCheque = ligne.children[4].children[0]
             var banque = inputCheque.value;
             lignesModePaiement[cpt].push(banque);
@@ -134,22 +151,70 @@ function recupLaMoula()
         cpt++;
     }
     var infoPaiement = {
-        "idClient" : idClient.value,
-        "idVente" : idVente.value,
-        "tabModePaiement" : lignesModePaiement
+        "idClient": idClient.value,
+        "idVente": idVente.value,
+        "tabModePaiement": lignesModePaiement
+    }
+    if (e.target.getAttribute("id") == "submitEnvoiMail") {
+        envoyerMail();
     }
     infoPaiementJSON = JSON.stringify(infoPaiement);
     requ.open('POST', './index.php?page=apiPaiement', true);
     requ.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    requ.send("paiement="+infoPaiementJSON);
-    // setTimeout(function(){window.location.replace("index.php?page=PassageCaisse")},1000);
+    requ.send("paiement=" + infoPaiementJSON);
+    //setTimeout(function(){window.location.replace("index.php?page=PassageCaisse")},1000);
+}
+
+function envoyerMail() {
+    requ2.open('POST', './index.php?page=apiEnvoiMail', true);
+    requ2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    requ2.send("mail=" + inputMail.value + "&idVente=" + idVente.value + "&idClient=" + idClient.value);
+    exitModal();
+}
+
+function affichePopupMail() {
+    modalEnvoiMail.style.display = "block";
+    if (inputMail.value != "") {
+        if (inputMail.checkValidity()) {
+            submitMail.addEventListener("click", recupLaMoula);
+        }
+    }
+}
+
+function exitModal() { // Fonction qui permet d'enlever le Popup
+    modalEnvoiMail.style.display = "none";
+}
+
+function checkMail() {
+    if (inputMail.checkValidity()) {
+        checkEventMail = true;
+        submitMail.addEventListener("click", recupLaMoula);
+    } else {
+        if (checkEventMail == true) {
+            submitMail.removeEventListener("click", recupLaMoula);
+            checkEventMail = false;
+        }
+    }
 }
 /********************EVENTS********************/
 ajout.addEventListener("click", ajoutLigne);
-supprTout.addEventListener("click", supprTableau)
-payer.addEventListener("click", recupLaMoula)
+supprTout.addEventListener("click", supprTableau);
+submitSansMail.addEventListener("click", recupLaMoula);
+exitModalMail.addEventListener("click", exitModal); // event pour fermer le Pop-up Remise ligne
+inputMail.addEventListener("input", checkMail);
 /********************API********************/
 requ.onreadystatechange = function (e) {
+    // XMLHttpRequest.DONE === 4
+    if (this.readyState === XMLHttpRequest.DONE) {
+        if (this.status === 200) {
+            console.log("Réponse reçue: %s", this.responseText);
+            // reponse = JSON.parse(this.responseText);
+            // console.log(reponse);
+        }
+    }
+}
+
+requ2.onreadystatechange = function (e) {
     // XMLHttpRequest.DONE === 4
     if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status === 200) {

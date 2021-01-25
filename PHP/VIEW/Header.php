@@ -30,7 +30,6 @@ $action = (isset($_GET['action'])) ? $_GET['action'] : '';
             </div>
         </div>
         </div>
-        <div class="centrer"><?php //echo $filMarianne ?></div>
+        <div class="centrer"></div>
         </div>
     </header>
-    <div id="container" class="ligne">

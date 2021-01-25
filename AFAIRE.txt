@@ -10,6 +10,8 @@ PrixTTC-PrixHT = Montant TVA
 
 rendre cliquable la ligne dans recherche vente, pour revenir sur passageCaisse.
 
+ORDER BY NOM PASSAGE CAISSE SELECT
+
 =============================       A    RETENIR       =============================
 
 SI JAMAIS POUR FAIRE UNE REDIRECTION EN JS EN PLUS D'UN APPEL AJAX
@@ -18,3 +20,5 @@ IL FAUT METTRE LA REDIRECTION DANS LE JS AVEC UN SET TIMEOUT(après avoir fait l
 ====================================================================================
 
 EVENTLISTENER POUR CHECK LES CARACTERE DE LINPUT BANQUE
+
+TESTER AVEC LECTEUR CODBAR

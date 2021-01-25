@@ -143,30 +143,4 @@ class Table_promotion
         return "IdPromotion : " . $this->getIdPromotion() . "IdCateg : " . $this->getIdCateg() . "DateDebut : " . $this->getDateDebut() . "DateFin : " . $this->getDateFin() . "Taux : " . $this->getTaux() . "\n";
     }
 
-    /* Renvoit Vrai si lobjet en paramètre est égal
-     * à l'objet appelant
-     *
-     * @param [type] $obj
-     * @return bool
-     */
-    public function equalsTo($obj)
-    {
-        return;
-    }
-
-    /**
-     * Compare l'objet à un autre
-     * Renvoi 1 si le 1er est >
-     *        0 si ils sont égaux
-     *      - 1 si le 1er est <
-     *
-     * @param [type] $obj1
-     * @param [type] $obj2
-     * @return Integer
-     */
-    public function compareTo($obj)
-    {
-        return;
-    }
-
 }

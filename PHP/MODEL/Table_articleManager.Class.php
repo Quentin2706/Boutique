@@ -63,7 +63,7 @@ class Table_articleManager
     {
         $db = DbConnect::getDb();
         $liste = [];
-        $q = $db->query("SELECT * FROM Table_article LIMIT 10");
+        $q = $db->query("SELECT * FROM Table_article LIMIT 10 ");
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             if ($donnees != false) {
                 $liste[] = new Table_article($donnees);

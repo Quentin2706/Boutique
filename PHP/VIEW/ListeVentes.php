@@ -25,6 +25,7 @@ $ventes=Table_venteManager::findByDate($auj);
       <div class="colonneCaisse">
         <div class="tableau">
           <div class="ligne" id="hautTableau">
+            <div class="enTete">Nom du client</div>
             <div class="enTete">Date Achat</div>
             <div class="enTete">N° Vente</div>
             <div class="enTete">Ticket</div>
@@ -35,6 +36,7 @@ $ventes=Table_venteManager::findByDate($auj);
             {
                 echo '
                 <div class="ligne">
+                <div class="contenu">'.$ventes[$i]->getClient()->getNomClient().'</div>
                     <div class="contenu">'.$ventes[$i]->getDate_vente().'</div>
                     <div class="contenu">'.$ventes[$i]->getIdVente().'</div>
                     <div class="contenu">
@@ -47,11 +49,6 @@ $ventes=Table_venteManager::findByDate($auj);
           ?>
         </div>
       </div>
-      <div></div>
-      <div class="boutonCaisse">
-        <img src="./IMG/imprime.png">
-      </div>
-      <div></div>
     </div>
 
   </div>

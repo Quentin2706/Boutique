@@ -70,6 +70,7 @@ if (empty($objets)) {
             </div>
         </div>';
     }
+
     echo '<div class="conteneurTableau">
 <div class="tableau">
     <div class="ligne">';
@@ -77,7 +78,9 @@ if (empty($objets)) {
     $listeLabel = $objets[0]->getListeLabel();
     $nbColonne = $classe::getNbColonne();
     for ($i = 2; $i < $nbColonne; $i++) {
-        echo '<div class="enTete centrer ">' . $listeLabel[$i] . '</div>';
+        if ($listeLabel[$i] != "password") {
+            echo '<div class="enTete centrer ">' . $listeLabel[$i] . '</div>';
+        }
     }
     echo '<div class="enTete"><div class="miniBouton centrer ligne">
         <button><a href="index.php?page=Form&table=' . $table . '&mode=ajout"><img src="./IMG/plus mauve.png" alt="Ajouter"></a></button>
@@ -96,12 +99,14 @@ if (empty($objets)) {
             $id = appelGet($unObjet, "id" . $table);
             // Affichage des information une par une de l'objet
             for ($i = 2; $i < $nbColonne; $i++) {
-                if ($listeTypeInput[$i] == "select") {
-                    $classe = $listeClasse[$i];
-                    $obj = appelFindById($classe, appelGet($unObjet, $infos[$i]));
-                    echo '<div class="contenu">' . $obj->getLibelle() . '</div>';
-                } else {
-                    echo '<div class="contenu">' . appelGet($unObjet, $infos[$i]) . '</div>';
+                if ($listeTypeInput[$i] != "password") {
+                    if ($listeTypeInput[$i] == "select") {
+                        $classe = $listeClasse[$i];
+                        $obj = appelFindById($classe, appelGet($unObjet, $infos[$i]));
+                        echo '<div class="contenu">' . $obj->getLibelle() . '</div>';
+                    } else {
+                        echo '<div class="contenu">' . appelGet($unObjet, $infos[$i]) . '</div>';
+                    }
                 }
             }
             echo '<div class="contenu ligne">

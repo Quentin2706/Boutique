@@ -178,35 +178,6 @@ class Table_detail_vente
 		return "IdDetail_vente : ".$this->getIdDetail_vente()."IdVente : ".$this->getIdVente()."Quantite : ".$this->getQuantite()."IdArticle : ".$this->getIdArticle()."PrixUnitaire : ".$this->getPrixUnitaire()."DetailDivers : ".$this->getDetailDivers()."\n";
 	}
 
-
-	
-	/* Renvoit Vrai si lobjet en paramètre est égal 
-	* à l'objet appelant
-	*
-	* @param [type] $obj
-	* @return bool
-	*/
-	public function equalsTo($obj)
-	{
-		return;
-	}
-
-
-	/**
-	* Compare l'objet à un autre
-	* Renvoi 1 si le 1er est >
-	*        0 si ils sont égaux
-	*      - 1 si le 1er est <
-	*
-	* @param [type] $obj1
-	* @param [type] $obj2
-	* @return Integer
-	*/
-	public function compareTo($obj)
-	{
-		return;
-	}
-
 	public function Total()
 	{
 		return $this->getQuantite()*$this->getPrixUnitaire();

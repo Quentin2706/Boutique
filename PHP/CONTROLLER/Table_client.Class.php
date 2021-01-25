@@ -4,7 +4,7 @@ class Table_client
 {
 
     /*****************Attributs***************** */
-    private static $listeAttributs = ["Table_Client","idClient","nomClient","adresseMail","adressePostale"];
+    private static $listeAttributs = ["Table_client","idClient","nomClient","adresseMail","adressePostale"];
 	private static $listeTypeInput = ["","","text","text","text", "text", "text", "text"];
 	private static $listeClass = ["","","","", "univers", "categ","fournisseur","couleur","taille","incrementale","lot","", "", "", ""];
     private static $listeLabel = ["","","Nom du Client", "Adresse Mail", "Adresse Postale"];
@@ -113,32 +113,6 @@ class Table_client
     public function toString()
     {
         return "IdClient : " . $this->getIdClient() . "NomClient : " . $this->getNomClient() . "AdresseMail : " . $this->getAdresseMail() . "AdressePostale : " . $this->getAdressePostale() . "\n";
-    }
-
-    /* Renvoit Vrai si lobjet en paramètre est égal
-     * à l'objet appelant
-     *
-     * @param [type] $obj
-     * @return bool
-     */
-    public function equalsTo($obj)
-    {
-        return;
-    }
-
-    /**
-     * Compare l'objet à un autre
-     * Renvoi 1 si le 1er est >
-     *        0 si ils sont égaux
-     *      - 1 si le 1er est <
-     *
-     * @param [type] $obj1
-     * @param [type] $obj2
-     * @return Integer
-     */
-    public function compareTo($obj)
-    {
-        return;
     }
 
 }

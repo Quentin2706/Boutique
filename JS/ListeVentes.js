@@ -38,6 +38,11 @@ function filtreVente() {
                     ligne.setAttribute("class", "ligne");
                     tableauVente.appendChild(ligne);
                     // ON MET LES CASES PUIS ON LES INSERE DANS LA LIGNE
+                    // Nom du client
+                    uneCase = document.createElement("div");
+                    uneCase.setAttribute("class", "contenu");
+                    uneCase.innerHTML = reponse[i].id;
+                    ligne.appendChild(uneCase);
                     // Date de la vente
                     uneCase = document.createElement("div");
                     uneCase.setAttribute("class", "contenu");

@@ -5,6 +5,11 @@ class Table_user
 
 	/*****************Attributs***************** */
 
+	private static $listeAttributs = ["Table_user","idUser","pseudo","password","role"];
+	private static $listeTypeInput = ["","hidden","text","password","select"];
+	private static $listeClass = ["","","","", "user"];
+	private static $listeLabel = ["","","Identifiant", "password", "Role"];
+	private static $nbColonne= 5;
 	private $_iduser;
 	private $_pseudo;
 	private $_password;
@@ -28,6 +33,10 @@ class Table_user
 		return $this->_pseudo;
 	}
 
+	public function getLibelle()
+	{
+		return $this->getPseudo();
+	}
 	public function setPseudo($pseudo)
 	{
 		$this->_pseudo=$pseudo;
@@ -53,6 +62,29 @@ class Table_user
 		$this->_role=$role;
 	}
 
+	public static function getListeTypeInput()
+    {
+        return self::$listeTypeInput;
+    }
+
+    public static function getListeLabel()
+    {
+        return self::$listeLabel;
+    }
+
+    public static function getListeAttributs()
+    {
+        return self::$listeAttributs;
+    }
+    public static function getListeClass()
+    {
+        return self::$listeClass;
+	}
+	
+	public static function getNbColonne()
+	{
+		return self::$nbColonne;
+	}
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])
@@ -84,34 +116,5 @@ class Table_user
 	public function toString()
 	{
 		return "Iduser : ".$this->getIduser()."Pseudo : ".$this->getPseudo()."Password : ".$this->getPassword()."Role : ".$this->getRole()."\n";
-	}
-
-
-	
-	/* Renvoit Vrai si lobjet en paramètre est égal 
-	* à l'objet appelant
-	*
-	* @param [type] $obj
-	* @return bool
-	*/
-	public function equalsTo($obj)
-	{
-		return;
-	}
-
-
-	/**
-	* Compare l'objet à un autre
-	* Renvoi 1 si le 1er est >
-	*        0 si ils sont égaux
-	*      - 1 si le 1er est <
-	*
-	* @param [type] $obj1
-	* @param [type] $obj2
-	* @return Integer
-	*/
-	public function compareTo($obj)
-	{
-		return;
 	}
 }
