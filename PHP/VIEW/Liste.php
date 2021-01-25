@@ -1,14 +1,14 @@
 <?php
 // on recup la surcharge URL
 $table = $_GET['table'];
-$classe = "table_" . $table;
+$classe = "Table_" . $table;
 $objets = appelGetList("Table_" . $table);
 
 if (empty($objets)) {
     echo 'La table est vide';
 } else {
     // On ajoute le bloc de recherche si la liste a afficher c'est la liste de la table Article. //
-    if ($classe == "table_Article") {
+    if ($classe == "Table_article") {
         echo '<div class="colonne centrer">
         <div class="blocRecherche">
             <div class="ligneRecherche ligne">
@@ -86,7 +86,7 @@ if (empty($objets)) {
         <button><a href="index.php?page=Form&table=' . $table . '&mode=ajout"><img src="./IMG/plus mauve.png" alt="Ajouter"></a></button>
     </div></div>
     </div>';
-    if ($classe != "table_Article") {
+    if ($classe != "Table_article") {
         // on recupere les attributs de la classe
         $infos = $classe::getListeAttributs();
 
@@ -119,7 +119,7 @@ if (empty($objets)) {
 
         }
     }
-    echo $classe != "table_Article" ? '</div>' : "";
+    echo $classe != "Table_article" ? '</div>' : "";
     echo '</div>
 </div>';
 }

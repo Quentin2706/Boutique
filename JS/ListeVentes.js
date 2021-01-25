@@ -1,10 +1,26 @@
 const requ2 = new XMLHttpRequest();//API Ventes Clients
+
 /*********LES VARIABLES LISTE VENTES********/
 
     var entete = document.getElementById("hautTableau");
     var tableauVente = document.getElementsByClassName("tableau")[0];
 
     var rechVente = document.getElementsByTagName("input");
+    var date = new Date();
+    if (date.getMonth()+1 < 10)
+    {
+        var mois = "0"+(date.getMonth()+1);
+    } else {
+        var mois = date.getMonth()+1
+    }
+    
+    if (date.getDate() < 10)
+    {
+        var jour = "0"+(date.getDate());
+    } else {
+        var jour = date.getDate();
+    }
+    var auj = date.getFullYear()+"-"+ mois +"-"+ jour;
 /*********LISTE VENTES********/
 function filtreVente() {
     var filtrageVente = {
@@ -15,6 +31,22 @@ function filtreVente() {
     requ2.open('POST', './index.php?page=apiVente', true);
     requ2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     requ2.send("filtrageVente=" + filtrageVente)
+}
+
+
+function retourneVente(e) {
+    if (e.target.tagName != "IMG")
+    {
+    window.location.replace("index.php?page=PassageCaisse&idVente="+e.target.parentNode.children[2].innerHTML);
+    }
+}
+
+function alertVenteFinie(e)
+{
+    if (e.target.tagName != "IMG")
+    {
+    alert("Cette vente s'est achevée !");
+    }
 }
 /*********LISTE VENTES********/
 
@@ -37,11 +69,17 @@ function filtreVente() {
                     ligne = document.createElement("div");
                     ligne.setAttribute("class", "ligne");
                     tableauVente.appendChild(ligne);
+                    if(reponse[i].conclusionVente == false)
+                    {
+                        ligne.addEventListener("click", retourneVente);
+                    } else {
+                        ligne.addEventListener("click", alertVenteFinie);
+                    }
                     // ON MET LES CASES PUIS ON LES INSERE DANS LA LIGNE
                     // Nom du client
                     uneCase = document.createElement("div");
                     uneCase.setAttribute("class", "contenu");
-                    uneCase.innerHTML = reponse[i].id;
+                    uneCase.innerHTML = reponse[i].client;
                     ligne.appendChild(uneCase);
                     // Date de la vente
                     uneCase = document.createElement("div");
@@ -80,3 +118,12 @@ function filtreVente() {
             }
         }
     }
+
+    var venteAujdTab = {
+        "dateDebut": auj,
+        "dateFin": auj
+    }
+    venteAujd = JSON.stringify(venteAujdTab);
+    requ2.open('POST', './index.php?page=apiVente', true);
+    requ2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    requ2.send("filtrageVente=" + venteAujd);

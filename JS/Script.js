@@ -509,7 +509,7 @@ requ.onreadystatechange = function (event) {
                 bouton = document.createElement("button");
                 lesBoutons.appendChild(bouton);
                 ahref = document.createElement("a");
-                ahref.setAttribute("href", "index.php?page=Form&table=Article&mode=modif&id=" + reponse[i].idArticle)
+                ahref.setAttribute("href", "index.php?page=Form&table=article&mode=modif&id=" + reponse[i].idArticle)
                 bouton.appendChild(ahref);
                 img = document.createElement("img");
                 img.setAttribute("src", "./IMG/modifie.png");
@@ -520,7 +520,7 @@ requ.onreadystatechange = function (event) {
                 bouton = document.createElement("button");
                 lesBoutons.appendChild(bouton);
                 ahref = document.createElement("a");
-                ahref.setAttribute("href", "index.php?page=Form&table=Article&mode=delete&id=" + reponse[i].idArticle)
+                ahref.setAttribute("href", "index.php?page=Form&table=article&mode=delete&id=" + reponse[i].idArticle)
                 bouton.appendChild(ahref);
                 img = document.createElement("img");
                 img.setAttribute("src", "./IMG/supprimer.png");

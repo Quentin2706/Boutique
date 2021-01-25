@@ -6,7 +6,7 @@ class Table_promotion
     /*****************Attributs***************** */
     //CLE ETRANGERE
 
-    private static $listeAttributs = ["Table_Promotion", "idPromotion", "idCateg", "dateDebut", "dateFin", "taux"];
+    private static $listeAttributs = ["Table_promotion", "idPromotion", "idCateg", "dateDebut", "dateFin", "taux"];
     private static $listeTypeInput = ["", "", "select", "date", "date", "text"];
     private static $listeClass = ["", "", "categ", "", "", ""];
     private static $listeLabel = ["", "", "Catégorie", "Date de début", "Date de fin", "Taux de la promotion"];

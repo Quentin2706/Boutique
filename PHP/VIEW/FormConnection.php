@@ -2,7 +2,7 @@
 
 if (!isset($_POST['pseudo'])) // On est dans la page de formulaire
 {
-    require 'Php/View/HtmlConnection.php'; // On affiche le formulaire
+    require 'PHP/VIEW/HtmlConnection.php'; // On affiche le formulaire
 }
 else
 { // Le formulaire a été validé

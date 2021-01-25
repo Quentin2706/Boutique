@@ -7,28 +7,28 @@ if (isset($_GET["page"]))
         <div></div>
         <div class="centrer ligne">
             <div class="boutonNav marginCote paddingNav label">
-                <a href="index.php?page=Liste&table=Article" class="blanc">Liste des articles</a>
+                <a href="index.php?page=Liste&table=article" class="blanc">Liste des articles</a>
             </div>
             <div class="boutonNav marginCote paddingNav label">
-            <a href="index.php?page=Liste&table=Categ" class="blanc">Liste des catégories</a>
+            <a href="index.php?page=Liste&table=categ" class="blanc">Liste des catégories</a>
             </div>
             <div class="boutonNav marginCote paddingNav label">
-            <a href="index.php?page=Liste&table=Univers" class="blanc">Liste des univers</a>
+            <a href="index.php?page=Liste&table=univers" class="blanc">Liste des univers</a>
             </div>
             <div class="boutonNav marginCote paddingNav label">
-            <a href="index.php?page=Liste&table=Couleur" class="blanc">Liste des couleurs</a>
+            <a href="index.php?page=Liste&table=couleur" class="blanc">Liste des couleurs</a>
             </div>
             <div class="boutonNav marginCote paddingNav label">
-            <a href="index.php?page=Liste&table=Fournisseur" class="blanc">Liste des fournisseurs</a>
+            <a href="index.php?page=Liste&table=fournisseur" class="blanc">Liste des fournisseurs</a>
             </div>
             <div class="boutonNav marginCote paddingNav label">
-            <a href="index.php?page=Liste&table=Promotion" class="blanc">Liste des promotions</a>
+            <a href="index.php?page=Liste&table=promotion" class="blanc">Liste des promotions</a>
             </div>
             <div class="boutonNav marginCote paddingNav label">
-            <a href="index.php?page=Liste&table=Client" class="blanc">Liste des clients</a>
+            <a href="index.php?page=Liste&table=client" class="blanc">Liste des clients</a>
             </div>
             <div class="boutonNav marginCote paddingNav label">
-            <a href="index.php?page=Liste&table=User" class="blanc">Liste des utilisateurs</a>
+            <a href="index.php?page=Liste&table=user" class="blanc">Liste des utilisateurs</a>
             </div>
             
             

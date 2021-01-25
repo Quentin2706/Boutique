@@ -1,5 +1,5 @@
 <?php
-$table = 'table_'.$_GET["table"];
+$table = 'Table_'.$_GET["table"];
 $manager = $table.'Manager';
 $p = new $table($_POST);
 switch ($_GET['mode']) {

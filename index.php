@@ -20,7 +20,7 @@ $lang=isset($_SESSION['lang']) ? $_SESSION['lang'] : 'FR';
 /******Fin des langues******/
 
 $routes=[
-	"default"=>["PHP/VIEW/","accueil","Accueil",false],
+	"default"=>["PHP/VIEW/","Accueil","Accueil",false],
 	"Testtable_articleManager"=>["PHP/MODEL/TESTMANAGER/","Testtable_articleManager","Test de table_article",false],
 	"Testtable_categManager"=>["PHP/MODEL/TESTMANAGER/","Testtable_categManager","Test de table_categ",false],
 	"Testtable_clientManager"=>["PHP/MODEL/TESTMANAGER/","Testtable_clientManager","Test de table_client",false],
@@ -63,7 +63,7 @@ $routes=[
 	"apiInfoMail"=>["PHP/MODEL/","apiInfoMail","APIINFOMAIL",true],
 	"apiEnvoiInfoReglement"=>["PHP/MODEL/","apiEnvoiInfoReglement","APIENVOIINFOREGLEMENT",true],
 	"apiPaiement"=>["PHP/MODEL/","apiPaiement","APIPAIEMENT",true],
-	"apiEnvoiMail"=>["PHP/MODEL/","apiEnvoiMail","apiEnvoiMail",true],
+	"apiEnvoiMail"=>["PHP/MODEL/","apiEnvoiMail","APIENVOIMAIL",true],
 
 	"ticketAchats"=>["PHP/VIEW/","ticketAchats","ticketAchats",false],
 	"PDFGenerator"=>["PHP/VIEW/","PDFGenerator","PDFGenerator",false],

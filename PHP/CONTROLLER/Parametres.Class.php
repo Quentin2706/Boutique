@@ -34,9 +34,9 @@ class Parametres
 
 	static function init() /**LES ESQUIMAUX LOL (inuit)**/
 	{
-		if (file_exists("parametres.ini"))
+		if (file_exists("Parametres.ini"))
 		{
-			$fp=fopen("parametres.ini","r");
+			$fp=fopen("Parametres.ini","r");
 			while(!feof($fp)) /**WHILE SMITH**/
 			{
 				$ligne=fgets($fp,4906);

@@ -10,7 +10,7 @@
                     <div class="nomPicto">Caisse</div>
                 </div>
                 <div class="grosBouton">
-                    <a href="index.php?page=Liste&table=Client">
+                    <a href="index.php?page=Liste&table=client">
                         <div class="picto clients">
                             <img src="IMG/personne.png" alt="Clients">
                         </div>
@@ -20,7 +20,7 @@
             </div>
             <div class="fois5 ligne">
                 <div class="grosBouton">
-                    <a href="index.php?page=Liste&table=Article">
+                    <a href="index.php?page=Liste&table=article">
                     <div class="picto articles">
                         <img src="IMG/entrepot.png" alt="Articles">
                     </div>

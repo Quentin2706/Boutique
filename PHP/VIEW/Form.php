@@ -2,7 +2,7 @@
 
 // on recup la surcharge URL
 $table = $_GET['table'];
-$classe="table_".ucfirst($table);
+$classe="Table_".ucfirst($table);
 $mode = $_GET['mode'];
 if ($mode != "ajout") {
     $id = $_GET['id'];

@@ -1,16 +1,7 @@
-{
-    "idArticle": "2175",
-    "refArticle": "DECCE0000021",
-    "libArticle": "\u00c9charpe cabiria",
-    "idUnivers": "6",
-    "idCateg": "18",
-    "idFournisseur": "16",
-    "idCouleur": "1",
-    "idTaille": "1",
-    "idIncrementale": "2",
-    "idLot": "2",
-    "quantiteStock": "4",
-    "prixAchat": "24",
-    "prixVente": "48",
-    "seuil": "10"
-}
+[
+    {
+        "idVente": "10",
+        "date_vente": "2021-01-28",
+        "client": "Maxime"
+    }
+]

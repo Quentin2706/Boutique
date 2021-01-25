@@ -32,20 +32,20 @@ $ventes=Table_venteManager::findByDate($auj);
           </div>
           <?php
             
-            for ($i=0;$i<count($ventes);$i++)
-            {
-                echo '
-                <div class="ligne">
-                <div class="contenu">'.$ventes[$i]->getClient()->getNomClient().'</div>
-                    <div class="contenu">'.$ventes[$i]->getDate_vente().'</div>
-                    <div class="contenu">'.$ventes[$i]->getIdVente().'</div>
-                    <div class="contenu">
-              <div class="miniBouton">
-                <a href="./Tickets/Ticket'.$ventes[$i]->getIdVente().'" target="_blank" ><button><img src="./IMG/voir.png" alt="Voir Ticket"></button></a>
-              </div>
-            </div>
-                </div>';
-            };
+            // for ($i=0;$i<count($ventes);$i++)
+            // {
+            //     echo '
+            //     <div class="ligne">
+            //     <div class="contenu">'.$ventes[$i]->getClient()->getNomClient().'</div>
+            //         <div class="contenu">'.$ventes[$i]->getDate_vente().'</div>
+            //         <div class="contenu">'.$ventes[$i]->getIdVente().'</div>
+            //         <div class="contenu">
+            //   <div class="miniBouton">
+            //     <a href="./Tickets/Ticket'.$ventes[$i]->getIdVente().'" target="_blank" ><button><img src="./IMG/voir.png" alt="Voir Ticket"></button></a>
+            //   </div>
+            // </div>
+            //     </div>';
+            // };
           ?>
         </div>
       </div>

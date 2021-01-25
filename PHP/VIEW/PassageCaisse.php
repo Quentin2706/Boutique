@@ -1,5 +1,16 @@
 
-<?php $clients = Table_clientManager::getList();?>
+<?php $clients = Table_clientManager::getList();
+if(isset($_GET["idVente"]))
+{
+    $detailsVente = Table_detail_venteManager::findByVente($_GET["idVente"]);
+    var_dump($detailsVente);
+}
+
+
+
+
+
+?>
 
 <div class="colonne">
 <div class="ligne">
@@ -15,7 +26,7 @@ for ($i = 0; $i < count($clients); $i++) {
 </div>
         <div class="ligne">
         <div class="boutonCaisse" >
-            <a href="./index.php?page=Form&table=Client&mode=ajout">
+            <a href="./index.php?page=Form&table=client&mode=ajout">
             <img src="./IMG/plus.png">
         </a>
         </div>
@@ -52,6 +63,36 @@ for ($i = 0; $i < count($clients); $i++) {
                         <div class="enTete">Quantité</div>
                         <div class="enTete">Total</div>
                     </div>
+                    <?php
+                        if(isset($_GET["idVente"]))
+                        {
+                            
+                            for ($i = 0; $i < count($detailsVente);$i++)
+                            {
+                                if ($detailsVente[$i]->getArticle()->getIdArticle() != "4462" && $detailsVente[$i]->getArticle()->getIdArticle() != "4477") 
+                                {
+                                echo'<div class="ligne">
+                                        <div class="supprLigne"><img src="./IMG/supprimer.png"></div>
+                                        <div class="supprLigne"><img src="./IMG/remise.png"></div>
+                                        <div class="contenu"><input name="" value="'.$detailsVente[$i]->getArticle()->getRefArticle().'" autofocus class="redimInput" /></div>
+                                        <div class="contenu"></div>
+                                        <div class="contenu"></div>
+                                        <div class="contenu"><input name="" type="number" id="" value="" class="redimInput" disabled/></div>
+                                        <div class="contenu"></div>
+                                    </div>';
+                                } else if ($detailsVente[$i]->getArticle()->getIdArticle() != "4477")
+                                {
+                                    echo'<div class="ligne">
+                                        <div class="supprLigne"><img src="./IMG/supprimer.png"></div>
+                                        <div class="contenu">Ref. de la remise : '.$detailsVente[$i]->getArticle()->getIdArticle().'</div>
+                                        <div class="contenu">Remise : '..'</div>
+                                        <div class="contenu">Montant de la remise : '..'</div>
+                                        <div class="contenu">Total après remise : '..'</div>
+                                    </div>';
+                                }
+                            }
+                        }
+                    ?>
                     <div class="ligne">
                         <div class="supprLigne"><img src="./IMG/supprimer.png"></div>
                         <div class="supprLigne"><img src="./IMG/remise.png"></div>

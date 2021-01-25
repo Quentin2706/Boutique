@@ -1,4 +1,4 @@
-const requ3 = new XMLHttpRequest();//API Passage Caisse
+ const requ3 = new XMLHttpRequest();//API Passage Caisse
 const requ4 = new XMLHttpRequest();//API Recup mail client
 const requ5 = new XMLHttpRequest();//API Envoi des infos vers reglement
 /*********LES VARIABLES PASSAGE A LA CAISSE********/

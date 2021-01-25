@@ -75,7 +75,7 @@ class Table_articleManager
     {
         $db = DbConnect::getDb();
         $compteur = 0;
-        $requete = "SELECT * FROM table_article WHERE ";
+        $requete = "SELECT * FROM Table_article WHERE ";
         foreach ($tab as $nomColonne => $elt) {
             if (!in_array(";", str_split($nomColonne)) && !in_array(";", str_split($elt))) // s'il n'y a pas de ; , je lance la requete
             {
@@ -104,7 +104,7 @@ class Table_articleManager
         $db = DbConnect::getDb();
         $auj = new DateTime("now");
         $auj = Date_format($auj, "Y-m-d H:i:s");
-        $q = $db->query("SELECT taux FROM table_promotion WHERE idCateg=" . $article->getIdCateg() . " AND dateDebut < '" . $auj . "' AND dateFin > '" . $auj . "'");
+        $q = $db->query("SELECT taux FROM Table_promotion WHERE idCateg=" . $article->getIdCateg() . " AND dateDebut < '" . $auj . "' AND dateFin > '" . $auj . "'");
         if ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             return $article->getPrixVente() * ($donnees["taux"] / 100);
         } else {

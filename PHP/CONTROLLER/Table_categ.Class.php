@@ -7,7 +7,7 @@ class Table_categ
 
 	private static $listeAttributs=["Table_categ","idCateg","refCateg","libCateg","idUnivers"];
 	private static $listeTypeInput = ["","","text","text","select"];
-	private static $listeClass =["","","","","Univers"];
+	private static $listeClass =["","","","","univers"];
 	private static $listeLabel = ["","","Référence Categories", "Libelle Categories", "Référence Univers"];
 	private static $nbColonne= 5;
 	

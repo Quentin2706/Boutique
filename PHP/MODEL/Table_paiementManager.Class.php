@@ -65,7 +65,7 @@ class Table_paiementManager
 	{
 		$db=DbConnect::getDb();
 		$id=(int) $idVente;
-		$q=$db->query("SELECT montant FROM table_paiement WHERE idVente =".$idVente);
+		$q=$db->query("SELECT montant FROM Table_paiement WHERE idVente =".$idVente);
 		$sommePaiement=0;
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
 		{
