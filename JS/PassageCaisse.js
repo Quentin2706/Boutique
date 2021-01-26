@@ -1,4 +1,4 @@
- const requ3 = new XMLHttpRequest();//API Passage Caisse
+const requ3 = new XMLHttpRequest();//API Passage Caisse
 const requ4 = new XMLHttpRequest();//API Recup mail client
 const requ5 = new XMLHttpRequest();//API Envoi des infos vers reglement
 /*********LES VARIABLES PASSAGE A LA CAISSE********/
@@ -45,6 +45,12 @@ var prixApresRemiseTotale = document.getElementById("prixTotalApresRemiseTotale"
 ////// PAIEMENTS
 var paiement = document.getElementById("paiement");
 
+///////Gestion des ventes en cours
+var urlCourante = document.location.href; 
+if(urlCourante.includes("idVente")){
+    sousTotal();
+    var idVente=urlCourante.substring(urlCourante.indexOf("idVente")).split("=")[1];
+}
 
 /********* FUNCTIONS ********/
 
@@ -416,7 +422,7 @@ function remiseTotale() {
         if (typeRemise == "euro") {
             montantRemiseTotale.innerHTML = remiseTotale + "€"
         } else {
-            montantRemiseTotale.innerHTML = (parseFloat(blocFinal.children[3].children[2].innerHTML.substring(0, blocFinal.children[3].children[2].innerHTML.length - 1)) * parseFloat(remiseTotale) / 100).toFixed(2);
+            montantRemiseTotale.innerHTML = (parseFloat(blocFinal.children[0].children[2].innerHTML.substring(0, blocFinal.children[0].children[2].innerHTML.length - 1)) * parseFloat(remiseTotale) / 100).toFixed(2);
             montantRemiseTotale.innerHTML += "€"
         }
         prixApresRemiseTotale.innerHTML = (parseFloat(blocFinal.children[0].children[2].innerHTML.substring(0, blocFinal.children[0].children[2].innerHTML.length - 1)) - parseFloat(montantRemiseTotale.innerHTML.substring(0, montantRemiseTotale.innerHTML.length - 1))).toFixed(2)
@@ -516,12 +522,18 @@ function envoiVersReglement()
         "remise" : blocFinal.children[1].children[2].innerHTML,
         "total" : blocFinal.children[3].children[2].innerHTML,
     }
-        infostest = JSON.stringify(infos);
-        console.log(infostest);
-        requ5.open('POST', './index.php?page=apiEnvoiInfoReglement', true);
-        requ5.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    infostest = JSON.stringify(infos);
+    console.log(infostest);
+    requ5.open('POST', './index.php?page=apiEnvoiInfoReglement', true);
+    requ5.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    //On regarde si la vente était une vente en attente
+    if(urlCourante.includes("idVente")){
+        requ5.send("infos="+infostest+"&idVente="+idVente);
+    }else{
         requ5.send("infos="+infostest);
-        setTimeout(function(){window.location.replace("index.php?page=Reglement&idClient="+infos["idClient"]+"&total="+infos["total"])},1000);
+    }
+   
+    setTimeout(function(){window.location.replace("index.php?page=Reglement&idClient="+infos["idClient"]+"&total="+infos["total"])},1000);
 }   
 
 /********* EVENT LISTENERS ********/

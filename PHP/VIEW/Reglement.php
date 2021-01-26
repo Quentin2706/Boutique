@@ -1,13 +1,13 @@
-<?php 
-$paiements = Table_modePaiementManager::getList();
-$client=Table_clientManager::findById($_GET["idClient"]);
-$total=$_GET["total"];
-$vente = Table_venteManager::findLastByClient($client);
-?>
-
+<?php
+if (isset($_SESSION['user'])) {
+    $paiements = Table_modePaiementManager::getList();
+    $client = Table_clientManager::findById($_GET["idClient"]);
+    $total = $_GET["total"];
+    $vente = Table_venteManager::findLastByClient($client);
+    echo '
 <div>
-    <input type="text" name="idVente" value="<?php echo $vente->getIdVente()?>" class="invisible">
-    <input type="text" name="idClient" value="<?php echo $client->getIdClient()?>" class="invisible">
+    <input type="text" name="idVente" value="'.$vente->getIdVente().'" class="invisible">
+    <input type="text" name="idClient" value="'.$client->getIdClient().'" class="invisible">
     <div class="ligne">
         <div class="tableau">
             <div class="ligne">
@@ -23,13 +23,11 @@ $vente = Table_venteManager::findLastByClient($client);
             <div>
                 <label for="moyenPaiement">Mode Paiement</label>
                 <div class="ligne blocPaiement">
-                    <select name="moyenPaiement" id="moyenPaiement">
-                        <?php 
-                          for ($i = 1; $i < count($paiements); $i++)
-                          {
-                              echo'<option value ='.$paiements[$i]->getIdModePaiement().'>'.$paiements[$i]->getLibModePaiement().'</option>';
-                          }
-                      ?>
+                    <select name="moyenPaiement" id="moyenPaiement">';
+    for ($i = 1; $i < count($paiements); $i++) {
+        echo '<option value =' . $paiements[$i]->getIdModePaiement() . '>' . $paiements[$i]->getLibModePaiement() . '</option>';
+    }
+    echo '
                     </select>
 
                     <div class="boutonCaisse boutonPaiement">
@@ -60,9 +58,9 @@ $vente = Table_venteManager::findLastByClient($client);
                     <div class="centrer">
                         <p>Reste dû :</p>
                     </div>
-                    <div class="centrer" id="resteDu">
-                        <?php echo $total?>
-                    </div>
+                    <div class="centrer" id="resteDu">';
+                        echo $total;
+                    echo'</div>
                     <div class="fois2"></div>
                 </div>
 
@@ -91,12 +89,12 @@ $vente = Table_venteManager::findLastByClient($client);
             <div class="centrer">
                 <div class="label">Envoyez ticket par Mail : </div>
                 <div class="fois2">
-                    <input type="texte" id="inputMailClient" pattern="[0-9a-z]([-_.]?[0-9a-z])*@[0-9a-z]([-.]?[0-9a-z])*\.[a-z]{2,4}" <?php if ($client->getAdresseMail()==""){
-                    echo "required";
-                    } else {
-                    echo 'value="'. $client->getAdresseMail().'"';
-                    }
-                    ?>/>
+                    <input type="texte" id="inputMailClient" pattern="[0-9a-z]([-_.]?[0-9a-z])*@[0-9a-z]([-.]?[0-9a-z])*\.[a-z]{2,4}"';if ($client->getAdresseMail() == "") {
+        echo "required";
+    } else {
+        echo 'value="' . $client->getAdresseMail() . '"';
+    }
+    echo '/>
                 </div>
             </div>
             <div class="ligneModal">
@@ -107,4 +105,7 @@ $vente = Table_venteManager::findLastByClient($client);
             </div>
         </div>
 
-    </div>
+    </div>';
+} else {
+    header("location:index.php?page=FormConnexion");
+}

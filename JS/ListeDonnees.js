@@ -37,11 +37,27 @@ function detailAchat(e) {
     window.location.href = "index.php?page=ListeAchats&id=" + infos['id'];
 }
 
+function redirigeUser(event){
+    var cible = event.target.parentNode.getAttribute("cible");
+    if (cible.substring(0, 3) == "Lis") {
+        window.location.href = "index.php?page=ListeUser";
+    }
+    else {
+        window.location.href = "index.php?page=Form&table=User&mode=ajout";
+    }
+}
+
 /*********LISTE DONNEES********/
 
     for (let i = 0; i < lesMenus.length; i++) {
         lesMenus[i].addEventListener("click", afficheSousMenu);
     }
     for (let i = 0; i < lesContenuSousMenu.length; i++) {
-        lesContenuSousMenu[i].addEventListener("click", redirige);
+        if (i<lesContenuSousMenu.length-2){
+            lesContenuSousMenu[i].addEventListener("click", redirige);
+        } else {
+            lesContenuSousMenu[i].addEventListener("click", redirigeUser);
+        }
+        
     }
+

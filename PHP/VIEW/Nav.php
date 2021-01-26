@@ -1,7 +1,8 @@
 <?php 
+if (isset($_SESSION['user'])&& $_SESSION['user']->getRole()==1){
 if (isset($_GET["page"]))
 {
-    if ($_GET["page"] == "Liste")
+    if ($_GET["page"] == "Liste" || $_GET["page"]=="ListeUser")
     {
         echo '<nav class="paddingNav">
         <div></div>
@@ -28,7 +29,7 @@ if (isset($_GET["page"]))
             <a href="index.php?page=Liste&table=client" class="blanc">Liste des clients</a>
             </div>
             <div class="boutonNav marginCote paddingNav label">
-            <a href="index.php?page=Liste&table=user" class="blanc">Liste des utilisateurs</a>
+            <a href="index.php?page=ListeUser" class="blanc">Liste des utilisateurs</a>
             </div>
             
             
@@ -38,6 +39,7 @@ if (isset($_GET["page"]))
         <div></div>
         </nav>';
     }
+}
 }
 ?>
 <div id="container" class="ligne">

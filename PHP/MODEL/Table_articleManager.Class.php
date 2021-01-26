@@ -129,7 +129,7 @@ class Table_articleManager
                 }
                 $flag = true;
                 // C'EST POUR METTRE LES VALEUR ENTRE QUOTES (Entrecotes)
-                $requete .= $nom . "=\"" . $elt . "\"";
+                $requete .= $nom . " LIKE \"" . $elt . "%\"";
             }
         }
         $q = $db->query($requete);

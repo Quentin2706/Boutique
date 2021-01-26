@@ -50,7 +50,7 @@ function ajoutLigne() {
 
     var input = document.createElement("input");
     input.setAttribute("class", "inputLigne redimInput");
-    input.setAttribute("pattern", "[0-9]{1,}");
+    input.setAttribute("pattern", "[0-9]+(\.[0-9][0-9]?)?");
     contenu.appendChild(input);
     input.addEventListener("input", check);
 
@@ -67,9 +67,7 @@ function ajoutLigne() {
         var inputCheque = document.createElement("input");
         inputCheque.setAttribute("class", "inputLigne redimInput");
         contenu.appendChild(inputCheque);
-        //inputCheque.addEventListener("input", );
     }
-
     input.focus();
 }
 
@@ -97,7 +95,7 @@ function calcul() {
         }
     }
     // calculs des résultats pour le reglement
-    totalReglement.innerHTML = somme
+    totalReglement.innerHTML = somme.toFixed(2);
     totalReglement.innerHTML += "€";
 
     resteDu.innerHTML = coutTicket - somme;
@@ -162,7 +160,7 @@ function recupLaMoula(e) {
     requ.open('POST', './index.php?page=apiPaiement', true);
     requ.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     requ.send("paiement=" + infoPaiementJSON);
-    //setTimeout(function(){window.location.replace("index.php?page=PassageCaisse")},1000);
+    setTimeout(function(){window.location.replace("index.php?page=PassageCaisse")},1000);
 }
 
 function envoyerMail() {

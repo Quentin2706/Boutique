@@ -1,3 +1,6 @@
+<?php
+if (isset($_SESSION['user'])){
+echo'
 <div></div>
 <div class="conteneur">
     <div>
@@ -15,4 +18,7 @@
     </div>
 </div>
 </div>
-<div></div>
+<div></div>';
+}else {
+    header("location:index.php?page=FormConnexion");
+}

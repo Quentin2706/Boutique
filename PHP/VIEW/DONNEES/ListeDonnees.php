@@ -1,4 +1,6 @@
-<div class="conteneur">
+<?php
+if (isset($_SESSION['user'])&& $_SESSION['user']->getRole()==1){
+ echo'<div class="conteneur">
     <div id="menuDeroulant">
         <div>
             <button class="menu">Univers</button>
@@ -80,5 +82,27 @@
                 </div>
             </div>
         </div>
+        <div>
+            <button class="menu">Utilisateurs</button>
+            <div class="sousMenu">
+                <div class="contenuSousMenu ligne" cible="LisUser">
+                    <div class="petiteIcon">
+                        <img src="./IMG/liste.png" alt="liste"></div>
+                    <div> Voir la Liste</div>
+
+                </div>
+                <div class="traitViolet"></div>
+                <div class="contenuSousMenu ligne" cible="AddUser">
+                    <div class="petiteIcon"> <img src="./IMG/plus mauve.png" alt="Ajouter"></div>
+                    <div>Ajouter un utilisateur</div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</div>';
+} else  if (isset($_SESSION['user'])){
+    header("location:index.php?page=MenuCaisse");
+} else {
+    header("location:index.php?page=FormConnexion");
+}
+?>

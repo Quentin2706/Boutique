@@ -37,8 +37,9 @@ $routes=[
 	"Testtable_userManager"=>["PHP/MODEL/TESTMANAGER/","Testtable_userManager","Test de table_user",false],
 	"Testtable_venteManager"=>["PHP/MODEL/TESTMANAGER/","Testtable_venteManager","Test de table_vente",false],
 
-	"FormUser"=>["PHP/VIEW/","FormUser","Formulaire des utilisateurs",false],
-	"ActionUser"=>["PHP/VIEW/","Actionuser","Action des utilisateurs",false],
+	"FormConnexion"=>["PHP/VIEW/","FormConnexion","Formulaire de connexion",false],
+	"FormInscription"=>["PHP/VIEW/","FormInscription","Formulaire d'inscription",false],
+	"ActionUser"=>["PHP/VIEW/","ActionUser","Action des utilisateurs",false],
 	"MenuCaisse"=>["PHP/VIEW/","MenuCaisse","Caisse",false],
 	"ListeVentes"=>["PHP/VIEW/","ListeVentes","Ventes",false],
 	"PassageCaisse"=>["PHP/VIEW/","PassageCaisse","Caisse",false],
@@ -67,7 +68,9 @@ $routes=[
 
 	"ticketAchats"=>["PHP/VIEW/","ticketAchats","ticketAchats",false],
 	"PDFGenerator"=>["PHP/VIEW/","PDFGenerator","PDFGenerator",false],
-	
+
+	"ListeUser"=>["PHP/VIEW/","ListeUser","Liste des utilisateurs",false],
+	"ActionListeUser"=>["PHP/VIEW/","ActionListeUser","Action des utilisateurs",false],
 ];
 
 if(isset($_GET["page"]))

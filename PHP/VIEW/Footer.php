@@ -17,9 +17,9 @@ if (isset($_GET["page"])) {
     $page = $_GET["page"];
     switch ($page) {
         case 'Liste':
-            if ($_GET["table"] == "Article") {
+            if ($_GET["table"] == "article") {
                 echo '<script src="JS/ListeArticles.js"></script>';
-            } else if ($_GET["table"] == "Client") {
+            } else if ($_GET["table"] == "client") {
                 echo '<script src="JS/ListeClients.js"></script>';
             }
             break;

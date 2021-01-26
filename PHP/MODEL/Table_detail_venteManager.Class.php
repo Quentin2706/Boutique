@@ -18,7 +18,7 @@ class Table_detail_venteManager
 	{
  		$db=DbConnect::getDb();
 		$q=$db->prepare("UPDATE Table_detail_vente SET idDetailVente=:idDetailVente,idVente=:idVente,quantite=:quantite,idArticle=:idArticle,prixUnitaire=:prixUnitaire,detailDivers=:detailDivers WHERE idDetailVente=:idDetailVente");
-		$q->bindValue(":idDetailVente", $obj->getIdDetailVente());
+		$q->bindValue(":idDetailVente", $obj->getIdDetail_vente());
 		$q->bindValue(":idVente", $obj->getIdVente());
 		$q->bindValue(":quantite", $obj->getQuantite());
 		$q->bindValue(":idArticle", $obj->getIdArticle());
@@ -29,13 +29,13 @@ class Table_detail_venteManager
 	public static function delete(Table_detail_vente $obj)
 	{
  		$db=DbConnect::getDb();
-		$db->exec("DELETE FROM Table_detail_vente WHERE idDetailVente=" .$obj->getIdDetailVente());
+		$db->exec("DELETE FROM Table_detail_vente WHERE idDetailVente=" .$obj->getIdDetail_vente());
 	}
 	public static function findById($id)
 	{
  		$db=DbConnect::getDb();
 		$id = (int) $id;
-		$q=$db->query("SELECT * FROM Table_detail_vente WHERE idDetailVente =".$id);
+		$q=$db->query("SELECT idDetailVente as idDetail_vente , idVente , quantite , idArticle , prixUnitaire, detailDivers  FROM Table_detail_vente WHERE idDetailVente =".$id);
 		$results = $q->fetch(PDO::FETCH_ASSOC);
 		if($results != false)
 		{
@@ -65,7 +65,8 @@ class Table_detail_venteManager
 	{
  		$db=DbConnect::getDb();
 		$id = (int) $id;
-		$q=$db->query("SELECT * FROM Table_detail_vente WHERE idVente =".$id);
+		$liste=[];
+		$q=$db->query("SELECT idDetailVente as idDetail_vente , idVente , quantite , idArticle , prixUnitaire, detailDivers FROM Table_detail_vente WHERE idVente =".$id);
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
 		{
 			if($donnees != false)

@@ -1,27 +1,27 @@
-
-<?php $clients = Table_clientManager::getList();
-if(isset($_GET["idVente"]))
-{
-    $detailsVente = Table_detail_venteManager::findByVente($_GET["idVente"]);
-    var_dump($detailsVente);
-}
-
-
-
-
-
-?>
-
+<?php
+if (isset($_SESSION['user'])) {
+    $clients = Table_clientManager::getListSort();
+    if (isset($_GET["idVente"])) {
+        $detailsVente = Table_detail_venteManager::findByVente($_GET["idVente"]);
+        //var_dump($detailsVente);
+    }
+    echo '
 <div class="colonne">
 <div class="ligne">
 <div class="blocRecherche ligne">
         <label for="clientCaisse">Client</label>
         <div class="ligne fois2">
-        <select name="clientCaisse" id="clientCaisse">
-            <?php
-for ($i = 0; $i < count($clients); $i++) {
-    echo '<option value="' . $clients[$i]->getIdClient() . '">' . $clients[$i]->getNomClient() . '</option>';
-}?>
+        <select name="clientCaisse" id="clientCaisse">';
+
+    for ($i = 0; $i < count($clients); $i++) {
+        echo '<option value="' . $clients[$i]->getIdClient() . '"';
+        if ($clients[$i]->getIdClient() == 1) {
+            echo "selected";
+        }
+
+        echo '>' . $clients[$i]->getNomClient() . '</option>';
+    }
+    echo '
         </select>
 </div>
         <div class="ligne">
@@ -35,9 +35,7 @@ for ($i = 0; $i < count($clients); $i++) {
             <img src="./IMG/mail.png">
         </div>
         <div class="invisible absoluteMail">
-            <?php 
-                echo "Adresse mail non renseignée";
-            ?>
+            Adresse mail non renseignée
         </div>
         <div></div>
         <div class="boutonCaisse">
@@ -62,37 +60,47 @@ for ($i = 0; $i < count($clients); $i++) {
                         <div class="enTete">Prix unitaire</div>
                         <div class="enTete">Quantité</div>
                         <div class="enTete">Total</div>
-                    </div>
-                    <?php
-                        if(isset($_GET["idVente"]))
-                        {
-                            
-                            for ($i = 0; $i < count($detailsVente);$i++)
-                            {
-                                if ($detailsVente[$i]->getArticle()->getIdArticle() != "4462" && $detailsVente[$i]->getArticle()->getIdArticle() != "4477") 
-                                {
-                                echo'<div class="ligne">
+                    </div>';
+    if (isset($_GET["idVente"])) {
+
+        for ($i = 0; $i < count($detailsVente); $i++) {
+            //Gestion de l'attribut remise sur la ligne
+            if ($detailsVente[$i]->getArticle()->getIdArticle() != "4462" && $detailsVente[$i]->getArticle()->getIdArticle() != "4477") {
+                //on regarde si on est pas en offset sur le tableau des lignes
+                if ($i + 1 < count($detailsVente)) {
+                    //si la ligne suivante est une remise alors la ligne actuelle prend l'attribut remise
+                    if ($detailsVente[$i + 1]->getArticle()->getIdArticle() == "4477") {
+                        echo '<div class="ligne" remise="">';
+                    } else {
+                        echo '<div class="ligne">';
+                    }
+
+                } else {
+                    echo '<div class="ligne">';
+                }
+                echo '
                                         <div class="supprLigne"><img src="./IMG/supprimer.png"></div>
                                         <div class="supprLigne"><img src="./IMG/remise.png"></div>
-                                        <div class="contenu"><input name="" value="'.$detailsVente[$i]->getArticle()->getRefArticle().'" autofocus class="redimInput" /></div>
-                                        <div class="contenu"></div>
-                                        <div class="contenu"></div>
-                                        <div class="contenu"><input name="" type="number" id="" value="" class="redimInput" disabled/></div>
-                                        <div class="contenu"></div>
+                                        <div class="contenu"><input name="" value="' . $detailsVente[$i]->getArticle()->getRefArticle() . '"class="redimInput" disabled/></div>
+                                        <div class="contenu">' . $detailsVente[$i]->getArticle()->getLibArticle() . '</div>
+                                        <div class="contenu">' . $detailsVente[$i]->getArticle()->getPrixVente() . '</div>
+                                        <div class="contenu"><input name="" type="number" id="" value="' . $detailsVente[$i]->getQuantite() . '" class="redimInput"/></div>
+                                        <div class="contenu">' . $detailsVente[$i]->getArticle()->getPrixVente() * $detailsVente[$i]->getQuantite() . '</div>
                                     </div>';
-                                } else if ($detailsVente[$i]->getArticle()->getIdArticle() != "4477")
-                                {
-                                    echo'<div class="ligne">
+            } else if ($detailsVente[$i]->getArticle()->getIdArticle() == "4477") {
+                $remise = (float) substr($detailsVente[$i]->getPrixUnitaire(), 1);
+                $totalRemise = $detailsVente[$i - 1]->getArticle()->getPrixVente() * $detailsVente[$i - 1]->getQuantite() - $remise;
+                echo '<div class="ligneRemise">
                                         <div class="supprLigne"><img src="./IMG/supprimer.png"></div>
-                                        <div class="contenu">Ref. de la remise : '.$detailsVente[$i]->getArticle()->getIdArticle().'</div>
-                                        <div class="contenu">Remise : '..'</div>
-                                        <div class="contenu">Montant de la remise : '..'</div>
-                                        <div class="contenu">Total après remise : '..'</div>
+                                        <div class="contenu">Ref. de la remise : ' . $detailsVente[$i]->getArticle()->getRefArticle() . '</div>
+                                        <div class="contenu">Remise : ' . $remise . "€" . '</div>
+                                        <div class="contenu">Montant de la remise : ' . $remise . "€" . '</div>
+                                        <div class="contenu">Total après remise : ' . $totalRemise . '€</div>
                                     </div>';
-                                }
-                            }
-                        }
-                    ?>
+            }
+        }
+    }
+    echo '
                     <div class="ligne">
                         <div class="supprLigne"><img src="./IMG/supprimer.png"></div>
                         <div class="supprLigne"><img src="./IMG/remise.png"></div>
@@ -104,7 +112,7 @@ for ($i = 0; $i < count($clients); $i++) {
                     </div>
                 </div>
 
-                
+
             </div>
             <div class="colonne fois2 max">
                 <div class="ligne">
@@ -138,8 +146,19 @@ for ($i = 0; $i < count($clients); $i++) {
                         <div class="fois2">
                             <p>Remise</p>
                         </div>
-                        <div></div>
-                        <div id="remise">0%</div>
+                        <div></div>';
+    if (isset($_GET["idVente"])) {
+        for ($i = 0; $i < count($detailsVente); $i++) {
+            if ($detailsVente[$i]->getArticle()->getIdArticle() == "4462") {
+                echo '<div>' . substr($detailsVente[$i]->getPrixUnitaire(), 1) . '€</div>';
+            } else {
+                echo '<div id="remise">0%</div>';
+            }
+        }
+    } else {
+        echo '<div id="remise">0%</div>';
+    }
+    echo '
                         <div class="colonneCaisse"></div>
                     </div>
                     <div class="traitNoir"></div>
@@ -153,13 +172,13 @@ for ($i = 0; $i < count($clients); $i++) {
                     </div>
                 </div>
                 <div class="ligne max">
-                <a> 
+                <a>
                     <div class="boutonCaisse" id="paiement">
                         <img src="./IMG/paiement.png">
                     </div>
                     </a>
                     <div class="fois5"></div>
-                </div>           
+                </div>
         </div>
     </div>
 </div>
@@ -200,7 +219,7 @@ for ($i = 0; $i < count($clients); $i++) {
         </div>
         <div class="flexRemise"></div>
     </div>
-    
+
     <div class="ligneModal centrer">
         <div class="label">Montant de la remise : </div>
         <div class="fois2">
@@ -268,4 +287,7 @@ for ($i = 0; $i < count($clients); $i++) {
     <div class="ligneModal">
         <input id="submitRemiseTotale" type="submit" value="Ajouter la remise totale du ticket ">
     </div>
-</div>
+</div>';
+} else {
+    header("location:index.php?page=FormConnexion");
+}

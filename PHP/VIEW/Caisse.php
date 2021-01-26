@@ -1,4 +1,5 @@
 <?php 
+
     echo ' <div class="blocMarronBordVert ligne">
         <label for="clientCaisse" class="foisDemi">Client</label>
     ';

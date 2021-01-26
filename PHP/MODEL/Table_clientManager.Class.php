@@ -86,4 +86,18 @@ class Table_clientManager
 			return false;
 		}
 	}
+	public static function getListSort()
+	{
+ 		$db=DbConnect::getDb();
+		$liste = [];
+		$q = $db->query("SELECT * FROM Table_client ORDER BY nomClient");
+		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
+		{
+			if($donnees != false)
+			{
+				$liste[] = new Table_client($donnees);
+			}
+		}
+		return $liste;
+	}
 }

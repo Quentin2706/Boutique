@@ -1,3 +1,6 @@
+<?php
+if (isset($_SESSION['user'])&& $_SESSION['user']->getRole()==1){
+    echo'
 <div class="conteneur">
         <div class="bloc">
             <div class="fois5 ligne">
@@ -39,4 +42,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>';
+} else  if (isset($_SESSION['user'])){
+    header("location:index.php?page=MenuCaisse");
+} else {
+    header("location:index.php?page=FormConnexion");
+}
+?>

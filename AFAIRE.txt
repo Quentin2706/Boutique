@@ -1,17 +1,3 @@
-AJOUTER DANS LA METHODE DE FILTRAGE "APIRECH" LES LIKE
-
-AJOUTER UN EVENT LISTENER SUR AFFICHAGE DU TICKET DANS LISTE ACHATS
-
-DANS LA GENERATION PDF:
-TVA deja appliquée sur les articles
-prixTTC/1.2 = PrixHT
-PrixTTC-PrixHT = Montant TVA
-
-
-rendre cliquable la ligne dans recherche vente, pour revenir sur passageCaisse.
-
-ORDER BY NOM PASSAGE CAISSE SELECT
-
 =============================       A    RETENIR       =============================
 
 SI JAMAIS POUR FAIRE UNE REDIRECTION EN JS EN PLUS D'UN APPEL AJAX
@@ -19,6 +5,8 @@ IL FAUT METTRE LA REDIRECTION DANS LE JS AVEC UN SET TIMEOUT(après avoir fait l
 
 ====================================================================================
 
-EVENTLISTENER POUR CHECK LES CARACTERE DE LINPUT BANQUE
+REGEXP POUR CHECK LES CARACTERE DE LINPUT BANQUE
 
-TESTER AVEC LECTEUR CODBAR
+AJOUTER LES SECURITES DE CONNEXION (crypte)
+
+PATTERN MDP ET PSEUDO (regexp) DANS FORM/AJOUT OU MODIF D'USER

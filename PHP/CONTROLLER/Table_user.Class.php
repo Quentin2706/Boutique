@@ -18,12 +18,12 @@ class Table_user
 	/***************** Accesseurs ***************** */
 
 
-	public function getIduser()
+	public function getIdUser()
 	{
 		return $this->_iduser;
 	}
 
-	public function setIduser($iduser)
+	public function setIdUser($iduser)
 	{
 		$this->_iduser=$iduser;
 	}
@@ -35,7 +35,7 @@ class Table_user
 
 	public function getLibelle()
 	{
-		return $this->getPseudo();
+		return $this->getRole();
 	}
 	public function setPseudo($pseudo)
 	{

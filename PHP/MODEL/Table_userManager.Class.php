@@ -58,7 +58,7 @@ class Table_userManager
 			$donnees = $q->fetch ( PDO::FETCH_ASSOC );
 			$q->CloseCursor ();
 			if ($donnees == false) { // Si l'utilisateur n'existe pas, on renvoi un objet vide
-				return new Table_user ();
+				return false;
 			} else {
 				return new Table_user ( $donnees );
 			}

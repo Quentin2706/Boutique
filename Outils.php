@@ -186,7 +186,7 @@ function appelGet($obj, $chaine)
 }
 
 function creerTicketPDF($idClient,$idVente){
-    $client=Table_clientManager::findById($idClient);
+$client=Table_clientManager::findById($idClient);
 $vente=Table_venteManager::findById($idVente);
 $detailVente=Table_detail_venteManager::findByVente($idVente);
 $TVA=0.2;
@@ -199,7 +199,7 @@ $pdf->SetTextColor(0,0,128);
 
 $pdf->Write(6,"Date de vente : ".$vente->getDate_vente());
 $pdf->Ln(6);
-$pdf->Write(6,"Nom du client : ".$client->getNomClient());
+$pdf->Write(6,"Nom du client : ".utf8_decode($client->getNomClient()));
 $pdf->Ln(6);
 $pdf->Write(6,"Adresse postale : ".$client->getAdressePostale());
 $pdf->SetFont("Helvetica","IB",10);
