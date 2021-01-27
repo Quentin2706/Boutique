@@ -123,7 +123,7 @@ if (isset($_SESSION['user'])) { //S'il est connecté on récupère la table
 </div>';
     } else {
         $table = $_GET['table'];
-        $classe = "Table_" . ucfirst($table);
+        $classe = "Table_" . $table;
         $mode = $_GET['mode'];
         if ($mode != "ajout") {
             $id = $_GET['id'];
@@ -158,7 +158,12 @@ if (isset($_SESSION['user'])) { //S'il est connecté on récupère la table
 // On affiche tout les champs à renseigner
         for ($i = 2; $i < count($labels); $i++) { //on commmence à 2 car l'id est déja traité avant (index 1 des tableaux)
             echo '<div>';
-            echo '<label for="' . $infos[$i] . '">' . $labels[$i] . '</label>';
+            echo '<label for="' . $infos[$i] . '">' . $labels[$i]; 
+            if ($_GET["table"]=="User" && $labels[$i]=="Mot de passe")
+            {
+                echo ' (Renseigner UNIQUEMENT ce champ si vous voulez changer de mot de passe)';
+            }
+            echo '</label>';
 
             // Si le label est un select alors on utilise la fonction comboBox
             if ($input[$i] == "select") {
@@ -199,7 +204,11 @@ if (isset($_SESSION['user'])) { //S'il est connecté on récupère la table
             }
             // Input simple
             else {
-                echo '<input name="' . $infos[$i] . '" type="' . $input[$i] . '" required';
+                echo '<input name="' . $infos[$i] . '" type="' . $input[$i] . '"';
+                if ($infos[$i]!="password"){
+                    echo 'required';
+                }
+
                 if ($mode != "ajout") {
                     if ($infos[$i] != "password") {
                         echo ' value= "' . appelGet($objet, $infos[$i]) . '"';
@@ -244,7 +253,12 @@ if (isset($_SESSION['user'])) { //S'il est connecté on récupère la table
 </div>';
     }
 } else if (isset($_SESSION['user'])) {
-    header("location:index.php?page=MenuCaisse");
+    // header("location:index.php?page=MenuCaisse");
+    echo '<meta http-equiv="refresh" content="0;url=index.php?page=MenuCaisse">';
+
+    
 } else {
-    header("location:index.php?page=FormConnexion");
+    // header("location:index.php?page=FormConnexion");
+    echo '<meta http-equiv="refresh" content="0;url=index.php?page=FormConnexion">';
+
 }

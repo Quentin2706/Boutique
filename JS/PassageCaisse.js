@@ -73,8 +73,8 @@ function creerLigne(e) {
 
         var btnSuppr = document.createElement("div");
         btnSuppr.setAttribute("class", "supprLigne");
-        ligne.appendChild(btnSuppr)
-        btnSuppr.addEventListener("click", supprLigne)//Event pour supprimer la ligne
+        ligne.appendChild(btnSuppr);
+        btnSuppr.addEventListener("click", supprLigne); //Event pour supprimer la ligne
 
         var imgSuppr = document.createElement("img");
         imgSuppr.setAttribute("src", "./IMG/supprimer.png");
@@ -82,7 +82,7 @@ function creerLigne(e) {
 
         var btnRem = document.createElement("div");
         btnRem.setAttribute("class", "supprLigne");
-        ligne.appendChild(btnRem)
+        ligne.appendChild(btnRem);
         btnRem.addEventListener("click", affichePopup); //Event listener pour remiser la ligne
 
         var imgRem = document.createElement("img");
@@ -123,6 +123,11 @@ function creerLigne(e) {
         contenu.setAttribute("class", "contenu");
         ligne.appendChild(contenu);
 
+        //Case invisible du stock de l'article
+        var contenu = document.createElement("div");
+        contenu.setAttribute("class", "contenu");
+        ligne.appendChild(contenu);
+
         input.focus(); //Focus sur l'input suivant
     } else {
         tableau.lastChild.children[2].children[0].focus();
@@ -133,14 +138,24 @@ function calculTotalLigne(e) { //  Calcul le total de la ligne (hors remise)
     var quantiteInput = e.target.parentNode.parentNode.children[5].children[0].value;
     if (regExpQuantite.test(quantiteInput)) // on vérifie si la quantité saise est un nombre ou chiffre.
     {
-        var totalLigne = parseFloat(e.target.parentNode.parentNode.children[4].innerHTML) * parseFloat(quantiteInput); //Update du total de la première ligne
-        creerLigne(e);
-        e.target.parentNode.parentNode.children[6].innerHTML = totalLigne;
-        sousTotal();
+        //Gestion Stock : on regarde si il reste assez de stock pour la ligne du ticket 
+        if(parseInt(e.target.parentNode.parentNode.children[7].innerHTML)>=quantiteInput){
+            var totalLigne = parseFloat(e.target.parentNode.parentNode.children[4].innerHTML) * parseFloat(quantiteInput); //Update du total de la première ligne
+            creerLigne(e);
+            e.target.parentNode.parentNode.children[6].innerHTML = totalLigne;
+            sousTotal();
+        }else{
+            e.target.parentNode.parentNode.children[5].children[0].value=0;
+            e.target.parentNode.parentNode.children[6].innerHTML=0;
+            sousTotal();
+            alert("Pas assez de produit en stock");
+        }
+
+        
     }
     if (e.target.parentNode.parentNode.children[6].innerHTML != "") // Ce if sert a garder en mémoire la quantité saisie avant (si la quantité a été supprimée)
     {
-        quantiteInput = parseFloat(e.target.parentNode.parentNode.children[6].innerHTML) / parseFloat(e.target.parentNode.parentNode.children[4].innerHTML)
+        quantiteInput = parseFloat(e.target.parentNode.parentNode.children[6].innerHTML) / parseFloat(e.target.parentNode.parentNode.children[4].innerHTML);
     }
 }
 
@@ -164,7 +179,7 @@ function afficheInfoMail(bool) { //Affiche l'adresse mail en hover sur l'image d
 }
 
 function supprLigne(e) { //Supprime la ligne
-    var confirm = window.confirm("Voulez vraiment supprimer cette ligne ?")
+    var confirm = window.confirm("Voulez vraiment supprimer cette ligne ?");
     if (confirm) {
         if (e.target.tagName == "IMG") {
             var ligneSuppr = e.target.parentNode.parentNode;
@@ -183,7 +198,7 @@ function supprLigne(e) { //Supprime la ligne
 }
 
 function supprTableau(e) {
-    var confirm = window.confirm("Voulez vraiment supprimer TOUTES les ventes ?") //Confirmation de suppression du tableau des ventes
+    var confirm = window.confirm("Voulez vraiment supprimer TOUTES les ventes ?"); //Confirmation de suppression du tableau des ventes
     if (confirm) { //Supprime le tableau et recréé la première ligne
         var entete = tableau.children[0];
         tableau.innerHTML = "";
@@ -196,8 +211,8 @@ function supprTableau(e) {
 
         var btnSuppr = document.createElement("div");
         btnSuppr.setAttribute("class", "supprLigne");
-        ligne.appendChild(btnSuppr)
-        btnSuppr.addEventListener("click", supprLigne)
+        ligne.appendChild(btnSuppr);
+        btnSuppr.addEventListener("click", supprLigne);
 
         var imgSuppr = document.createElement("img");
         imgSuppr.setAttribute("src", "./IMG/supprimer.png");
@@ -205,7 +220,7 @@ function supprTableau(e) {
 
         var btnRem = document.createElement("div");
         btnRem.setAttribute("class", "supprLigne");
-        ligne.appendChild(btnRem)
+        ligne.appendChild(btnRem);
 
         var imgRem = document.createElement("img");
         imgRem.setAttribute("src", "./IMG/remise.png");
@@ -244,6 +259,11 @@ function supprTableau(e) {
         contenu.setAttribute("class", "contenu");
         ligne.appendChild(contenu);
 
+        //Case invisible du stock de l'article
+        var contenu = document.createElement("div");
+        contenu.setAttribute("class", "contenu");
+        ligne.appendChild(contenu);
+
         input.focus(); //Focus sur l'input suivant
         remise.innerHTML = "0%";
     }
@@ -266,7 +286,7 @@ function execModalLigne() { // permet d'executer la remise et d'ajouter la ligne
     if (ligneMereRemiseLigne.hasAttribute("remise")) { //Check s'il y a déjà une remise active, si c'est le cas,  supprime la ligne puis en créé une nouvelle
         ligneMereRemiseLigne.nextElementSibling.remove();
     }
-    ligneMereRemiseLigne.setAttribute("remise", "") //Ajout d'attribut personnalisé pour vérifier si une remise existe déjà
+    ligneMereRemiseLigne.setAttribute("remise", ""); //Ajout d'attribut personnalisé pour vérifier si une remise existe déjà
 
     var ligne = document.createElement("div"); // Création de la seconde ligne
     ligne.setAttribute("class", "ligneRemise");
@@ -274,8 +294,8 @@ function execModalLigne() { // permet d'executer la remise et d'ajouter la ligne
 
     var btnSuppr = document.createElement("div");
     btnSuppr.setAttribute("class", "supprLigne");
-    ligne.appendChild(btnSuppr)
-    btnSuppr.addEventListener("click", supprRemise)//Event pour supprimer la ligne
+    ligne.appendChild(btnSuppr);
+    btnSuppr.addEventListener("click", supprRemise); //Event pour supprimer la ligne
 
     var imgSuppr = document.createElement("img");
     imgSuppr.setAttribute("src", "./IMG/supprimer.png");
@@ -283,14 +303,14 @@ function execModalLigne() { // permet d'executer la remise et d'ajouter la ligne
 
     var uneCase = document.createElement("div"); // Création de la case ref remise
     uneCase.setAttribute("class", "contenu");
-    uneCase.innerHTML = "Ref. de la remise : ZZZXX0000010"
+    uneCase.innerHTML = "Ref. de la remise : ZZZXX0000010";
     ligne.appendChild(uneCase);
 
 
 
     var uneCase = document.createElement("div"); // Création de la première case
     uneCase.setAttribute("class", "contenu");
-    uneCase.innerHTML = "Remise : " + inputRemiseLigne.value
+    uneCase.innerHTML = "Remise : " + inputRemiseLigne.value;
     if (type == "euro") {
         uneCase.innerHTML += "€";
     } else {
@@ -316,7 +336,7 @@ function execModalLigne() { // permet d'executer la remise et d'ajouter la ligne
     montantRemiseLigne.innerHTML = "";
 
     exitModalLigne();
-    subRemLigne.removeEventListener("click", execModalLigne)
+    subRemLigne.removeEventListener("click", execModalLigne);
     sousTotal();
 }
 
@@ -344,16 +364,16 @@ function remiseLigne(e) {
             prixApresRemise.innerHTML = (totalLigne - parseFloat(montantRemiseLigne.innerHTML)).toFixed(2);
             prixApresRemise.innerHTML += "€";
         }
-        subRemLigne.addEventListener("click", execModalLigne)
+        subRemLigne.addEventListener("click", execModalLigne);
         // Vérifie si le montant de la remise en € est bien inférieur au total de la ligne si oui, on ne permet pas le click
         if(remiseLigne>totalLigne && type=="euro"){
-            subRemLigne.removeEventListener("click", execModalLigne)
+            subRemLigne.removeEventListener("click", execModalLigne);
             inputRemiseLigne.setAttribute("class","erreur"); //Affichage erreur
         }
     }else{
-        montantRemiseLigne.innerHTML=""
-        prixApresRemise.innerHTML=""
-        subRemLigne.removeEventListener("click", execModalLigne)
+        montantRemiseLigne.innerHTML="";
+        prixApresRemise.innerHTML="";
+        subRemLigne.removeEventListener("click", execModalLigne);
         // Gestion affichage d'erreur si l'input vide on affiche pas d'erreur
         if(inputRemiseLigne.value==""){
             inputRemiseLigne.setAttribute("class","");
@@ -377,7 +397,7 @@ function affichePopup(e) { //Fonction de remise sur la ligne
 function exitModalTotale() { // Fonction qui permet d'enlever le Popup
     modalRemiseTotale.style.display = "none";
     inputRemiseTotale.value = "";
-    inputRemiseTotale.setAttribute("class","")
+    inputRemiseTotale.setAttribute("class","");
     montantRemiseTotale.innerHTML = "";
     prixAvantRemiseTotale.innerHTML="";
     prixApresRemiseTotale.innerHTML = "";
@@ -392,13 +412,13 @@ function sendRemiseTotale() {
     var remiseTotale = inputRemiseTotale.value;
     var typeRemise = typeRemiseTotale.value;
     if (remiseTotale != "") {
-        blocFinal.children[3].children[2].innerHTML = prixApresRemiseTotale.innerHTML
+        blocFinal.children[3].children[2].innerHTML = prixApresRemiseTotale.innerHTML;
         if (typeRemise == "pourcentage") {
             blocFinal.children[1].children[2].innerHTML = remiseTotale;
-            blocFinal.children[1].children[2].innerHTML += "%"
+            blocFinal.children[1].children[2].innerHTML += "%";
         } else {
             blocFinal.children[1].children[2].innerHTML = remiseTotale;
-            blocFinal.children[1].children[2].innerHTML += "€"
+            blocFinal.children[1].children[2].innerHTML += "€";
         }
         inputRemiseTotale.value = "";
         montantRemiseTotale.innerHTML = "";
@@ -420,16 +440,14 @@ function remiseTotale() {
     if (reg.test(inputRemiseTotale.value)) {
         inputRemiseTotale.setAttribute("class","");
         if (typeRemise == "euro") {
-            montantRemiseTotale.innerHTML = remiseTotale + "€"
+            montantRemiseTotale.innerHTML = remiseTotale + "€";
         } else {
             montantRemiseTotale.innerHTML = (parseFloat(blocFinal.children[0].children[2].innerHTML.substring(0, blocFinal.children[0].children[2].innerHTML.length - 1)) * parseFloat(remiseTotale) / 100).toFixed(2);
-            montantRemiseTotale.innerHTML += "€"
+            montantRemiseTotale.innerHTML += "€";
         }
-        prixApresRemiseTotale.innerHTML = (parseFloat(blocFinal.children[0].children[2].innerHTML.substring(0, blocFinal.children[0].children[2].innerHTML.length - 1)) - parseFloat(montantRemiseTotale.innerHTML.substring(0, montantRemiseTotale.innerHTML.length - 1))).toFixed(2)
-        prixApresRemiseTotale.innerHTML += "€"
-        subRemTotale.addEventListener("click", sendRemiseTotale) // On envoie les infos pour effectuer la remise totale
-        console.log(remiseTotale);
-        console.log(prixAvantRemiseTotale.innerHTML);
+        prixApresRemiseTotale.innerHTML = (parseFloat(blocFinal.children[0].children[2].innerHTML.substring(0, blocFinal.children[0].children[2].innerHTML.length - 1)) - parseFloat(montantRemiseTotale.innerHTML.substring(0, montantRemiseTotale.innerHTML.length - 1))).toFixed(2);
+        prixApresRemiseTotale.innerHTML += "€";
+        subRemTotale.addEventListener("click", sendRemiseTotale);// On envoie les infos pour effectuer la remise totale
         if(parseFloat(remiseTotale)>parseFloat(prixAvantRemiseTotale.innerHTML) && typeRemise=="euro"){
             subRemTotale.removeEventListener("click", sendRemiseTotale);
             inputRemiseTotale.setAttribute("class","erreur");
@@ -450,7 +468,7 @@ function remiseTotale() {
 }
 /***************************  FIN MODAL REMISE TOTALE  ************************************* */
 function supprRemise(e) {
-    var confirm = window.confirm("Voulez vraiment supprimer cette ligne ?")
+    var confirm = window.confirm("Voulez vraiment supprimer cette ligne ?");
     if (confirm) {
         var ligneSuppr = e.target.parentNode.parentNode;
         ligneSuppr.previousElementSibling.removeAttribute("remise");
@@ -474,11 +492,11 @@ function sousTotal() {
         }
     }
     blocFinal.children[0].children[2].innerHTML = somme + "€";
-    totalFinal()
+    totalFinal();
 }
 
 function totalFinal() {
-    var sousTotal = parseFloat(blocFinal.children[0].children[2].innerHTML.substring(0, blocFinal.children[0].children[2].innerHTML.length - 1))
+    var sousTotal = parseFloat(blocFinal.children[0].children[2].innerHTML.substring(0, blocFinal.children[0].children[2].innerHTML.length - 1));
     var remiseFinale = parseFloat(blocFinal.children[1].children[2].innerHTML.substring(0, blocFinal.children[1].children[2].innerHTML.length - 1));
     if (blocFinal.children[1].children[2].innerHTML.substring(blocFinal.children[1].children[2].innerHTML.length - 1) == "€") {
         var prixTotalFinal = (sousTotal - remiseFinale).toFixed(2);
@@ -507,7 +525,7 @@ function envoiVersReglement()
             if(ligne.hasAttribute("remise"))
             {
                 var remise = ligne.nextElementSibling.children[3].innerHTML;
-                var temp = remise.split(":")
+                var temp = remise.split(":");
                 tempdeux = temp[1].substring(1, temp[1].length-1);
                 lignesTicket[cpt].push(tempdeux);
             }
@@ -520,10 +538,9 @@ function envoiVersReglement()
         "lignesTicket" : lignesTicket,
         "sousTotal" : blocFinal.children[0].children[2].innerHTML,
         "remise" : blocFinal.children[1].children[2].innerHTML,
-        "total" : blocFinal.children[3].children[2].innerHTML,
+        "total" : blocFinal.children[3].children[2].innerHTML
     }
     infostest = JSON.stringify(infos);
-    console.log(infostest);
     requ5.open('POST', './index.php?page=apiEnvoiInfoReglement', true);
     requ5.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     //On regarde si la vente était une vente en attente
@@ -555,19 +572,19 @@ boutonsCaisse[3].addEventListener("click", supprTableau); //Event pour supprimer
 
 btnSuppr1.addEventListener("click", supprLigne); //Event de suppression de ligne
 
-btnRem1.addEventListener("click", affichePopup) //Event de remise sur une ligne
+btnRem1.addEventListener("click", affichePopup); //Event de remise sur une ligne
 
 boutonsCaisse[4].addEventListener("click", remiseTotaleDuTicket); //Event de remise sur le tout
 
 /// MODAL REMISE LIGNE
-exitRemiseLigne.addEventListener("click", exitModalLigne) // event pour fermer le Pop-up Remise ligne
+exitRemiseLigne.addEventListener("click", exitModalLigne); // event pour fermer le Pop-up Remise ligne
 
 inputRemiseLigne.addEventListener("input", remiseLigne); // event pour l'input de la remise pour mettre a jour le pop-up Remise ligne
 
 typeRemiseLigne.addEventListener("input", remiseLigne); // event pour le select du type de la remise pour mettre a jour le pop-up Remise ligne
 
 /// MODAL REMISE TOTALE
-exitRemiseTotale.addEventListener("click", exitModalTotale) // event pour fermer le Pop-up Remise Totale
+exitRemiseTotale.addEventListener("click", exitModalTotale); // event pour fermer le Pop-up Remise Totale
 
 inputRemiseTotale.addEventListener("input", remiseTotale); // event pour l'input de la remise pour mettre a jour le pop-up Remise Totale
 
@@ -575,7 +592,7 @@ typeRemiseTotale.addEventListener("input", remiseTotale); // event pour le selec
 
 
 //// PAIEMENTS
-paiement.addEventListener("click", envoiVersReglement)
+paiement.addEventListener("click", envoiVersReglement);
 
 
 
@@ -586,15 +603,14 @@ requ3.onreadystatechange = function (e) {
     // XMLHttpRequest.DONE === 4
     if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status === 200) {
-            console.log("Réponse reçue: %s", this.responseText);
             reponse = JSON.parse(this.responseText);
-            console.log(reponse);
             if (reponse == false) {
                 alert("Article inexistant ! ");
             } else {
                 target.parentNode.parentNode.children[3].innerHTML = reponse.libArticle;//Mise a jour du libellé de  l'article
                 target.parentNode.parentNode.children[4].innerHTML = reponse.prixVente;//Mise a jour du prix
                 target.parentNode.parentNode.children[5].children[0].removeAttribute("disabled", "");//On enable l'input de quantité 
+                target.parentNode.parentNode.children[7].innerHTML=reponse.quantiteStock;//On indique la quantité en stock disponible 
                 target.parentNode.parentNode.children[5].children[0].focus();//Mise en place de l'autofocus sur la quantité
             }
 
@@ -606,13 +622,11 @@ requ4.onreadystatechange = function (e) {
     // XMLHttpRequest.DONE === 4
     if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status === 200) {
-            console.log("Réponse reçue: %s", this.responseText);
             reponse = JSON.parse(this.responseText);
-            console.log(reponse);
             if (reponse.adresseMail != "") {
                 popupMail.innerHTML = reponse.adresseMail;
             } else {
-                popupMail.innerHTML = "Adresse mail non renseignée"
+                popupMail.innerHTML = "Adresse mail non renseignée";
             }
             // on vérifie si le client sélectionné n'est pas le client non renseigné (id 1), pour éviter l'envoi vers le formulaire de celui ci
             if (reponse.idClient != 1)
@@ -624,13 +638,13 @@ requ4.onreadystatechange = function (e) {
         }
     }
 }
-requ5.onreadystatechange = function (e) {
-    // XMLHttpRequest.DONE === 4
-    if (this.readyState === XMLHttpRequest.DONE) {
-        if (this.status === 200) {
-            console.log("Réponse reçue: %s", this.responseText);
-            // reponse = JSON.parse(this.responseText);
-            // console.log(reponse);
-        }
-    }
-}
+
+
+// requ5.onreadystatechange = function (e) {
+//     // XMLHttpRequest.DONE === 4
+//     if (this.readyState === XMLHttpRequest.DONE) {
+//         if (this.status === 200) {
+//             console.log(this.responseText);
+// }
+//     }
+// }

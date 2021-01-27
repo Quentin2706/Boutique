@@ -5,7 +5,7 @@ class Table_promotionManager
 	public static function add(Table_promotion $obj)
 	{
  		$db=DbConnect::getDb();
-		$q=$db->prepare("INSERT INTO Table_promotion (idCateg,dateDebut,dateFin,taux) VALUES (:idCateg,:dateDebut,:dateFin,:taux)");
+		$q=$db->prepare("INSERT INTO table_promotion (idCateg,dateDebut,dateFin,taux) VALUES (:idCateg,:dateDebut,:dateFin,:taux)");
 		$q->bindValue(":idCateg", $obj->getIdCateg());
 		$q->bindValue(":dateDebut", $obj->getDateDebut());
 		$q->bindValue(":dateFin", $obj->getDateFin());
@@ -16,7 +16,7 @@ class Table_promotionManager
 	public static function update(Table_promotion $obj)
 	{
  		$db=DbConnect::getDb();
-		$q=$db->prepare("UPDATE Table_promotion SET idPromotion=:idPromotion,idCateg=:idCateg,dateDebut=:dateDebut,dateFin=:dateFin,taux=:taux WHERE idPromotion=:idPromotion");
+		$q=$db->prepare("UPDATE table_promotion SET idPromotion=:idPromotion,idCateg=:idCateg,dateDebut=:dateDebut,dateFin=:dateFin,taux=:taux WHERE idPromotion=:idPromotion");
 		$q->bindValue(":idPromotion", $obj->getIdPromotion());
 		$q->bindValue(":idCateg", $obj->getIdCateg());
 		$q->bindValue(":dateDebut", $obj->getDateDebut());
@@ -27,13 +27,13 @@ class Table_promotionManager
 	public static function delete(Table_promotion $obj)
 	{
  		$db=DbConnect::getDb();
-		$db->exec("DELETE FROM Table_promotion WHERE idPromotion=" .$obj->getIdPromotion());
+		$db->exec("DELETE FROM table_promotion WHERE idPromotion=" .$obj->getIdPromotion());
 	}
 	public static function findById($id)
 	{
  		$db=DbConnect::getDb();
 		$id = (int) $id;
-		$q=$db->query("SELECT * FROM Table_promotion WHERE idPromotion =".$id);
+		$q=$db->query("SELECT * FROM table_promotion WHERE idPromotion =".$id);
 		$results = $q->fetch(PDO::FETCH_ASSOC);
 		if($results != false)
 		{
@@ -48,7 +48,7 @@ class Table_promotionManager
 	{
  		$db=DbConnect::getDb();
 		$liste = [];
-		$q = $db->query("SELECT * FROM Table_promotion");
+		$q = $db->query("SELECT * FROM table_promotion");
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
 		{
 			if($donnees != false)

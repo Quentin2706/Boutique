@@ -54,13 +54,13 @@ function ajoutLigne() {
     contenu.appendChild(input);
     input.addEventListener("input", check);
 
-    var contenu = document.createElement("div")
-    contenu.setAttribute("class", "contenu")
+    var contenu = document.createElement("div");
+    contenu.setAttribute("class", "contenu");
     contenu.innerHTML = moyenPaiement.options[moyenPaiement.selectedIndex].text;
     ligne.appendChild(contenu);
 
-    var contenu = document.createElement("div")
-    contenu.setAttribute("class", "contenu")
+    var contenu = document.createElement("div");
+    contenu.setAttribute("class", "contenu");
     ligne.appendChild(contenu);
 
     if (idModePaiement == "CH") {
@@ -75,10 +75,10 @@ function check(e) {
     if (e.target.checkValidity()) {
         calcul();
     } else {
-        resteDu.innerHTML = coutTicket
+        resteDu.innerHTML = coutTicket;
         resteDu.innerHTML += "€";
 
-        totalReglement.innerHTML = 0
+        totalReglement.innerHTML = 0;
         totalReglement.innerHTML += "€";
     }
 }
@@ -104,8 +104,7 @@ function calcul() {
         payer.addEventListener("click", affichePopupMail)
     } else {
         if (checkEventPayer == true) {
-
-            payer.removeEventListener("click", affichePopupMail)
+            payer.removeEventListener("click", affichePopupMail);
             checkEventPayer = false;
         }
     }
@@ -113,7 +112,7 @@ function calcul() {
 }
 
 function supprLigne(e) {
-    var confirm = window.confirm("Voulez vraiment supprimer cette ligne ?")
+    var confirm = window.confirm("Voulez vraiment supprimer cette ligne ?");
     if (confirm) {
         if (e.target.tagName == "IMG") {
             var ligneSuppr = e.target.parentNode.parentNode;
@@ -128,7 +127,7 @@ function supprLigne(e) {
 
 function supprTableau() {
     var entete = tableau.children[0];
-    tableau.innerHTML = ""
+    tableau.innerHTML = "";
     tableau.appendChild(entete);
     calcul();
 }
@@ -142,7 +141,7 @@ function recupLaMoula(e) {
         var montant = ligne.children[2].children[0].value;
         lignesModePaiement[cpt] = [idModePaiement, montant];
         if (idModePaiement == "CH") {
-            inputCheque = ligne.children[4].children[0]
+            inputCheque = ligne.children[4].children[0];
             var banque = inputCheque.value;
             lignesModePaiement[cpt].push(banque);
         }
@@ -160,7 +159,7 @@ function recupLaMoula(e) {
     requ.open('POST', './index.php?page=apiPaiement', true);
     requ.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     requ.send("paiement=" + infoPaiementJSON);
-    setTimeout(function(){window.location.replace("index.php?page=PassageCaisse")},1000);
+    // setTimeout(function () { window.location.replace("index.php?page=PassageCaisse") }, 1000);
 }
 
 function envoyerMail() {
@@ -200,25 +199,14 @@ supprTout.addEventListener("click", supprTableau);
 submitSansMail.addEventListener("click", recupLaMoula);
 exitModalMail.addEventListener("click", exitModal); // event pour fermer le Pop-up Remise ligne
 inputMail.addEventListener("input", checkMail);
-/********************API********************/
-requ.onreadystatechange = function (e) {
-    // XMLHttpRequest.DONE === 4
-    if (this.readyState === XMLHttpRequest.DONE) {
-        if (this.status === 200) {
-            console.log("Réponse reçue: %s", this.responseText);
-            // reponse = JSON.parse(this.responseText);
-            // console.log(reponse);
-        }
-    }
-}
 
 requ2.onreadystatechange = function (e) {
     // XMLHttpRequest.DONE === 4
     if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status === 200) {
-            console.log("Réponse reçue: %s", this.responseText);
-            // reponse = JSON.parse(this.responseText);
-            // console.log(reponse);
+            console.log(this.responseText);
+            reponse=JSON_parse(this.responseText);
+            console.log(reponse);
         }
     }
 }

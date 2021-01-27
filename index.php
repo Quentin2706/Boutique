@@ -8,17 +8,6 @@ DbConnect::init();
 
 session_start();
 
-/******Les langues******/
-/***On récupère la langue***/
-if (isset($_GET['lang']))
-{
-	$_SESSION['lang'] = $_GET['lang'];
-}
-
-/***On récupère la langue de la session/FR par défaut***/
-$lang=isset($_SESSION['lang']) ? $_SESSION['lang'] : 'FR';
-/******Fin des langues******/
-
 $routes=[
 	"default"=>["PHP/VIEW/","Accueil","Accueil",false],
 	"Testtable_articleManager"=>["PHP/MODEL/TESTMANAGER/","Testtable_articleManager","Test de table_article",false],

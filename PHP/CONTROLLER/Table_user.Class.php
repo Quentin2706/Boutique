@@ -7,8 +7,8 @@ class Table_user
 
 	private static $listeAttributs = ["Table_user","idUser","pseudo","password","role"];
 	private static $listeTypeInput = ["","hidden","text","password","select"];
-	private static $listeClass = ["","","","", "user"];
-	private static $listeLabel = ["","","Identifiant", "password", "Role"];
+	private static $listeClass;
+	private static $listeLabel = ["","","Identifiant", "Mot de passe", "Role"];
 	private static $nbColonne= 5;
 	private $_iduser;
 	private $_pseudo;

@@ -1,0 +1,9 @@
+AfpaDwwm2020
+https://phpmyadmin.cluster029.hosting.ovh.net/index.php?reload=1
+afpadunkzcdwwm.mysql.db
+afpadunkzcdwwm
+
+FTP :
+ftp.cluster029.hosting.ovh.net
+afpadunkzc
+ftp://afpadunkzc@ftp.cluster029.hosting.ovh.net/

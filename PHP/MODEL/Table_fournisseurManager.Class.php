@@ -5,7 +5,7 @@ class Table_fournisseurManager
     public static function add(Table_fournisseur $obj)
     {
         $db = DbConnect::getDb();
-        $q = $db->prepare("INSERT INTO Table_fournisseur (refFournisseur,libFournisseur,adresseFournisseur,telephoneFournisseur) VALUES (:refFournisseur,:libFournisseur,:adresseFournisseur,:telephoneFournisseur)");
+        $q = $db->prepare("INSERT INTO table_fournisseur (refFournisseur,libFournisseur,adresseFournisseur,telephoneFournisseur) VALUES (:refFournisseur,:libFournisseur,:adresseFournisseur,:telephoneFournisseur)");
         $q->bindValue(":refFournisseur", $obj->getRefFournisseur());
         $q->bindValue(":libFournisseur", $obj->getLibFournisseur());
         $q->bindValue(":adresseFournisseur", $obj->getAdresseFournisseur());
@@ -16,7 +16,7 @@ class Table_fournisseurManager
     public static function update(Table_fournisseur $obj)
     {
         $db = DbConnect::getDb();
-        $q = $db->prepare("UPDATE Table_fournisseur SET idFournisseur=:idFournisseur,refFournisseur=:refFournisseur,libFournisseur=:libFournisseur,adresseFournisseur=:adresseFournisseur,telephoneFournisseur=:telephoneFournisseur WHERE idFournisseur=:idFournisseur");
+        $q = $db->prepare("UPDATE table_fournisseur SET idFournisseur=:idFournisseur,refFournisseur=:refFournisseur,libFournisseur=:libFournisseur,adresseFournisseur=:adresseFournisseur,telephoneFournisseur=:telephoneFournisseur WHERE idFournisseur=:idFournisseur");
         $q->bindValue(":idFournisseur", $obj->getIdFournisseur());
         $q->bindValue(":refFournisseur", $obj->getRefFournisseur());
         $q->bindValue(":libFournisseur", $obj->getLibFournisseur());
@@ -27,13 +27,13 @@ class Table_fournisseurManager
     public static function delete(Table_fournisseur $obj)
     {
         $db = DbConnect::getDb();
-        $db->exec("DELETE FROM Table_fournisseur WHERE idFournisseur=" . $obj->getIdFournisseur());
+        $db->exec("DELETE FROM table_fournisseur WHERE idFournisseur=" . $obj->getIdFournisseur());
     }
     public static function findById($id)
     {
         $db = DbConnect::getDb();
         $id = (int) $id;
-        $q = $db->query("SELECT * FROM Table_fournisseur WHERE idFournisseur =" . $id);
+        $q = $db->query("SELECT * FROM table_fournisseur WHERE idFournisseur =" . $id);
         $results = $q->fetch(PDO::FETCH_ASSOC);
         if ($results != false) {
             return new Table_fournisseur($results);
@@ -45,7 +45,7 @@ class Table_fournisseurManager
     {
         $db = DbConnect::getDb();
         $liste = [];
-        $q = $db->query("SELECT * FROM Table_fournisseur");
+        $q = $db->query("SELECT * FROM table_fournisseur");
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             if ($donnees != false) {
                 $liste[] = new Table_fournisseur($donnees);
@@ -58,7 +58,7 @@ class Table_fournisseurManager
         $db = DbConnect::getDb();
         if (!in_array(";", str_split($ref))) // s'il n'y a pas de ; , je lance la requete
         {
-            $q = $db->query("SELECT * FROM Table_fournisseur WHERE refFournisseur ='" . $ref . "'");
+            $q = $db->query("SELECT * FROM table_fournisseur WHERE refFournisseur ='" . $ref . "'");
             $results = $q->fetch(PDO::FETCH_ASSOC);
             if ($results != false) {
                 return new Table_fournisseur($results);
@@ -74,7 +74,7 @@ class Table_fournisseurManager
         $db = DbConnect::getDb();
         if (!in_array(";", str_split($libelle))) // s'il n'y a pas de ; , je lance la requete
         {
-            $q = $db->query("SELECT * FROM Table_fournisseur WHERE libFournisseur ='" . $libelle . "'");
+            $q = $db->query("SELECT * FROM table_fournisseur WHERE libFournisseur ='" . $libelle . "'");
             $results = $q->fetch(PDO::FETCH_ASSOC);
             if ($results != false) {
                 return new Table_fournisseur($results);

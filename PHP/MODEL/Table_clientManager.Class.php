@@ -1,11 +1,11 @@
 <?php
 
-class Table_clientManager 
+class Table_clientManager
 {
 	public static function add(Table_client $obj)
 	{
  		$db=DbConnect::getDb();
-		$q=$db->prepare("INSERT INTO Table_client (nomClient,adresseMail,adressePostale) VALUES (:nomClient,:adresseMail,:adressePostale)");
+		$q=$db->prepare("INSERT INTO table_client (nomClient,adresseMail,adressePostale) VALUES (:nomClient,:adresseMail,:adressePostale)");
 		$q->bindValue(":nomClient", $obj->getNomClient());
 		$q->bindValue(":adresseMail", $obj->getAdresseMail());
 		$q->bindValue(":adressePostale", $obj->getAdressePostale());
@@ -15,7 +15,7 @@ class Table_clientManager
 	public static function update(Table_client $obj)
 	{
  		$db=DbConnect::getDb();
-		$q=$db->prepare("UPDATE Table_client SET idClient=:idClient,nomClient=:nomClient,adresseMail=:adresseMail,adressePostale=:adressePostale WHERE idClient=:idClient");
+		$q=$db->prepare("UPDATE table_client SET idClient=:idClient,nomClient=:nomClient,adresseMail=:adresseMail,adressePostale=:adressePostale WHERE idClient=:idClient");
 		$q->bindValue(":idClient", $obj->getIdClient());
 		$q->bindValue(":nomClient", $obj->getNomClient());
 		$q->bindValue(":adresseMail", $obj->getAdresseMail());
@@ -25,13 +25,13 @@ class Table_clientManager
 	public static function delete(Table_client $obj)
 	{
  		$db=DbConnect::getDb();
-		$db->exec("DELETE FROM Table_client WHERE idClient=" .$obj->getIdClient());
+		$db->exec("DELETE FROM table_client WHERE idClient=" .$obj->getIdClient());
 	}
 	public static function findById($id)
 	{
  		$db=DbConnect::getDb();
 		$id = (int) $id;
-		$q=$db->query("SELECT * FROM Table_client WHERE idClient =".$id);
+		$q=$db->query("SELECT * FROM table_client WHERE idClient =".$id);
 		$results = $q->fetch(PDO::FETCH_ASSOC);
 		if($results != false)
 		{
@@ -46,7 +46,7 @@ class Table_clientManager
 	{
  		$db=DbConnect::getDb();
 		$liste = [];
-		$q = $db->query("SELECT * FROM Table_client");
+		$q = $db->query("SELECT * FROM table_client");
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
 		{
 			if($donnees != false)
@@ -59,7 +59,7 @@ class Table_clientManager
 	public static function findByNom($nom)
 	{
  		$db=DbConnect::getDb();
-		$q=$db->query('SELECT * FROM Table_client WHERE nomClient ="'.$nom.'"');
+		$q=$db->query('SELECT * FROM table_client WHERE nomClient ="'.$nom.'"');
 		$results = $q->fetch(PDO::FETCH_ASSOC);
 		if($results != false)
 		{
@@ -75,7 +75,7 @@ class Table_clientManager
 	{
 		 $db=DbConnect::getDb();
 		 $id=(int)$id;
-		$q=$db->query('SELECT * FROM Table_client WHERE idClient ='.$id);
+		$q=$db->query('SELECT * FROM table_client WHERE idClient ='.$id);
 		$results = $q->fetch(PDO::FETCH_ASSOC);
 		if($results != false)
 		{
@@ -88,9 +88,9 @@ class Table_clientManager
 	}
 	public static function getListSort()
 	{
- 		$db=DbConnect::getDb();
+		$db=DbConnect::getDb();
 		$liste = [];
-		$q = $db->query("SELECT * FROM Table_client ORDER BY nomClient");
+		$q = $db->query("SELECT * FROM table_client ORDER BY nomClient");
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
 		{
 			if($donnees != false)

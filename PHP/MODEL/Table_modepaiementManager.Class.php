@@ -14,7 +14,7 @@ class Table_modepaiementManager
 	public static function update(Table_modepaiement $obj)
 	{
  		$db=DbConnect::getDb();
-		$q=$db->prepare("UPDATE Table_modepaiement SET idModePaiement=:idModePaiement,libModePaiement=:libModePaiement WHERE idModePaiement=:idModePaiement");
+		$q=$db->prepare("UPDATE table_modepaiement SET idModePaiement=:idModePaiement,libModePaiement=:libModePaiement WHERE idModePaiement=:idModePaiement");
 		$q->bindValue(":idModePaiement", $obj->getIdModePaiement());
 		$q->bindValue(":libModePaiement", $obj->getLibModePaiement());
 		$q->execute();
@@ -22,12 +22,12 @@ class Table_modepaiementManager
 	public static function delete(Table_modepaiement $obj)
 	{
  		$db=DbConnect::getDb();
-		$db->exec('DELETE FROM Table_modepaiement WHERE idModePaiement="' .$obj->getIdModePaiement().'"');
+		$db->exec('DELETE FROM table_modepaiement WHERE idModePaiement="' .$obj->getIdModePaiement().'"');
 	}
 	public static function findById($id)
 	{
  		$db=DbConnect::getDb();
-		$q=$db->query('SELECT * FROM Table_modepaiement WHERE idModePaiement ="'.$id.'"');
+		$q=$db->query('SELECT * FROM table_modepaiement WHERE idModePaiement ="'.$id.'"');
 		$results = $q->fetch(PDO::FETCH_ASSOC);
 		if($results != false)
 		{
@@ -42,7 +42,7 @@ class Table_modepaiementManager
 	{
  		$db=DbConnect::getDb();
 		$liste = [];
-		$q = $db->query("SELECT * FROM Table_modepaiement");
+		$q = $db->query("SELECT * FROM table_modepaiement");
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
 		{
 			if($donnees != false)
@@ -56,7 +56,7 @@ class Table_modepaiementManager
 	public static function findByCodeMode($codeMode)
 	{
  		$db=DbConnect::getDb();
-		$q=$db->query('SELECT * FROM Table_modepaiement WHERE libModePaiement ="'.$codeMode.'"');
+		$q=$db->query('SELECT * FROM table_modepaiement WHERE libModePaiement ="'.$codeMode.'"');
 		$results = $q->fetch(PDO::FETCH_ASSOC);
 		if($results != false)
 		{

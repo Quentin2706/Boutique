@@ -5,7 +5,7 @@ class Table_articleManager
     public static function add(Table_article $obj)
     {
         $db = DbConnect::getDb();
-        $q = $db->prepare("INSERT INTO Table_article (refArticle,libArticle,idUnivers,idCateg,idFournisseur,idCouleur,idTaille,idIncrementale,idLot,quantiteStock,prixAchat,prixVente,seuil) VALUES (:refArticle,:libArticle,:idUnivers,:idCateg,:idFournisseur,:idCouleur,:idTaille,:idIncrementale,:idLot,:quantiteStock,:prixAchat,:prixVente,:seuil)");
+        $q = $db->prepare("INSERT INTO table_article (refArticle,libArticle,idUnivers,idCateg,idFournisseur,idCouleur,idTaille,idIncrementale,idLot,quantiteStock,prixAchat,prixVente,seuil) VALUES (:refArticle,:libArticle,:idUnivers,:idCateg,:idFournisseur,:idCouleur,:idTaille,:idIncrementale,:idLot,:quantiteStock,:prixAchat,:prixVente,:seuil)");
         $q->bindValue(":refArticle", $obj->getRefArticle());
         $q->bindValue(":libArticle", $obj->getLibArticle());
         $q->bindValue(":idUnivers", $obj->getIdUnivers());
@@ -25,7 +25,7 @@ class Table_articleManager
     public static function update(Table_article $obj)
     {
         $db = DbConnect::getDb();
-        $q = $db->prepare("UPDATE Table_article SET idArticle=:idArticle,refArticle=:refArticle,libArticle=:libArticle,idUnivers=:idUnivers,idCateg=:idCateg,idFournisseur=:idFournisseur,idCouleur=:idCouleur,idTaille=:idTaille,idIncrementale=:idIncrementale,idLot=:idLot,quantiteStock=:quantiteStock,prixAchat=:prixAchat,prixVente=:prixVente,seuil=:seuil WHERE idArticle=:idArticle");
+        $q = $db->prepare("UPDATE table_article SET idArticle=:idArticle,refArticle=:refArticle,libArticle=:libArticle,idUnivers=:idUnivers,idCateg=:idCateg,idFournisseur=:idFournisseur,idCouleur=:idCouleur,idTaille=:idTaille,idIncrementale=:idIncrementale,idLot=:idLot,quantiteStock=:quantiteStock,prixAchat=:prixAchat,prixVente=:prixVente,seuil=:seuil WHERE idArticle=:idArticle");
         $q->bindValue(":idArticle", $obj->getIdArticle());
         $q->bindValue(":refArticle", $obj->getRefArticle());
         $q->bindValue(":libArticle", $obj->getLibArticle());
@@ -45,13 +45,13 @@ class Table_articleManager
     public static function delete(Table_article $obj)
     {
         $db = DbConnect::getDb();
-        $db->exec("DELETE FROM Table_article WHERE idArticle=" . $obj->getIdArticle());
+        $db->exec("DELETE FROM table_article WHERE idArticle=" . $obj->getIdArticle());
     }
     public static function findById($id)
     {
         $db = DbConnect::getDb();
         $id = (int) $id;
-        $q = $db->query("SELECT * FROM Table_article WHERE idArticle =" . $id);
+        $q = $db->query("SELECT * FROM table_article WHERE idArticle =" . $id);
         $results = $q->fetch(PDO::FETCH_ASSOC);
         if ($results != false) {
             return new Table_article($results);
@@ -63,7 +63,7 @@ class Table_articleManager
     {
         $db = DbConnect::getDb();
         $liste = [];
-        $q = $db->query("SELECT * FROM Table_article LIMIT 10 ");
+        $q = $db->query("SELECT * FROM table_article LIMIT 10 ");
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             if ($donnees != false) {
                 $liste[] = new Table_article($donnees);
@@ -75,7 +75,7 @@ class Table_articleManager
     {
         $db = DbConnect::getDb();
         $compteur = 0;
-        $requete = "SELECT * FROM Table_article WHERE ";
+        $requete = "SELECT * FROM table_article WHERE ";
         foreach ($tab as $nomColonne => $elt) {
             if (!in_array(";", str_split($nomColonne)) && !in_array(";", str_split($elt))) // s'il n'y a pas de ; , je lance la requete
             {
@@ -104,7 +104,7 @@ class Table_articleManager
         $db = DbConnect::getDb();
         $auj = new DateTime("now");
         $auj = Date_format($auj, "Y-m-d H:i:s");
-        $q = $db->query("SELECT taux FROM Table_promotion WHERE idCateg=" . $article->getIdCateg() . " AND dateDebut < '" . $auj . "' AND dateFin > '" . $auj . "'");
+        $q = $db->query("SELECT taux FROM table_promotion WHERE idCateg=" . $article->getIdCateg() . " AND dateDebut < '" . $auj . "' AND dateFin > '" . $auj . "'");
         if ($donnees = $q->fetch(PDO::FETCH_ASSOC)) {
             return $article->getPrixVente() * ($donnees["taux"] / 100);
         } else {
@@ -118,7 +118,7 @@ class Table_articleManager
         $db = DbConnect::getDb();
         $liste = [];
         $flag = false;
-        $requete = "SELECT * FROM Table_article WHERE ";
+        $requete = "SELECT * FROM table_article WHERE ";
         // ON COMPOSE LA REQUETE
         foreach ($filtrage as $nom => $elt) {
             if ($elt != "" && $elt != "null") {
@@ -145,7 +145,7 @@ class Table_articleManager
     {
         $db = DbConnect::getDb();
         if (!in_array(";", str_split($ref))) {
-            $q = $db->query('SELECT * FROM Table_article WHERE refArticle ="' . $ref.'"');
+            $q = $db->query('SELECT * FROM table_article WHERE refArticle ="' . $ref.'"');
             $results = $q->fetch(PDO::FETCH_ASSOC);
             if ($results != false) {
                 return $results;
@@ -162,7 +162,7 @@ class Table_articleManager
     {
         $db = DbConnect::getDb();
         if (!in_array(";", str_split($ref))) {
-            $q = $db->query('SELECT * FROM Table_article WHERE refArticle ="' . $ref.'"');
+            $q = $db->query('SELECT * FROM table_article WHERE refArticle ="' . $ref.'"');
             $results = $q->fetch(PDO::FETCH_ASSOC);
             if ($results != false) {
                 return new Table_article($results);
@@ -173,5 +173,14 @@ class Table_articleManager
             return false;
         }
 
+    }
+
+    public static function updateStock(Table_article $obj,$quantite)
+    {
+        $db = DbConnect::getDb();
+        $q = $db->prepare("UPDATE table_article SET quantiteStock=:quantiteStock WHERE idArticle=:idArticle");
+        $q->bindValue(":idArticle", $obj->getIdArticle());
+        $q->bindValue(":quantiteStock", $quantite);
+        $q->execute();
     }
 }

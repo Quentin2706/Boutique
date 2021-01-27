@@ -4,9 +4,8 @@ class Table_categManager
 {
 	public static function add(Table_categ $obj)
 	{
-		var_dump($obj);
  		$db=DbConnect::getDb();
-		$q=$db->prepare("INSERT INTO Table_categ (refCateg,libCateg,idUnivers) VALUES (:refCateg,:libCateg,:idUnivers)");
+		$q=$db->prepare("INSERT INTO table_categ (refCateg,libCateg,idUnivers) VALUES (:refCateg,:libCateg,:idUnivers)");
 		$q->bindValue(":refCateg", $obj->getRefCateg());
 		$q->bindValue(":libCateg", $obj->getLibCateg());
 		$q->bindValue(":idUnivers", $obj->getIdUnivers());
@@ -16,7 +15,7 @@ class Table_categManager
 	public static function update(Table_categ $obj)
 	{
  		$db=DbConnect::getDb();
-		$q=$db->prepare("UPDATE Table_categ SET idCateg=:idCateg,refCateg=:refCateg,libCateg=:libCateg,idUnivers=:idUnivers WHERE idCateg=:idCateg");
+		$q=$db->prepare("UPDATE table_categ SET idCateg=:idCateg,refCateg=:refCateg,libCateg=:libCateg,idUnivers=:idUnivers WHERE idCateg=:idCateg");
 		$q->bindValue(":idCateg", $obj->getIdCateg());
 		$q->bindValue(":refCateg", $obj->getRefCateg());
 		$q->bindValue(":libCateg", $obj->getLibCateg());
@@ -26,13 +25,13 @@ class Table_categManager
 	public static function delete(Table_categ $obj)
 	{
  		$db=DbConnect::getDb();
-		$db->exec("DELETE FROM Table_categ WHERE idCateg=" .$obj->getIdCateg());
+		$db->exec("DELETE FROM table_categ WHERE idCateg=" .$obj->getIdCateg());
 	}
 	public static function findById($id)
 	{
  		$db=DbConnect::getDb();
 		$id = (int) $id;
-		$q=$db->query("SELECT * FROM Table_categ WHERE idCateg =".$id);
+		$q=$db->query("SELECT * FROM table_categ WHERE idCateg =".$id);
 		$results = $q->fetch(PDO::FETCH_ASSOC);
 		if($results != false)
 		{
@@ -47,7 +46,7 @@ class Table_categManager
 	{
  		$db=DbConnect::getDb();
 		$liste = [];
-		$q = $db->query("SELECT * FROM Table_categ");
+		$q = $db->query("SELECT * FROM table_categ");
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
 		{
 			if($donnees != false)
@@ -60,7 +59,7 @@ class Table_categManager
 	public static function findByReference($ref)
 	{
  		$db=DbConnect::getDb();
-		$q=$db->query("SELECT * FROM Table_categ WHERE refCateg ='" .$ref. "'");
+		$q=$db->query("SELECT * FROM table_categ WHERE refCateg ='" .$ref. "'");
 		$results = $q->fetch(PDO::FETCH_ASSOC);
 		if($results != false)
 		{

@@ -3,7 +3,6 @@ if (isset($_SESSION['user'])) {
     $clients = Table_clientManager::getListSort();
     if (isset($_GET["idVente"])) {
         $detailsVente = Table_detail_venteManager::findByVente($_GET["idVente"]);
-        //var_dump($detailsVente);
     }
     echo '
 <div class="colonne">
@@ -60,6 +59,7 @@ if (isset($_SESSION['user'])) {
                         <div class="enTete">Prix unitaire</div>
                         <div class="enTete">Quantité</div>
                         <div class="enTete">Total</div>
+                        <div class="enTete">Quantité restante</div>
                     </div>';
     if (isset($_GET["idVente"])) {
 
@@ -86,6 +86,7 @@ if (isset($_SESSION['user'])) {
                                         <div class="contenu">' . $detailsVente[$i]->getArticle()->getPrixVente() . '</div>
                                         <div class="contenu"><input name="" type="number" id="" value="' . $detailsVente[$i]->getQuantite() . '" class="redimInput"/></div>
                                         <div class="contenu">' . $detailsVente[$i]->getArticle()->getPrixVente() * $detailsVente[$i]->getQuantite() . '</div>
+                                        <div class="contenu">'.$detailsVente[$i]->getArticle()->getQuantiteStock().'</div>
                                     </div>';
             } else if ($detailsVente[$i]->getArticle()->getIdArticle() == "4477") {
                 $remise = (float) substr($detailsVente[$i]->getPrixUnitaire(), 1);
@@ -108,6 +109,7 @@ if (isset($_SESSION['user'])) {
                         <div class="contenu"></div>
                         <div class="contenu"></div>
                         <div class="contenu"><input name="" type="number" id="" value="" class="redimInput" disabled/></div>
+                        <div class="contenu"></div>
                         <div class="contenu"></div>
                     </div>
                 </div>
@@ -289,5 +291,7 @@ if (isset($_SESSION['user'])) {
     </div>
 </div>';
 } else {
-    header("location:index.php?page=FormConnexion");
+    // header("location:index.php?page=FormConnexion");
+    echo '<meta http-equiv="refresh" content="0;url=index.php?page=FormConnexion">';
+
 }

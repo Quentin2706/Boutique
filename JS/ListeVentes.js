@@ -11,7 +11,7 @@ const requ2 = new XMLHttpRequest();//API Ventes Clients
     {
         var mois = "0"+(date.getMonth()+1);
     } else {
-        var mois = date.getMonth()+1
+        var mois = date.getMonth()+1;
     }
     
     if (date.getDate() < 10)
@@ -30,7 +30,7 @@ function filtreVente() {
     filtrageVente = JSON.stringify(filtrageVente);
     requ2.open('POST', './index.php?page=apiVente', true);
     requ2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    requ2.send("filtrageVente=" + filtrageVente)
+    requ2.send("filtrageVente=" + filtrageVente);
 }
 
 
@@ -59,9 +59,7 @@ function alertVenteFinie(e)
         // XMLHttpRequest.DONE === 4
         if (this.readyState === XMLHttpRequest.DONE) {
             if (this.status === 200) {
-                console.log("Réponse reçue: %s", this.responseText);
                 reponse = JSON.parse(this.responseText);
-                console.log(reponse);
                 tableauVente.innerHTML = "";
                 tableauVente.appendChild(entete);
                 for (let i = 0; i < reponse.length; i++) {

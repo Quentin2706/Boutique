@@ -1,6 +1,7 @@
 <?php
 function ChargerClasse($classe)
 {
+    
     if (file_exists("PHP/CONTROLLER/" . $classe . ".Class.php")) {
         require "PHP/CONTROLLER/" . $classe . ".Class.php";
     }
@@ -51,31 +52,6 @@ function afficherPage($page)
         include 'PHP/VIEW/Footer.php';
     }
 }
-
-// function optionComboBox($code, $nom)
-// {
-//     $ref=["Client"=>["id"=> "idClient","libelle"=>"NomClient"]];
-//     $select = '<select id="id' . $nom . '" name="id' . $nom . '" >';
-//     if ($nom = "Client") {
-//         $liste = Table_clientManager::getList();
-//     }
-
-//     if ($code == null) { // si le code est null, on ne mets pas de choix par défaut avec valeur
-//         $select .= '<option value="" SELECTED>Choisir une valeur</option>';
-//     }
-//     foreach ($liste as $elt) {
-//         $methodId = "get" . $ref[$nom]["id"];
-//         $methodLibelle = "get" . $ref[$nom]["libelle"];
-//         if ($code == $elt->$methodId()) //appel de la methode stockée dans $method
-//         { // si le code entré en paramètre est égale à l'élément alors c'est celui qui est selectionné
-//             $select .= '<option value="' . $elt->$methodId() . '" SELECTED>' . $elt->$methodLibelle() . '</option>';
-//         } else {
-//             $select .= '<option value="' . $elt->$methodId() . '">' . $elt->$methodLibelle() . '</option>';
-//         }
-//     }
-//     $select .= "</select>";
-//     return $select;
-// }
 
 function optionComboBox($code, $nom, $class, $obj, $mode)
 {
@@ -162,7 +138,7 @@ function optionSelect($valeur, $table, $nomId, $mode)
  */
 function appelFindById($nomTable, $id)
 {
-    $methode = "Table_" . $nomTable . "Manager::findById";
+    $methode = "Table_" . strtolower($nomTable) . "Manager::findById";
     // $methode = $nomTable."Manager::findById";
     return call_user_func($methode, $id);
 }
@@ -186,11 +162,14 @@ function appelGet($obj, $chaine)
 }
 
 function creerTicketPDF($idClient,$idVente){
+    var_dump($idClient);
+    var_dump($idVente);
 $client=Table_clientManager::findById($idClient);
 $vente=Table_venteManager::findById($idVente);
 $detailVente=Table_detail_venteManager::findByVente($idVente);
 $TVA=0.2;
 $paiements = Table_paiementManager::findByVente($idVente);
+var_dump($paiements);
 $pdf=new FPDF("P","mm","A4");
 
 $pdf->AddPage();

@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['user'])) {
-    $paiements = Table_modePaiementManager::getList();
+    $paiements = Table_modepaiementManager::getList();
     $client = Table_clientManager::findById($_GET["idClient"]);
     $total = $_GET["total"];
     $vente = Table_venteManager::findLastByClient($client);
@@ -107,5 +107,6 @@ if (isset($_SESSION['user'])) {
 
     </div>';
 } else {
-    header("location:index.php?page=FormConnexion");
+    // header("location:index.php?page=FormConnexion");
+    echo '<meta http-equiv="refresh" content="0;url=index.php?page=FormConnexion">';
 }

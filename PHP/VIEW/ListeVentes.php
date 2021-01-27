@@ -9,11 +9,11 @@ if (isset($_SESSION['user'])) {
     <div class="ligneRecherche ligne">
       <div class="marginCote centrer">
         <label for="dateDebut ">Du</label>
-        <input name="dateDebut" type="date" id="dateDebut" value="'.$auj.'">
+        <input name="dateDebut" type="date" id="dateDebut" value="' . $auj . '">
       </div>
       <div class="marginCote centrer">
         <label for="dateFin">Au</label>
-        <input name="dateFin" type="date" id="dateFin" value="'.$auj.'">
+        <input name="dateFin" type="date" id="dateFin" value="' . $auj . '">
       </div>
     </div>
     <div class="espace"></div>
@@ -38,5 +38,7 @@ if (isset($_SESSION['user'])) {
   </div>
 </div>';
 } else {
-    header("location:index.php?page=FormConnexion");
+    // header("location:index.php?page=FormConnexion");
+    echo '<meta http-equiv="refresh" content="0;url=index.php?page=FormConnexion">';
+
 }

@@ -5,7 +5,7 @@ class Table_tailleManager
 	public static function add(Table_taille $obj)
 	{
  		$db=DbConnect::getDb();
-		$q=$db->prepare("INSERT INTO Table_taille (libTaille,refTaille) VALUES (:libTaille,:refTaille)");
+		$q=$db->prepare("INSERT INTO table_taille (libTaille,refTaille) VALUES (:libTaille,:refTaille)");
 		$q->bindValue(":libTaille", $obj->getLibTaille());
 		$q->bindValue(":refTaille", $obj->getRefTaille());
 		$q->execute();
@@ -14,7 +14,7 @@ class Table_tailleManager
 	public static function update(Table_taille $obj)
 	{
  		$db=DbConnect::getDb();
-		$q=$db->prepare("UPDATE Table_taille SET idTaille=:idTaille,libTaille=:libTaille,refTaille=:refTaille WHERE idTaille=:idTaille");
+		$q=$db->prepare("UPDATE table_taille SET idTaille=:idTaille,libTaille=:libTaille,refTaille=:refTaille WHERE idTaille=:idTaille");
 		$q->bindValue(":idTaille", $obj->getIdTaille());
 		$q->bindValue(":libTaille", $obj->getLibTaille());
 		$q->bindValue(":refTaille", $obj->getRefTaille());
@@ -23,13 +23,13 @@ class Table_tailleManager
 	public static function delete(Table_taille $obj)
 	{
  		$db=DbConnect::getDb();
-		$db->exec("DELETE FROM Table_taille WHERE idTaille=" .$obj->getIdTaille());
+		$db->exec("DELETE FROM table_taille WHERE idTaille=" .$obj->getIdTaille());
 	}
 	public static function findById($id)
 	{
  		$db=DbConnect::getDb();
 		$id = (int) $id;
-		$q=$db->query("SELECT * FROM Table_taille WHERE idTaille =".$id);
+		$q=$db->query("SELECT * FROM table_taille WHERE idTaille =".$id);
 		$results = $q->fetch(PDO::FETCH_ASSOC);
 		if($results != false)
 		{
@@ -44,7 +44,7 @@ class Table_tailleManager
 	{
  		$db=DbConnect::getDb();
 		$liste = [];
-		$q = $db->query("SELECT * FROM Table_taille");
+		$q = $db->query("SELECT * FROM table_taille");
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
 		{
 			if($donnees != false)

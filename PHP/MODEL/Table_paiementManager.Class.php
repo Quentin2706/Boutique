@@ -5,7 +5,7 @@ class Table_paiementManager
 	public static function add(Table_paiement $obj)
 	{
  		$db=DbConnect::getDb();
-		$q=$db->prepare("INSERT INTO Table_paiement (idVente,idmodePaiement,montant,idClient,banque) VALUES (:idVente,:idmodePaiement,:montant,:idClient,:banque)");
+		$q=$db->prepare("INSERT INTO table_paiement (idVente,idmodePaiement,montant,idClient,banque) VALUES (:idVente,:idmodePaiement,:montant,:idClient,:banque)");
 		$q->bindValue(":idVente", $obj->getIdVente());
 		$q->bindValue(":idmodePaiement", $obj->getIdmodePaiement());
 		$q->bindValue(":montant", $obj->getMontant());
@@ -17,7 +17,7 @@ class Table_paiementManager
 	public static function update(Table_paiement $obj)
 	{
  		$db=DbConnect::getDb();
-		$q=$db->prepare("UPDATE Table_paiement SET idpaiement=:idpaiement,idVente=:idVente,idmodePaiement=:idmodePaiement,montant=:montant,idClient=:idClient,banque=:banque WHERE idpaiement=:idpaiement");
+		$q=$db->prepare("UPDATE table_paiement SET idpaiement=:idpaiement,idVente=:idVente,idmodePaiement=:idmodePaiement,montant=:montant,idClient=:idClient,banque=:banque WHERE idpaiement=:idpaiement");
 		$q->bindValue(":idpaiement", $obj->getIdpaiement());
 		$q->bindValue(":idVente", $obj->getIdVente());
 		$q->bindValue(":idmodePaiement", $obj->getIdmodePaiement());
@@ -29,13 +29,13 @@ class Table_paiementManager
 	public static function delete(Table_paiement $obj)
 	{
  		$db=DbConnect::getDb();
-		$db->exec("DELETE FROM Table_paiement WHERE idpaiement=" .$obj->getIdpaiement());
+		$db->exec("DELETE FROM table_paiement WHERE idpaiement=" .$obj->getIdpaiement());
 	}
 	public static function findById($id)
 	{
  		$db=DbConnect::getDb();
 		$id = (int) $id;
-		$q=$db->query("SELECT * FROM Table_paiement WHERE idpaiement =".$id);
+		$q=$db->query("SELECT * FROM table_paiement WHERE idpaiement =".$id);
 		$results = $q->fetch(PDO::FETCH_ASSOC);
 		if($results != false)
 		{
@@ -50,7 +50,7 @@ class Table_paiementManager
 	{
  		$db=DbConnect::getDb();
 		$liste = [];
-		$q = $db->query("SELECT * FROM Table_paiement");
+		$q = $db->query("SELECT * FROM table_paiement");
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
 		{
 			if($donnees != false)
@@ -65,7 +65,7 @@ class Table_paiementManager
 	{
 		$db=DbConnect::getDb();
 		$id=(int) $idVente;
-		$q=$db->query("SELECT montant FROM Table_paiement WHERE idVente =".$idVente);
+		$q=$db->query("SELECT montant FROM table_paiement WHERE idVente =".$idVente);
 		$sommePaiement=0;
 		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
 		{
@@ -115,7 +115,7 @@ class Table_paiementManager
 	{
 		$db=DbConnect::getDb();
 	    $liste = [];
-	    $q = $db->query("SELECT * FROM Table_paiement WHERE idVente=".$id);
+	    $q = $db->query("SELECT * FROM table_paiement WHERE idVente=".$id);
 	    while($donnees = $q->fetch(PDO::FETCH_ASSOC))
 	    {
 		   if($donnees != false)

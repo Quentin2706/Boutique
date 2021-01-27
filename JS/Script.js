@@ -341,7 +341,6 @@ function remiseLigne(e) { //Fonction de remise sur la ligne
 function remiseTotaleDuTicket(){
     var remiseT=prompt("Remise Totale en %");
     if(remiseT!=null && remiseT!=""){
-        console.log(blocFinal.children[1].children[1])
         blocFinal.children[1].children[1].innerHTML=remiseT+"%";
     } else{
         blocFinal.children[1].children[1].innerHTML="0%";
@@ -355,7 +354,6 @@ function sousTotal(){
     for (let i=1;i<totalLignes.length-1;i++){ //Boucle pour récupérer tout les total sauf l'entête et la ligne vide
         if(totalLignes[i].hasAttribute("remise")){ // On vérifie sir la ligne à l'attribut remise pour récupérer le total de la ligne remise
             var totalRemiseLigne=totalLignes[i].nextElementSibling.children[2].innerHTML.split(':');
-            console.log(totalRemiseLigne);
             totalRemiseLigne = parseFloat(totalRemiseLigne[1].substring(0,totalRemiseLigne[1].length-1));
             somme+=totalRemiseLigne;//On ajoute le total
         }else{//On récupère le total s'il n'y a pas eu de remise
@@ -452,9 +450,7 @@ requ.onreadystatechange = function (event) {
     // XMLHttpRequest.DONE === 4
     if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status === 200) {
-            console.log("Réponse reçue: %s", this.responseText);
             reponse = JSON.parse(this.responseText);
-            console.log(reponse);
             var entete = tableauArticles.children[0];
             tableauArticles.innerHTML = "";
             tableauArticles.appendChild(entete);
@@ -578,7 +574,7 @@ requ.onreadystatechange = function (event) {
                 donnees[i].addEventListener("click", afficheDetail)
             }
         } else {
-            console.log("Status de la réponse: %d (%s)", this.status, this.statusText);
+            //console.log("Status de la réponse: %d (%s)", this.status, this.statusText);
         }
     }
 };
@@ -587,9 +583,9 @@ requ2.onreadystatechange = function (event) {
     // XMLHttpRequest.DONE === 4
     if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status === 200) {
-            console.log("Réponse reçue: %s", this.responseText);
+            //console.log("Réponse reçue: %s", this.responseText);
             reponse = JSON.parse(this.responseText);
-            console.log(reponse);
+            //console.log(reponse);
             tableauVente.innerHTML = "";
             tableauVente.appendChild(entete);
             for (let i = 0; i < reponse.length; i++) {
@@ -642,9 +638,9 @@ requ3.onreadystatechange = function (e) {
     // XMLHttpRequest.DONE === 4
     if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status === 200) {
-            console.log("Réponse reçue: %s", this.responseText);
+            //console.log("Réponse reçue: %s", this.responseText);
             reponse = JSON.parse(this.responseText);
-            console.log(reponse);
+            //console.log(reponse);
             target.parentNode.parentNode.children[3].innerHTML = reponse.libArticle;//Mise a jour du libellé de  l'article
             target.parentNode.parentNode.children[4].innerHTML = reponse.prixVente;//Mise a jour du prix
             target.parentNode.parentNode.children[5].children[0].removeAttribute("disabled", "");//On enable l'input de quantité 
@@ -657,9 +653,9 @@ requ4.onreadystatechange = function (e) {
     // XMLHttpRequest.DONE === 4
     if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status === 200) {
-            console.log("Réponse reçue: %s", this.responseText);
+            //console.log("Réponse reçue: %s", this.responseText);
             reponse = JSON.parse(this.responseText);
-            console.log(reponse);
+            //console.log(reponse);
             if (reponse.adresseMail != "") {
                 popupMail.innerHTML = reponse.adresseMail;
             } else {

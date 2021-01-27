@@ -28,7 +28,11 @@ if (isset($_SESSION['user']) && $_SESSION['user']->getRole() == 1) {
     echo '</div><div></div></div>';
 
 } else if (isset($_SESSION['user'])) {
-    header("location:index.php?page=MenuCaisse");
+    // header("location:index.php?page=MenuCaisse");
+    echo '<meta http-equiv="refresh" content="0;url=index.php?page=MenuCaisse">';
+
 } else {
-    header("location:index.php?page=FormConnexion");
+    // header("location:index.php?page=FormConnexion");
+    echo '<meta http-equiv="refresh" content="0;url=index.php?page=FormConnexion">';
+
 }

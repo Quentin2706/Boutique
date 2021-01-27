@@ -23,7 +23,8 @@ if (isset($_SESSION['user'])) { //S'il est connecté on récupère la table
                 }
         }
 
-        header("location:index.php?page=Liste&table=" . $_GET["table"]);
+        // header("location:index.php?page=Liste&table=" . $_GET["table"]);
+        echo '<meta http-equiv="refresh" content="0;url=index.php?page=Liste?table='.$_GET["table"].'">';
     } else { //Sinon l'administrateur peut agir sur toute les tables
         $manager = $table . 'Manager';
         $p = new $table($_POST);
@@ -47,11 +48,14 @@ if (isset($_SESSION['user'])) { //S'il est connecté on récupère la table
                 }
         }
 
-        header("location:index.php?page=Liste&table=" . $_GET["table"]);
+        // header("location:index.php?page=Liste&table=" . $_GET["table"]);
+        echo '<meta http-equiv="refresh" content="0;url=index.php?page=Liste?table='.$_GET["table"].'">';
     }
 
 } else if (isset($_SESSION['user'])) {
-    header("location:index.php?page=MenuCaisse");
+    // header("location:index.php?page=MenuCaisse");
+    echo '<meta http-equiv="refresh" content="0;url=index.php?page=MenuCaisse">';
 } else {
-    header("location:index.php?page=FormConnexion");
+    // header("location:index.php?page=FormConnexion");
+    echo '<meta http-equiv="refresh" content="0;url=index.php?page=FormConnexion">';
 }

@@ -189,7 +189,11 @@ if (isset($_SESSION['user'])) { //S'il est connecté on récupère la table
         }
     }
 } else if (isset($_SESSION['user'])) {
-    header("location:index.php?page=MenuCaisse");
+    // header("location:index.php?page=MenuCaisse");
+    echo '<meta http-equiv="refresh" content="0;url=index.php?page=MenuCaisse">';
+
 } else {
-    header("location:index.php?page=FormConnexion");
+    // header("location:index.php?page=FormConnexion");
+    echo '<meta http-equiv="refresh" content="0;url=index.php?page=FormConnexion">';
+
 }

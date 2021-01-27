@@ -36,9 +36,9 @@ requ.onreadystatechange = function (event) {
     // XMLHttpRequest.DONE === 4
     if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status === 200) {
-            console.log("Réponse reçue: %s", this.responseText);
+            // console.log("Réponse reçue: %s", this.responseText);
             reponse = JSON.parse(this.responseText);
-            console.log(reponse);
+            // console.log(reponse);
             var entete = tableauArticles.children[0];
             tableauArticles.innerHTML = "";
             tableauArticles.appendChild(entete);
@@ -93,7 +93,7 @@ requ.onreadystatechange = function (event) {
                 bouton = document.createElement("button");
                 lesBoutons.appendChild(bouton);
                 ahref = document.createElement("a");
-                ahref.setAttribute("href", "index.php?page=Form&table=article&mode=modif&id=" + reponse[i].idArticle)
+                ahref.setAttribute("href", "index.php?page=Form&table=article&mode=modif&id=" + reponse[i].idArticle);
                 bouton.appendChild(ahref);
                 img = document.createElement("img");
                 img.setAttribute("src", "./IMG/modifie.png");
@@ -104,7 +104,7 @@ requ.onreadystatechange = function (event) {
                 bouton = document.createElement("button");
                 lesBoutons.appendChild(bouton);
                 ahref = document.createElement("a");
-                ahref.setAttribute("href", "index.php?page=Form&table=article&mode=delete&id=" + reponse[i].idArticle)
+                ahref.setAttribute("href", "index.php?page=Form&table=article&mode=delete&id=" + reponse[i].idArticle);
                 bouton.appendChild(ahref);
                 img = document.createElement("img");
                 img.setAttribute("src", "./IMG/supprimer.png");
@@ -159,10 +159,10 @@ requ.onreadystatechange = function (event) {
             }
             var donnees = document.getElementsByClassName("donnees");
             for (let i = 0; i < donnees.length; i++) {
-                donnees[i].addEventListener("click", afficheDetail)
+                donnees[i].addEventListener("click", afficheDetail);
             }
         } else {
-            console.log("Status de la réponse: %d (%s)", this.status, this.statusText);
+            // console.log("Status de la réponse: %d (%s)", this.status, this.statusText);
         }
     }
 };

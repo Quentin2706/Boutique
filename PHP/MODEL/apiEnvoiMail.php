@@ -1,53 +1,60 @@
 <?php
-require("./FPDF/fpdf.php");
-$idClient=$_POST["idClient"];
-$idVente=$_POST["idVente"];
-creerTicketPDF($idClient,$idVente);
+require "./FPDF/fpdf.php";
+$idClient = $_POST["idClient"];
+$idVente = $_POST["idVente"];
+creerTicketPDF($idClient, $idVente);
 
-$client=Table_clientManager::findById($idClient);
-$vente=Table_venteManager::findById($idVente);
+$client = Table_clientManager::findById($idClient);
+$vente = Table_venteManager::findById($idVente);
 
-// On va dabors définir le fichier à envoyer et à qui
-$fichier = './Tickets/ticket'.$_POST["idVente"].'.pdf';
-$destinataire=$_POST["mail"];
-$sujet = 'LBL - Votre ticket de caisse';
+//Destinataire
+$to = $_POST['mail'];
 
-// On créer un boundary unique
+//Sujet
+$subject = 'LBL - Votre ticket de caisse';
+
+//Clé aléatoire de limite
 $boundary = md5(uniqid(rand(), true));
 
-// On met les entêtes
-$entetes = 'Content-Type: multipart/mixed;'."n".' boundary="'.$boundary.'"';
-$body = 'This is a multi-part message in MIME format.'."n";
-$body .= '--'.$boundary."n";
+// Headers
+$headers = 'From: La boutique du Lin <mail@server.com>' . "\r\n";
+$headers .= 'Mime-Version: 1.0' . "\r\n";
+$headers .= 'Content-Type: multipart/mixed;boundary=' . $boundary . "\r\n";
+$headers .= "\r\n";
 
-//Texte
-$body .= "n";
-$body .= 'Content-Type: text/html; charset="UTF-8"'."n";
-$body .= 'Bonjour,'.$client->getNomClient().'
-Voici ci-joint la facture du '.$vente->getDate_vente();
-$body .= "n";
-$body .= '--'.$boundary."n";
+// Message;
+$msg = '';
 
-//Piece jointe
-//entete piece jointe
-$body .= 'Content-Type: application/pdf; name="'.$fichier.'"'."n";
-$body .= 'Content-Transfer-Encoding: base64'."n";
-$body .= 'Content-Disposition: attachment; filename="'.$fichier.'"'."n";
-//récupération fichier et encodage
-$body .= "n";
-$source = file_get_contents($fichier);
-$source = base64_encode ($source);
-$source = chunk_split($source);
-$body .= $source;
+// Texte
+$msg .= '--' . $boundary . "\r\n";
+$msg .= 'Content-type:text/plain;charset=utf-8' . "\r\n";
+$msg .= 'Content-transfer-encoding:8bit' . "\r\n";
+if ($client->getIdClient() != 1) {
+    $msg .= 'Bonjour, ' . $client->getNomClient() . ' voici ci-joint la facture du ' . $vente->getDate_vente() . "\r\nMerci pour votre achat à la boutique du lin. A bientôt !" . "\r\n";
+} else {
+    $msg .= 'Bonjour, voici ci-joint la facture du ' . $vente->getDate_vente() . "\r\nMerci pour votre achat à la boutique du lin. A bientôt !" . "\r\n";
+}
 
-// On ferme la dernière partie :
-$body .= "n".'--'.$boundary.'--';
+// Pièce jointe
+$file_name = './Tickets/Ticket' . $_POST["idVente"] . '.pdf';
+if (file_exists($file_name)) {
+    $file_type = filetype($file_name);
+    $file_size = filesize($file_name);
 
+    $handle = fopen($file_name, 'r') or die('File ' . $file_name . 'can t be open');
+    $content = fread($handle, $file_size);
+    $content = chunk_split(base64_encode($content));
+    $f = fclose($handle);
 
+    $msg .= '--' . $boundary . "\r\n";
+    $msg .= 'Content-type: application/pdf;name=' . $file_name . "\r\n";
+    $msg .= 'Content-transfer-encoding:base64' . "\r\n";
+    $msg .= 'Content-Disposition: attachment; filename="' . $file_name . '"' . "\n";
+    $msg .= $content . "\r\n";
+}
 
-// On envoi le mail :
-$test=mail($destinataire, $sujet, $body, $entetes);
+// Fin
+$msg .= '--' . $boundary . "\r\n";
 
-// var_dump($_POST);
-// $test=mail($destinataire, "Confirmation d'inscription", "Bienvenue sur notre site");
-var_dump($test);
+// Function mail()
+mail($to, $subject, $msg, $headers);

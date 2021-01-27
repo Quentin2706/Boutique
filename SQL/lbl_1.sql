@@ -494,7 +494,7 @@ INSERT INTO `table_lot` (`idLot`, `reflot`) VALUES
 --
 
 INSERT INTO `table_user` (`iduser`, `pseudo`, `password`, `role`) VALUES
-(1, 'mp', '1f2dfa567dcf95833eddf7aec167fec7', 1);
+(1, 'mp', '17b2c19960246c836458bb4dcf7f7136', 1);
 COMMIT;
 
 --
