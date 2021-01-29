@@ -159,7 +159,7 @@ function recupLaMoula(e) {
     requ.open('POST', './index.php?page=apiPaiement', true);
     requ.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     requ.send("paiement=" + infoPaiementJSON);
-    // setTimeout(function () { window.location.replace("index.php?page=PassageCaisse") }, 1000);
+    setTimeout(function () { window.location.replace("index.php?page=PassageCaisse") }, 1000);
 }
 
 function envoyerMail() {

@@ -61,6 +61,7 @@ if (isset($_SESSION['user'])) {
                         <div class="enTete">Total</div>
                         <div class="enTete">Quantité restante</div>
                     </div>';
+    //Si c'est une vente en cours on rempli le ticket avec les informations de la vente
     if (isset($_GET["idVente"])) {
 
         for ($i = 0; $i < count($detailsVente); $i++) {
@@ -78,6 +79,7 @@ if (isset($_SESSION['user'])) {
                 } else {
                     echo '<div class="ligne">';
                 }
+                $quantiteStock=$detailsVente[$i]->getArticle()->getQuantiteStock()+$detailsVente[$i]->getQuantite(); //La quantité en stock avec la quantité prise par la vente
                 echo '
                                         <div class="supprLigne"><img src="./IMG/supprimer.png"></div>
                                         <div class="supprLigne"><img src="./IMG/remise.png"></div>
@@ -86,9 +88,9 @@ if (isset($_SESSION['user'])) {
                                         <div class="contenu">' . $detailsVente[$i]->getArticle()->getPrixVente() . '</div>
                                         <div class="contenu"><input name="" type="number" id="" value="' . $detailsVente[$i]->getQuantite() . '" class="redimInput"/></div>
                                         <div class="contenu">' . $detailsVente[$i]->getArticle()->getPrixVente() * $detailsVente[$i]->getQuantite() . '</div>
-                                        <div class="contenu">'.$detailsVente[$i]->getArticle()->getQuantiteStock().'</div>
+                                        <div class="contenu">'.$quantiteStock.'</div>
                                     </div>';
-            } else if ($detailsVente[$i]->getArticle()->getIdArticle() == "4477") {
+            } else if ($detailsVente[$i]->getArticle()->getIdArticle() == "4477") { //Si c'est une remise sur la ligne
                 $remise = (float) substr($detailsVente[$i]->getPrixUnitaire(), 1);
                 $totalRemise = $detailsVente[$i - 1]->getArticle()->getPrixVente() * $detailsVente[$i - 1]->getQuantite() - $remise;
                 echo '<div class="ligneRemise">

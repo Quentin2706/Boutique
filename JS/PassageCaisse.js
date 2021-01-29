@@ -50,6 +50,12 @@ var urlCourante = document.location.href;
 if(urlCourante.includes("idVente")){
     sousTotal();
     var idVente=urlCourante.substring(urlCourante.indexOf("idVente")).split("=")[1];
+    console.log(tableau.children.length);
+    for(let i=2;i<tableau.children.length-1;i++){ //On ajoute les events sur l'input quantité sur tout les lignes (pas la 1ere car c'est l'entete ni la 2e car elle est faite de base et la dernière qui gérer à part)
+        tableau.children[i].children[5].children[0].addEventListener("change", calculTotalLigne);
+    }
+    tableau.lastElementChild.children[2].children[0].addEventListener("input", remplissageAuto); //Ajout d'event sur l'input référence sur la dernière ligne
+    tableau.lastElementChild.children[5].children[0].addEventListener("change", calculTotalLigne);  //Ajout d'event sur l'input quantité sur la dernière ligne
 }
 
 /********* FUNCTIONS ********/
@@ -66,7 +72,7 @@ function remplissageAuto(e) {
 }
 
 function creerLigne(e) {
-    if (e.target.parentNode.parentNode.children[6].innerHTML == "") { //On regarde si le total n'a pas déjà été calculé(ligne déjà remplie)
+    if (e.target.parentNode.parentNode.children[6].innerHTML != "" && e.target.parentNode.parentNode.children[6].innerHTML != "0" ) { //On regarde si le total n'a pas déjà été calculé(ligne déjà remplie)
         var ligne = document.createElement("div");
         ligne.setAttribute("class", "ligne");
         tableau.appendChild(ligne);
@@ -130,7 +136,7 @@ function creerLigne(e) {
 
         input.focus(); //Focus sur l'input suivant
     } else {
-        tableau.lastChild.children[2].children[0].focus();
+        tableau.lastElementChild.children[2].children[0].focus();
     }
 }
 
@@ -141,8 +147,8 @@ function calculTotalLigne(e) { //  Calcul le total de la ligne (hors remise)
         //Gestion Stock : on regarde si il reste assez de stock pour la ligne du ticket 
         if(parseInt(e.target.parentNode.parentNode.children[7].innerHTML)>=quantiteInput){
             var totalLigne = parseFloat(e.target.parentNode.parentNode.children[4].innerHTML) * parseFloat(quantiteInput); //Update du total de la première ligne
-            creerLigne(e);
             e.target.parentNode.parentNode.children[6].innerHTML = totalLigne;
+            creerLigne(e);
             sousTotal();
         }else{
             e.target.parentNode.parentNode.children[5].children[0].value=0;
