@@ -60,6 +60,8 @@ $routes=[
 
 	"ListeUser"=>["PHP/VIEW/","ListeUser","Liste des utilisateurs",false],
 	"ActionListeUser"=>["PHP/VIEW/","ActionListeUser","Action des utilisateurs",false],
+
+	"ExporterCSV"=>["PHP/VIEW/","ExporterCSV","EXPORTER LE CSV",false]
 ];
 
 if(isset($_GET["page"]))

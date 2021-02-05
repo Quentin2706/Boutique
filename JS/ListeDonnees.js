@@ -19,10 +19,10 @@ function afficheSousMenu(event) {
 function redirige(event) {
     var cible = event.target.parentNode.getAttribute("cible");
     if (cible.substring(0, 3) == "Lis") {
-        window.location.href = "index.php?page=Liste&table=" + cible.substring(3);
+        window.location.href = "index.php?page=Liste&table=" + cible.substring(3).toLowerCase();
     }
     else {
-        window.location.href = "index.php?page=Form&table=" + cible.substring(3) + "&mode=ajout";
+        window.location.href = "index.php?page=Form&table=" + cible.substring(3).toLowerCase() + "&mode=ajout";
     }
 }
 
