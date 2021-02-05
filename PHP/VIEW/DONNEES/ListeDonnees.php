@@ -69,16 +69,16 @@ if (isset($_SESSION['user'])&& $_SESSION['user']->getRole()==1){
         <div>
             <button class="menu">Promotions</button>
             <div class="sousMenu">
-                <div class="contenuSousMenu ligne" cible="LisCateg">
+                <div class="contenuSousMenu ligne" cible="LisPromotion">
                     <div class="petiteIcon">
                         <img src="./IMG/liste.png" alt="liste"></div>
                     <div> Voir la Liste</div>
 
                 </div>
                 <div class="traitViolet"></div>
-                <div class="contenuSousMenu ligne" cible="AddCateg">
+                <div class="contenuSousMenu ligne" cible="AddPromotion">
                     <div class="petiteIcon"> <img src="./IMG/plus mauve.png" alt="Ajouter"></div>
-                    <div>Ajouter une Catégorie</div>
+                    <div>Ajouter une Promotion</div>
                 </div>
             </div>
         </div>

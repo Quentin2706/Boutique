@@ -72,7 +72,7 @@ function remplissageAuto(e) {
 }
 
 function creerLigne(e) {
-    if (e.target.parentNode.parentNode.children[6].innerHTML != "" && e.target.parentNode.parentNode.children[6].innerHTML != "0" ) { //On regarde si le total n'a pas déjà été calculé(ligne déjà remplie)
+    if (e.target.parentNode.parentNode.children[6].innerHTML != "" && e.target.parentNode.parentNode.children[6].innerHTML != "0" && tableau.lastElementChild.children[2].children[0].value != "") { //On regarde si le total n'a pas déjà été calculé(ligne déjà remplie) et si il y a une ligne vide déja créer
         var ligne = document.createElement("div");
         ligne.setAttribute("class", "ligne");
         tableau.appendChild(ligne);
@@ -192,13 +192,15 @@ function supprLigne(e) { //Supprime la ligne
         } else {
             var ligneSuppr = e.target.parentNode;
         }
+        if(ligneSuppr.children[2].children[0].value!=""){ //On regarde si la ligne n'est pas une ligne vide
+            if (ligneSuppr.hasAttribute("remise")) {
+                ligneSuppr.nextElementSibling.remove();
+            }
 
-        if (ligneSuppr.hasAttribute("remise")) {
-            ligneSuppr.nextElementSibling.remove();
+            ligneSuppr.remove();
+            creerLigne(e);
         }
-
-        ligneSuppr.remove();
-        creerLigne(e);
+        
     }
     sousTotal();
 }

@@ -58,4 +58,20 @@ class Table_promotionManager
 		}
 		return $liste;
 	}
+
+	public static function getListByCateg($id)
+	{
+		$db=DbConnect::getDb();
+		$id=(int)$id; 
+		$liste = [];
+		$q = $db->query("SELECT * FROM table_promotion WHERE idCateg=".$id);
+		while($donnees = $q->fetch(PDO::FETCH_ASSOC))
+		{
+			if($donnees != false)
+			{
+				$liste[] = new Table_promotion($donnees);
+			}
+		}
+		return $liste;
+	}
 }
