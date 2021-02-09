@@ -318,3 +318,31 @@ ADD `DATEMODIFICATION` DATETIME on update CURRENT_TIMESTAMP NULL DEFAULT NULL;
 ALTER TABLE table_paiement
 ADD `DATECREATION` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
 ADD `DATEMODIFICATION` DATETIME on update CURRENT_TIMESTAMP NULL DEFAULT NULL; 
+
+
+CREATE VIEW table_article_CSV AS SELECT 
+  table_article.refArticle,
+  table_article.libArticle,
+  table_univers.refUnivers,
+  table_univers.libUnivers,
+  table_categ.refCateg,
+  table_categ.libCateg,
+  table_fournisseur.refFournisseur,
+  table_fournisseur.libFournisseur,
+  table_couleur.refCouleur,
+  table_couleur.libCouleur,
+  table_taille.refTaille,
+  table_taille.libTaille,
+  table_incrementale.refIncrementale,
+  table_lot.reflot,
+  table_article.quantiteStock,
+  table_article.prixAchat,
+  table_article.prixVente,
+  table_article.seuil
+  FROM table_article INNER JOIN table_univers ON table_article.idUnivers=table_univers.idUnivers 
+    INNER JOIN table_categ ON table_article.idCateg=table_categ.idCateg 
+    INNER JOIN table_fournisseur ON table_article.idFournisseur=table_fournisseur.idFournisseur 
+    INNER JOIN table_couleur ON table_article.idCouleur=table_couleur.idCouleur 
+    INNER JOIN table_taille ON table_article.idTaille=table_taille.idTaille 
+    INNER JOIN table_incrementale ON table_article.idIncrementale=table_incrementale.idIncrementale 
+    INNER JOIN table_lot ON table_article.idLot=table_lot.idLot;
