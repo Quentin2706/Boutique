@@ -132,6 +132,11 @@ if (isset($_SESSION['user'])) { //S'il est connecté on récupère la table
             <div class="centrer">
                 <input  class="bouton centrer" type="submit" value="Rechercher" id="recherche">
             </div>
+            <div class="centrer">
+            <a href="index.php?page=ExporterCSV">
+                <input type="button" class="bouton centrer" value="Exporter"/>
+            </a>
+            </div>
         </div>';
             }
 

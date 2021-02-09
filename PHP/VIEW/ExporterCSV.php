@@ -11,6 +11,8 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 #                                                            PROGRAMME                                                                   #
 ##########################################################################################################################################
 
+if (isset($_SESSION['user'])&& $_SESSION['user']->getRole()==1){
+
 // on recupere le fichier modele
 $gabarit = \PhpOffice\PhpSpreadsheet\IOFactory::load("CSV/Gabarit.xlsx");
 $sheet = $gabarit->getActiveSheet();
@@ -22,7 +24,6 @@ $nomFichier = "Articles " . $auj;
 saveCSV($nomFichier, $gabarit);
 
 $articles=Table_article_CSVManager::getList();
-
 for($i=0;$i<count($articles);$i++){
     $nb=3+$i;
     $ligne="A".$nb.":R".$nb;
@@ -52,6 +53,23 @@ for($i=0;$i<count($articles);$i++){
     $sheet->setCellValueByColumnAndRow(18, 3 + $i, $articles[$i]->getSeuil());
 }
 saveCSV($nomFichier, $gabarit);
+
+echo '
+<div class="centrer">
+<a href="index.php?page=Liste&table=article">
+    <input type="button" class="bouton centrer" value="Retour"/>
+    </a>
+</div>';
+
+} else  if (isset($_SESSION['user'])){
+    // header("location:index.php?page=MenuCaisse");
+    echo '<meta http-equiv="refresh" content="0;url=index.php?page=FormConnexion">';
+
+} else {
+    // header("location:index.php?page=FormConnexion");
+    echo '<meta http-equiv="refresh" content="0;url=index.php?page=FormConnexion">';
+
+}
 ##########################################################################################################################################
 #                                                            FONCTIONS                                                                   #
 ##########################################################################################################################################
