@@ -23,6 +23,10 @@ var modalEnvoiMail = document.getElementById("modalEnvoiMail");
 var exitModalMail = document.getElementsByClassName("close")[0];
 var inputMail = document.getElementById("inputMailClient");
 var checkEventMail = false;
+
+/**Premier input**/
+var premLigne=document.getElementsByClassName("premierInput")[0];
+var supprLignePrem=document.getElementsByClassName("supprLignePrem")[0];
 /********************FONCTIONS********************/
 function ajoutLigne() {
     idModePaiement = moyenPaiement.value;
@@ -112,6 +116,7 @@ function calcul() {
 }
 
 function supprLigne(e) {
+    console
     var confirm = window.confirm("Voulez vraiment supprimer cette ligne ?");
     if (confirm) {
         if (e.target.tagName == "IMG") {
@@ -199,6 +204,11 @@ supprTout.addEventListener("click", supprTableau);
 submitSansMail.addEventListener("click", recupLaMoula);
 exitModalMail.addEventListener("click", exitModal); // event pour fermer le Pop-up Remise ligne
 inputMail.addEventListener("input", checkMail);
+premLigne.addEventListener("input", check); //On ajoute une ligne par défaut avec en input le prix total déjà rempli et CB en mode de paiement
+payer.addEventListener("click", affichePopupMail);
+supprLignePrem.addEventListener("click",supprLigne);
+
+calcul();//On lance la fonction dès le démarrage pour mettre à zéro le reste dû vu qu'on démarre avec une ligne remplie par défaut
 
 requ2.onreadystatechange = function (e) {
     // XMLHttpRequest.DONE === 4

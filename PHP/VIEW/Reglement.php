@@ -11,12 +11,22 @@ if (isset($_SESSION['user'])) {
     <div class="ligne">
         <div class="tableau">
             <div class="ligne">
-                <div class="enTete supprLigne"></div>
+                <div class="enTete supprLigne "><img class="mediaImage" src="./IMG/supprimer.png"></div>
                 <div class="enTete">Mode Paiement</div>
                 <div class="enTete">Montant</div>
                 <div class="enTete">Libellé Mode</div>
                 <div class="enTete">Banque</div>
             </div>
+
+            <div class="ligne">
+                <div class="supprLignePrem"> <img src="./IMG/supprimer.png"> </div>
+                <div class="contenu">CB</div>
+                <div class="contenu"><input class="inputLigne redimInput premierInput" pattern="[0-9]+(.[0-9][0-9]?)?" value="'.substr($total,0,-3).'"/></div>'; //On fait -3 puisque l'ASCII de l'euro est 128 
+                echo '
+                <div class="contenu">Carte Bleue</div>
+                <div class="contenu"></div>
+            </div>
+
         </div>
 
         <div id="blocPaiement">
@@ -25,7 +35,11 @@ if (isset($_SESSION['user'])) {
                 <div class="ligne blocPaiement">
                     <select name="moyenPaiement" id="moyenPaiement">';
     for ($i = 1; $i < count($paiements); $i++) {
-        echo '<option value =' . $paiements[$i]->getIdModePaiement() . '>' . $paiements[$i]->getLibModePaiement() . '</option>';
+        echo '<option value ="' . $paiements[$i]->getIdModePaiement().'"';
+        if ($paiements[$i]->getIdModePaiement()=="CB"){
+            echo 'selected';
+        }
+         echo '>' . $paiements[$i]->getLibModePaiement() . '</option>';
     }
     echo '
                     </select>

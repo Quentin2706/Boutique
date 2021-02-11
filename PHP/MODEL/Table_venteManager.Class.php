@@ -127,4 +127,29 @@ class Table_venteManager
         }
     }
 
+    public static function findLastByVenteSansParam()
+    {
+        $db = DbConnect::getDb();
+        $q = $db->query("SELECT `idVente` FROM `table_vente` WHERE `idVente` = (SELECT MAX(`idVente`) FROM `table_vente`)");
+        $results = $q->fetch(PDO::FETCH_ASSOC);
+        if ($results != false) {
+            return $results["idVente"];
+        } else {
+            return false;
+        }
+    }
+
+    public static function findClientByVente($idVente){
+        $db = DbConnect::getDb();
+        $idVente=(int)$idVente;
+        $q = $db->query('SELECT idClient FROM table_vente WHERE idVente ='.$idVente);
+        $results=$q->fetch(PDO::FETCH_ASSOC);
+        if($results != false){
+            return $results['idClient'];
+        }else{
+            return false;
+        }
+       
+    }
+
 }

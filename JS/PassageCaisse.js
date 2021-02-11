@@ -50,9 +50,10 @@ var urlCourante = document.location.href;
 if(urlCourante.includes("idVente")){
     sousTotal();
     var idVente=urlCourante.substring(urlCourante.indexOf("idVente")).split("=")[1];
-    console.log(tableau.children.length);
     for(let i=2;i<tableau.children.length-1;i++){ //On ajoute les events sur l'input quantité sur tout les lignes (pas la 1ere car c'est l'entete ni la 2e car elle est faite de base et la dernière qui gérer à part)
-        tableau.children[i].children[5].children[0].addEventListener("change", calculTotalLigne);
+    if(!tableau.children[i].hasAttribute("ligneRemise")){
+            tableau.children[i].children[5].children[0].addEventListener("change", calculTotalLigne);
+        }
     }
     tableau.lastElementChild.children[2].children[0].addEventListener("input", remplissageAuto); //Ajout d'event sur l'input référence sur la dernière ligne
     tableau.lastElementChild.children[5].children[0].addEventListener("change", calculTotalLigne);  //Ajout d'event sur l'input quantité sur la dernière ligne
@@ -166,10 +167,15 @@ function calculTotalLigne(e) { //  Calcul le total de la ligne (hors remise)
 }
 
 function chargeInfoMail() { //Charge le mail de la personne selectionnée
+
+    if(nomClient.value!=1){// On permet la modification du client si ce n'est pas le client non enregistré, sinon on ne permet pas la modification
+        boutonsCaisse[2].addEventListener("click",envoiVersReglement);
+    }else{
+        boutonsCaisse[2].removeEventListener("click",envoiVersReglement);
+    }
     requ4.open('POST', './index.php?page=apiInfoMail', true);
     requ4.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     requ4.send("nomClient=" + nomClient.value);
-
 }
 
 // function surchargeReglement(){
@@ -516,7 +522,7 @@ function totalFinal() {
     blocFinal.children[3].children[2].innerHTML = prixTotalFinal + "€";
 }
 
-function envoiVersReglement()
+function envoiVersReglement(e)
 {
     // On créer une boucle pour récuperer toutes les lignes du tickets autrement dit la liste d'achats
     var lignesTicket = [];
@@ -558,10 +564,19 @@ function envoiVersReglement()
         requ5.send("infos="+infostest);
     }
    
-    setTimeout(function(){window.location.replace("index.php?page=Reglement&idClient="+infos["idClient"]+"&total="+infos["total"])},1000);
+    if (e.target.parentNode.getAttribute("id")=="paiement"){
+      setTimeout(function(){window.location.replace("index.php?page=Reglement&idClient="+infos["idClient"]+"&total="+infos["total"])},1000);  
+    } else if(e.target.parentNode.getAttribute("id")=="ajoutClient"){//Dans le cas ou il veut modifier un client
+        setTimeout(function(){window.location.replace("index.php?page=Form&mode=ajout&table=client&tag=encours")},1000);  
+    } else {
+        setTimeout(function(){window.location.replace("index.php?page=Form&mode=modif&id="+nomClient.value+"&table=client&tag=encours")},1000);  
+    }
+    
 }   
 
 /********* EVENT LISTENERS ********/
+
+boutonsCaisse[0].addEventListener("click",envoiVersReglement);
 
 infoPC[0].children[0].addEventListener("input", remplissageAuto);//Remplissange auto pour la première ligne après le remplissage de la ref
 
@@ -601,6 +616,7 @@ typeRemiseTotale.addEventListener("input", remiseTotale); // event pour le selec
 
 //// PAIEMENTS
 paiement.addEventListener("click", envoiVersReglement);
+
 
 
 

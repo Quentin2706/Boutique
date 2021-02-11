@@ -4,6 +4,12 @@ if (isset($_SESSION['user'])) {
     if (isset($_GET["idVente"])) {
         $detailsVente = Table_detail_venteManager::findByVente($_GET["idVente"]);
     }
+    if (isset($_GET['tag'])){ // Le tag nous permet de savoir si la commande est en cours et qu'on a ajouté un nouveau client
+        $idLastClient=Table_clientManager::findLastClient();
+    }
+    if (isset($_GET['idClient'])){ // Le idClient permet de savoir si le client a été modifié
+        $idLastClient=$_GET['idClient'];
+    }
     echo '
 <div class="colonne">
 <div class="ligne">
@@ -14,7 +20,11 @@ if (isset($_SESSION['user'])) {
 
     for ($i = 0; $i < count($clients); $i++) {
         echo '<option value="' . $clients[$i]->getIdClient() . '"';
-        if ($clients[$i]->getIdClient() == 1) {
+        if (isset($_GET['tag']) || isset($_GET['idClient'])){
+            if($clients[$i]->getIdClient()==$idLastClient){ //Si l'id du client dans l'option est égale à l'id du client que l'on vient d'ajouter, il le selecte par défaut
+                echo "selected";
+            }
+        }else if($clients[$i]->getIdClient() == 1) {
             echo "selected";
         }
 
@@ -24,10 +34,8 @@ if (isset($_SESSION['user'])) {
         </select>
 </div>
         <div class="ligne">
-        <div class="boutonCaisse" >
-            <a href="./index.php?page=Form&table=client&mode=ajout">
+        <div class="boutonCaisse" id="ajoutClient">
             <img src="./IMG/plus.png">
-        </a>
         </div>
         <div></div>
         <div class="boutonCaisse " id="mailClient">
@@ -37,10 +45,8 @@ if (isset($_SESSION['user'])) {
             Adresse mail non renseignée
         </div>
         <div></div>
-        <div class="boutonCaisse">
-            <a href="">
+        <div class="boutonCaisse" id="modifClient">
             <img src="./IMG/personne.png">
-        </a>
         </div>
 </div>
     </div>
@@ -52,8 +58,8 @@ if (isset($_SESSION['user'])) {
             <div class="colonneCaisse">
                 <div class="tableau">
                     <div class="ligne">
-                        <div class="enTete supprLigne"></div>
-                        <div class="enTete supprLigne"></div>
+                        <div class="enTete supprLigne"><img class="mediaImage" src="./IMG/supprimer.png"></div>
+                        <div class="enTete supprLigne"<img class="mediaImage" src="./IMG/remise.png"></div>
                         <div class="enTete">Référence</div>
                         <div class="enTete">Article</div>
                         <div class="enTete">Prix unitaire</div>
@@ -151,15 +157,18 @@ if (isset($_SESSION['user'])) {
                             <p>Remise</p>
                         </div>
                         <div></div>';
-    if (isset($_GET["idVente"])) {
+    if (isset($_GET["idVente"])) { //Regarde si c'est une vente en cours
         for ($i = 0; $i < count($detailsVente); $i++) {
-            if ($detailsVente[$i]->getArticle()->getIdArticle() == "4462") {
+            if ($detailsVente[$i]->getArticle()->getIdArticle() == "4462") {  // Remise totale
+                var_dump(substr($detailsVente[$i]->getPrixUnitaire()));
                 echo '<div>' . substr($detailsVente[$i]->getPrixUnitaire(), 1) . '€</div>';
             } else {
+                var_dump('test');
                 echo '<div id="remise">0%</div>';
             }
         }
     } else {
+        var_dump('test2');
         echo '<div id="remise">0%</div>';
     }
     echo '

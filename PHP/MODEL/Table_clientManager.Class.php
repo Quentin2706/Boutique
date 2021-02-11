@@ -100,4 +100,18 @@ class Table_clientManager
 		}
 		return $liste;
 	}
+
+	public static function findLastClient()
+	{
+		$db = DbConnect::getDb();
+        $q = $db->query("SELECT `idClient` FROM `table_client` WHERE `idClient` = (SELECT MAX(`idClient`) FROM `table_client`)");
+        $results = $q->fetch(PDO::FETCH_ASSOC);
+        if ($results != false) {
+            return $results["idClient"];
+        } else {
+            return false;
+        }
+	}
+
+
 }

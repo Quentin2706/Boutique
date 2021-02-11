@@ -547,7 +547,7 @@ fieldset {
 
 /****Listes Ventes****/
 
-.boutonCaisse,.supprLigne{
+.boutonCaisse,.supprLigne,.supprLignePrem{
     border: white 4px solid;
     background-color: var(--violet);
     border-radius: 10px;
@@ -620,7 +620,7 @@ fieldset {
     padding:0.2em;
 }
 
-.supprLigne{
+.supprLigne,.supprLignePrem{
     flex:0.3;
     border-radius: unset;
     border: white 2px solid;
@@ -724,4 +724,23 @@ select{
 
 #inputMailClient, #submitEnvoiMail, #submitSansMail{
     text-align: center;
+}
+
+.mediaImage{
+        visibility: hidden;
+}
+
+@media (max-width: 1250px)
+{
+    .ligneRemise{
+        max-height: 9vh;
+    }
+
+    .mediaBouton{
+        flex:0.1;
+    }
+
+    .enTete{
+        font-size: 0.9em ;
+    }
 }

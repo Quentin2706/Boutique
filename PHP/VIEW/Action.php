@@ -24,7 +24,7 @@ if (isset($_SESSION['user'])) { //S'il est connecté on récupère la table
         }
 
         // header("location:index.php?page=Liste&table=" . $_GET["table"]);
-        echo '<meta http-equiv="refresh" content="0;url=index.php?page=Liste?table='.$_GET["table"].'">';
+        echo '<meta http-equiv="refresh" content="0;url=index.php?page=Liste&table='.$_GET["table"].'">';
     } else { //Sinon l'administrateur peut agir sur toute les tables
         $manager = $table . 'Manager';
         $p = new $table($_POST);
@@ -32,24 +32,38 @@ if (isset($_SESSION['user'])) { //S'il est connecté on récupère la table
             case "ajout":
                 {
                     $manager::add($p);
+                    if (isset($_GET['tag'])){ // Si on créé un nouveau client pendant une vente
+                        $idVente=Table_venteManager::findLastByVenteSansParam();
+                        echo '<meta http-equiv="refresh" content="0;url=index.php?page=PassageCaisse&idVente='.$idVente.'&tag=encours">';
+                    } else {
+                       echo '<meta http-equiv="refresh" content="0;url=index.php?page=Liste&table='.$_GET["table"].'">'; 
+                    }
+                    
                     break;
                 }
             case "modif":
                 {
-
                     $manager::update($p);
+                    if (isset($_GET['tag'])){ //Si on modifie un client pendant une vente
+                        $idVente=Table_venteManager::findLastByVenteSansParam();
+                        $idClient=Table_venteManager::findClientByVente($idVente);
+                        echo '<meta http-equiv="refresh" content="0;url=index.php?page=PassageCaisse&idVente='.$idVente.'&idClient='.$idClient.'">';
+                    } else {
+                       echo '<meta http-equiv="refresh" content="0;url=index.php?page=Liste&table='.$_GET["table"].'">'; 
+                    }
                     break;
                 }
             case "delete":
                 {
 
                     $manager::delete($p);
+                    echo '<meta http-equiv="refresh" content="0;url=index.php?page=Liste&table='.$_GET["table"].'">';
                     break;
+                    
                 }
         }
 
         // header("location:index.php?page=Liste&table=" . $_GET["table"]);
-        echo '<meta http-equiv="refresh" content="0;url=index.php?page=Liste?table='.$_GET["table"].'">';
     }
 
 } else if (isset($_SESSION['user'])) {

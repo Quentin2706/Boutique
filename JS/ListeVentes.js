@@ -21,6 +21,7 @@ const requ2 = new XMLHttpRequest();//API Ventes Clients
         var jour = date.getDate();
     }
     var auj = date.getFullYear()+"-"+ mois +"-"+ jour;
+
 /*********LISTE VENTES********/
 function filtreVente() {
     var filtrageVente = {
@@ -93,23 +94,28 @@ function alertVenteFinie(e)
                     uneCase = document.createElement("div");
                     uneCase.setAttribute("class", "contenu");
                     ligne.appendChild(uneCase);
-                    // ON INSERE LES BOUTONS
-                    divBouton = document.createElement("div");
-                    divBouton.setAttribute("class", "miniBouton");
-                    uneCase.appendChild(divBouton);
-    
-                    btn = document.createElement("button");
-                    divBouton.appendChild(btn);
-                    // On crée le bouton pour afficher le ticket de caisse
-                    lien = document.createElement("a");
-                    lien.setAttribute("href", "./Tickets/Ticket" + reponse[i].idVente);
-                    lien.setAttribute("target", "_blank");
-                    btn.appendChild(lien);
-    
-                    image = document.createElement("img");
-                    image.setAttribute("src", "./IMG/voir.png");
-                    image.setAttribute("alt", "Voir Ticket");
-                    lien.appendChild(image);
+                    
+
+                    if(reponse[i].conclusionVente != false){ // On regarde si la vente est conclue, si elle l'est on ajoute un bouton qui ramène vers son ticket de caisse
+                        // ON INSERE LES BOUTONS
+                        divBouton = document.createElement("div");
+                        divBouton.setAttribute("class", "miniBouton");
+                        uneCase.appendChild(divBouton);
+        
+                        btn = document.createElement("button");
+                        divBouton.appendChild(btn);
+                        // On crée le bouton pour afficher le ticket de caisse
+                        lien = document.createElement("a");
+                        lien.setAttribute("href", "./Tickets/Ticket" + reponse[i].idVente);
+                        lien.setAttribute("target", "_blank");
+                        btn.appendChild(lien);
+        
+                        image = document.createElement("img");
+                        image.setAttribute("src", "./IMG/voir.png");
+                        image.setAttribute("alt", "Voir Ticket");
+                        lien.appendChild(image);
+                    }
+                    
     
     
                 }

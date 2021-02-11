@@ -25,7 +25,12 @@ if (isset($_SESSION['user'])) { //S'il est connecté on récupère la table
             echo '<form action="index.php?page=ActionListeUser&mode=' . $mode . '" method="POST">
     <div class="colonne">';
         } else {
-            echo '<form action="index.php?page=Action&table=' . $table . '&mode=' . $mode . '" method="POST">
+            if (isset($_GET['tag'])){ // Si on vient de créé un client ou modifier pendant une vente
+                echo '<form action="index.php?page=Action&table=' . $table . '&mode=' . $mode . '&tag=encours" method="POST">';
+            } else {
+                echo '<form action="index.php?page=Action&table=' . $table . '&mode=' . $mode . '" method="POST">';
+            }
+            echo'
         <div class="colonne">';
         }
 
@@ -146,7 +151,12 @@ if (isset($_SESSION['user'])) { //S'il est connecté on récupère la table
             echo '<form action="index.php?page=ActionListeUser&mode=' . $mode . '" method="POST">
     <div class="colonne">';
         } else {
-            echo '<form action="index.php?page=Action&table=' . $table . '&mode=' . $mode . '" method="POST">
+            if (isset($_GET['tag'])){ // Si on vient de créé un client pendant une vente
+                echo '<form action="index.php?page=Action&table=' . $table . '&mode=' . $mode . '&tag=encours" method="POST">';
+            } else {
+                echo '<form action="index.php?page=Action&table=' . $table . '&mode=' . $mode . '" method="POST">';
+            }
+            echo'
         <div class="colonne">';
         }
 

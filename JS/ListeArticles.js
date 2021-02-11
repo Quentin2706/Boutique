@@ -83,7 +83,7 @@ requ.onreadystatechange = function (event) {
                 // AFFICHAGE DES BOUTONS
 
                 uneCase = document.createElement("div");
-                uneCase.setAttribute("class", "contenu ligne");
+                uneCase.setAttribute("class", "contenu ligne mediaBouton");
                 ligne.appendChild(uneCase);
 
                 lesBoutons = document.createElement("div");
